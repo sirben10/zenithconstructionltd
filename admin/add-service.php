@@ -10,47 +10,99 @@ if (strlen($_SESSION['alogin']) == 0) {
 	}
 	// Code for change password	
 	$serviceName = $_POST['serviceName'];
+	$serviceImage = $_FILES['serviceImage']['name'];
 	$sql = "SELECT * from  tblservices WHERE serviceName=:serviceName";
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
 	$query->execute();
+
+	// $serviceImagesize = $_FILES['serviceImage']['size'];
 	if (isset($_POST['submit'])) {
-		if ($query->rowCount() > 0) {
-			$error = "Service already added. You can update it.";
+		if ($sitelogosize > 1000000 && $slideImagesize > 1000000) {
+			$error = "Image size should be less than 100kb";
 		} else {
-			$sql = "INSERT INTO tblservices (serviceName, dateUpdated) VALUES (:serviceName, NOW())";
-			$query = $dbh->prepare($sql);
-			$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
-			if ($query->execute()) {
-				$msg = "Service added successfully";
+			if ($query->rowCount() > 0) {
+				$error = "Service already added. You can update it.";
 			} else {
-				$error = "Failed to add service. Please try again.";
+				switch ($_FILES['serviceImage']['error']) {
+					case UPLOAD_ERR_OK:
+						$imgfile = $_FILES["serviceImage"]["name"];
+						$extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
+						$allowed_extensions = array("jpg", "jpeg", "png", "gif");
+						if (!in_array($extension, $allowed_extensions)) {
+							$error = "Invalid file format. Only JPG, JPEG, PNG & GIF are allowed.";
+						} else {
+							$newfilename = uniqid("service_") . '.' . $extension;
+							$upload_path = "../servicephotos/" . $newfilename;
+							if (move_uploaded_file($_FILES["serviceImage"]["tmp_name"], $upload_path)) {
+								// File uploaded successfully
+								$sql = "INSERT INTO tblservices (serviceName, servicePhoto, dateUpdated) VALUES (:serviceName, :servicePhoto, NOW())";
+								$query = $dbh->prepare($sql);
+								$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
+								$query->bindParam(':servicePhoto', $newfilename, PDO::PARAM_STR);
+								if ($query->execute()) {
+									$msg = "Service added successfully";
+								} else {
+									$error = "Failed to add service. Please try again.";
+								}
+							} else {
+								$error = "Failed to upload image.";
+							}
+						}
+						break;
+					case UPLOAD_ERR_NO_FILE:
+						// No file uploaded, proceed without updating the image
+						break;
+					default:
+						$error = "An error occurred during file upload.";
+						break;
+				}
 			}
 		}
-
 	}
-	// Code for Updte Service
-						
+	// Code for Update Service
+
 	if (isset($_POST['update'])) {
-		if ($query->rowCount() > 0) {
-			$error = "No changes made, name is the same.";
-		} else {
-			// echo $serviceName; exit;
-			$sql = "UPDATE tblservices SET serviceName=:serviceName,dateUpdated=NOW() WHERE serviceID=:serviceID";
-			$query = $dbh->prepare($sql);
-			$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
-			$query->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
-			$query->execute();
-			if ($query) {
-				$msg = "Service Updated successfully";
+		$serviceImage = $_FILES['serviceImage']['name'];
+		if (!empty($serviceImage)) {
+			$imgfile = $_FILES["serviceImage"]["name"];
+			$extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
+			$allowed_extensions = ["jpg", "jpeg", "png", "gif"];
+			if (!in_array($extension, $allowed_extensions)) {
+				$error = "Invalid file format. Only JPG, JPEG, PNG & GIF are allowed.";
 			} else {
-				$error = "Failed to add service. Please try again.";
+				// Get previous image filename
+				$sql = "SELECT servicePhoto FROM tblservices WHERE serviceID=:serviceID";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+				$query->execute();
+				$prev = $query->fetch(PDO::FETCH_OBJ);
+				if ($prev && !empty($prev->servicePhoto)) {
+					$prevPath = "../servicephotos/{$prev->servicePhoto}";
+					if (file_exists($prevPath)) {
+						unlink($prevPath);
+					}
+				}
+
+				$newfilename = uniqid("service_") . '.' . $extension;
+				$upload_path = "../servicephotos/{$newfilename}";
+				if (move_uploaded_file($_FILES["serviceImage"]["tmp_name"], $upload_path)) {
+					$sql = "UPDATE tblservices SET servicePhoto=:servicePhoto WHERE serviceID=:serviceID";
+					$query = $dbh->prepare($sql);
+					$query->bindParam(':servicePhoto', $newfilename, PDO::PARAM_STR);
+					$query->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+					if ($query->execute()) {
+						$msg = "Service Image Updated successfully";
+					} else {
+						$error = "Failed to update service image. Please try again.";
+					}
+				} else {
+					$error = "Failed to upload image.";
+				}
 			}
 		}
-
 	}
 
-	
 ?>
 
 	<!doctype html>
@@ -100,6 +152,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 												</div>
 											</div>
 
+											<div class="form-group">
+												<label class="col-sm-4 control-label">Service Image </label>
+												<div class="col-sm-8">
+													<input type="file" class="form-control" name="serviceImage" id="serviceImage">
+													<img src="../servicephotos/<?php if (!empty($results)) {
+																					echo htmlentities($results->servicePhoto);
+																				} ?>" width="200">
+												</div>
+											</div>
+
 											<div class="hr-dashed"></div>
 
 
@@ -108,7 +170,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 
-													<button class="btn btn-primary" <?php if (!empty($results)) {?>name="update"<?php }else{?>name="submit"<?php }?> type="submit">Submit</button>
+													<button class="btn btn-primary" <?php if (!empty($results)) { ?>name="update" <?php } else { ?>name="submit" <?php } ?> type="submit">Submit</button>
 												</div>
 											</div>
 

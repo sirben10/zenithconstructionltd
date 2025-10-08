@@ -70,17 +70,47 @@ if (strlen($_SESSION['alogin']) == 0) {
 		if ($query->rowCount() > 0) {
 			$error = "No changes made, name is the same.";
 		} else {
-			$sql = "UPDATE tblpartners SET companyName=:companyName,partnerLogo=:partnerLogo, dateUpdated=NOW() WHERE PartnerID=:PartnerID";
-			// echo $sql; exit;
-			$query = $dbh->prepare($sql);
-			$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
-			$query->bindParam(':partnerLogo', $partnerLogo, PDO::PARAM_STR);
-			$query->bindParam(':PartnerID', $PartnerID, PDO::PARAM_STR);
-			$query->execute();
-			if ($query) {
-				$msg = "Partner Updated successfully";
-			} else {
-				$error = "Failed to add Partner. Please try again.";
+			// Handle logo update
+			$newLogo = $partnerLogo;
+			if (!empty($_FILES['partnerLogo']['name'])) {
+				// Get old logo filename
+				$sql = "SELECT partnerLogo FROM tblpartners WHERE PartnerID=:PartnerID";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':PartnerID', $partnerID, PDO::PARAM_STR);
+				$query->execute();
+				$oldLogo = $query->fetchColumn();
+
+				// Unlink old logo if exists
+				if ($oldLogo && file_exists("../partnersphotos/" . $oldLogo)) {
+					unlink("../partnersphotos/" . $oldLogo);
+				}
+
+				// Upload new logo
+				$imgfile = $_FILES["partnerLogo"]["name"];
+				$extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
+				$allowed_extensions = array("jpg", "jpeg", "png", "gif");
+				if (!in_array($extension, $allowed_extensions)) {
+					$error = "Invalid file format. Only JPG, JPEG, PNG & GIF are allowed.";
+				} else {
+					$newLogo = uniqid("partner_") . '.' . $extension;
+					$upload_path = "../partnersphotos/" . $newLogo;
+					if (!move_uploaded_file($_FILES["partnerLogo"]["tmp_name"], $upload_path)) {
+						$error = "Failed to upload new image.";
+					}
+				}
+			}
+
+			if (empty($error)) {
+				$sql = "UPDATE tblpartners SET companyName=:companyName, partnerLogo=:partnerLogo, dateUpdated=NOW() WHERE PartnerID=:PartnerID";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
+				$query->bindParam(':partnerLogo', $newLogo, PDO::PARAM_STR);
+				$query->bindParam(':PartnerID', $partnerID, PDO::PARAM_STR);
+				if ($query->execute()) {
+					$msg = "Partner Updated successfully";
+				} else {
+					$error = "Failed to update Partner. Please try again.";
+				}
 			}
 		}
 

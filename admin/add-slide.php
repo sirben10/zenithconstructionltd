@@ -8,12 +8,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 	if (isset($_GET['id']) && !empty($_GET['id'])) {
 		$slideID = intval($_GET['id']);
 		} 
-	// Code for change password	
-	if (isset($_POST['submit'])) {
 		$slideBigCaption = $_POST['slideBigCaption'];
 		$slideTitle = $_POST['slideTitle'];
 		$slideImage = $_FILES['slideImage']["name"];
 		$slideImagesize = $_FILES['slideImage']["size"];
+	// Code for Insert Slide	
+	if (isset($_POST['submit'])) {
 		if ($sitelogosize > 1000000 && $slideImagesize > 1000000) {
 			$error = "Image size should be less than 100kb";
 		} else {
@@ -62,6 +62,77 @@ if (strlen($_SESSION['alogin']) == 0) {
 		}
 		// $sql = "update tblslider set slideBigCaption=:slideBigCaption,slideTitle=:slideTitle, slideImage=:slideImage,dateUpdated=now()";
 
+	}
+
+	// Code for Update Slide
+	// Code for Update Slide
+	if (isset($_POST['update'])) {
+		$slideBigCaption = $_POST['slideBigCaption'];
+		$slideTitle = $_POST['slideTitle'];
+		$slideImage = $_FILES['slideImage']["name"];
+		$slideImagesize = $_FILES['slideImage']["size"];
+
+		// Get current slide info
+		$sql = "SELECT slideImage FROM tblslider WHERE slideID=:slideID";
+		$query = $dbh->prepare($sql);
+		$query->bindParam(':slideID', $slideID, PDO::PARAM_INT);
+		$query->execute();
+		$currentSlide = $query->fetch(PDO::FETCH_OBJ);
+		$currentImage = $currentSlide ? $currentSlide->slideImage : '';
+
+		if (!empty($slideImage)) {
+			switch ($_FILES['slideImage']['error']) {
+				case UPLOAD_ERR_OK:
+					$extension = strtolower(pathinfo($slideImage, PATHINFO_EXTENSION));
+					$allowed_extensions = array("jpg", "jpeg", "png", "gif");
+					if (!in_array($extension, $allowed_extensions)) {
+						$error = "Invalid file format. Only JPG, JPEG, PNG & GIF are allowed.";
+					} elseif ($slideImagesize > 1000000) {
+						$error = "Image size should be less than 1MB.";
+					} else {
+						$newfilename = uniqid("slide_") . '.' . $extension;
+						$upload_path = "../slidephotos/" . $newfilename;
+						if (move_uploaded_file($_FILES["slideImage"]["tmp_name"], $upload_path)) {
+							// Unlink old image
+							if (!empty($currentImage) && file_exists("../slidephotos/" . $currentImage)) {
+								unlink("../slidephotos/" . $currentImage);
+							}
+							$sql = "UPDATE tblslider SET slideBigCaption=:slideBigCaption, slideTitle=:slideTitle, slideImage=:slideImage, dateUpdated=NOW() WHERE slideID=:slideID";
+							$query = $dbh->prepare($sql);
+							$query->bindParam(':slideBigCaption', $slideBigCaption, PDO::PARAM_STR);
+							$query->bindParam(':slideTitle', $slideTitle, PDO::PARAM_STR);
+							$query->bindParam(':slideImage', $newfilename, PDO::PARAM_STR);
+							$query->bindParam(':slideID', $slideID, PDO::PARAM_INT);
+							if ($query->execute()) {
+								$msg = "Slide updated successfully";
+							} else {
+								$error = "Failed to update slide. Please try again.";
+							}
+						} else {
+							$error = "Failed to upload new image.";
+						}
+					}
+					break;
+				case UPLOAD_ERR_NO_FILE:
+					$error = "No file uploaded.";
+					break;
+				default:
+					$error = "An error occurred during file upload.";
+					break;
+			}
+		} else {
+			// No new image uploaded, update other fields only
+			$sql = "UPDATE tblslider SET slideBigCaption=:slideBigCaption, slideTitle=:slideTitle, dateUpdated=NOW() WHERE slideID=:slideID";
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':slideBigCaption', $slideBigCaption, PDO::PARAM_STR);
+			$query->bindParam(':slideTitle', $slideTitle, PDO::PARAM_STR);
+			$query->bindParam(':slideID', $slideID, PDO::PARAM_INT);
+			if ($query->execute()) {
+				$msg = "Slide updated successfully";
+			} else {
+				$error = "Failed to update slide. Please try again.";
+			}
+		}
 	}
 ?>
 
@@ -131,7 +202,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 
-													<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+													<button class="btn btn-primary" <?php if (!empty($results)) { ?>name="update" <?php } else { ?>name="submit" <?php } ?> type="submit">Submit</button>
 												</div>
 											</div>
 
