@@ -77,317 +77,9 @@ include 'includes/header.php';
             <div id="inner-content" class="inner-content-wrap">
               <div class="page-content">
                 <!-- SLIDER -->
-                <div class="rev_slider_wrapper fullwidthbanner-container">
-                  <div id="rev-slider1" class="rev_slider fullwidthabanner">
-                    <ul>
-                      <!-- Slide 1 -->
-                      <li data-transition="random">
-                        <!-- Main Image -->
-                        <img
-                          src="assets/img/slider/slider-bg-2.jpg"
-                          alt=""
-                          data-bgposition="center center"
-                          data-no-retina />
-
-                        <!-- Layers -->
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-600"
-                          data-x="['left','left','left','center']"
-                          data-hoffset="['34','34','34','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-134','-134','-134','-134']"
-                          data-fontsize="['20','20','20','16']"
-                          data-lineheight="['70','70','40','24']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="700"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          A GLOBAL LEADER IN INFRASTRUCTURE
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700"
-                          data-x="['left','left','left','center']"
-                          data-hoffset="['34','34','34','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-63','-63','-63','-63']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          WE WILL BE HAPPY
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700"
-                          data-x="['left','left','left','center']"
-                          data-hoffset="['34','34','34','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['2','2','2','2']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          TO TAKE CARE OF YOUR WORK
-                        </div>
-
-                        <div
-                          class="tp-caption"
-                          data-x="['left','left','left','center']"
-                          data-hoffset="['34','34','34','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['106','106','106','106']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          <a href="#" class="zenith-button bg-accent big"><span>GET IN TOUCH</span></a>
-                        </div>
-                      </li>
-                      <!-- /End Slide 1 -->
-
-                      <!-- Slide 2 -->
-                      <li data-transition="random">
-                        <!-- Main Image -->
-                        <img
-                          src="assets/img/slider/slider-bg-1.jpg"
-                          alt=""
-                          data-bgposition="center center"
-                          data-no-retina />
-
-                        <!-- Layers -->
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-600 text-center"
-                          data-x="['center','center','center','center']"
-                          data-hoffset="['0','0','0','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-134','-134','-134','-134']"
-                          data-fontsize="['20','20','20','16']"
-                          data-lineheight="['70','70','40','24']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="700"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          A GLOBAL LEADER IN INFRASTRUCTURE
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700 text-center"
-                          data-x="['center','center','center','center']"
-                          data-hoffset="['0','0','0','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-63','-63','-63','-63']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          WE WILL BE HAPPY
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700 text-center"
-                          data-x="['center','center','center','center']"
-                          data-hoffset="['0','0','0','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['2','2','2','2']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          TO TAKE CARE OF YOUR WORK
-                        </div>
-
-                        <div
-                          class="tp-caption text-center"
-                          data-x="['center','center','center','center']"
-                          data-hoffset="['0','0','0','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['106','106','106','106']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          <a href="#" class="zenith-button bg-accent big"><span>GET IN TOUCH</span></a>
-                        </div>
-                      </li>
-                      <!-- /End Slide 2 -->
-
-                      <!-- Slide 3 -->
-                      <li data-transition="random">
-                        <!-- Main Image -->
-                        <img
-                          src="assets/img/slider/slider-bg-2.jpg"
-                          alt=""
-                          data-bgposition="center center"
-                          data-no-retina />
-
-                        <!-- Layers -->
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-600 text-right"
-                          data-x="['right','right','right','center']"
-                          data-hoffset="['-14','-14','-14','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-134','-134','-134','-134']"
-                          data-fontsize="['20','20','20','16']"
-                          data-lineheight="['70','70','40','24']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="700"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          A GLOBAL LEADER IN INFRASTRUCTURE
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700 text-right"
-                          data-x="['right','right','right','center']"
-                          data-hoffset="['-14','-14','-14','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['-63','-63','-63','-63']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          WE WILL BE HAPPY
-                        </div>
-
-                        <div
-                          class="tp-caption tp-resizeme text-white font-heading font-weight-700 text-right"
-                          data-x="['right','right','right','center']"
-                          data-hoffset="['-14','-14','-14','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['2','2','2','2']"
-                          data-fontsize="['52','52','42','32']"
-                          data-lineheight="['65','65','45','35']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          TO TAKE CARE OF YOUR WORK
-                        </div>
-
-                        <div
-                          class="tp-caption text-right"
-                          data-x="['right','right','right','center']"
-                          data-hoffset="['-14','-14','-14','0']"
-                          data-y="['middle','middle','middle','middle']"
-                          data-voffset="['106','106','106','106']"
-                          data-width="full"
-                          data-height="none"
-                          data-whitespace="normal"
-                          data-transform_idle="o:1;"
-                          data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                          data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                          data-mask_in="x:0px;y:[100%];"
-                          data-mask_out="x:inherit;y:inherit;"
-                          data-start="1000"
-                          data-splitin="none"
-                          data-splitout="none"
-                          data-responsive_offset="on">
-                          <a href="#" class="zenith-button bg-accent big"><span>GET IN TOUCH</span></a>
-                        </div>
-                      </li>
-                      <!-- /End Slide 3 -->
-                    </ul>
-                  </div>
-                </div>
+                <?php
+                include 'includes/slider.php';
+                ?>
                 <!-- END SLIDER -->
 
                 <!-- ICONBOX -->
@@ -402,7 +94,7 @@ include 'includes/header.php';
                           data-smobile="60"></div>
                         <div
                           class="zenith-headings style-1 text-center clearfix">
-                          <h2 class="heading">YOUR BEST CHOOSE</h2>
+                          <!-- <h2 class="heading">YOUR BEST CHOOSE</h2> -->
                           <div class="sep has-icon width-125 clearfix">
                             <div class="sep-icon">
                               <span
@@ -413,9 +105,8 @@ include 'includes/header.php';
                             </div>
                           </div>
                           <p class="sub-heading">
-                            More than 500 projects completed in Autora - With
-                            over 25 years of combined experience, we have the
-                            knowledge to serve you.
+                            Zenith Construction Limited has completed more than 500 projects. 
+                            Our experience of more than 25 years gives us the expertise to serve you better.
                           </p>
                         </div>
                         <div
@@ -441,13 +132,13 @@ include 'includes/header.php';
                             </div>
                             <div class="text-wrap">
                               <h5 class="heading">
-                                <a href="#">BEST QUALITY</a>
+                                <a href="#">BEST STANDARD QUALITY</a>
                               </h5>
                               <div class="sep clearfix"></div>
                               <p class="sub-heading">
-                                Autora Construction Services are committed to
+                                Our Services at Zenith Construction Limited are committed to
                                 meeting the highest quality standards without
-                                compromising our safety culture..
+                                compromising our safety culture.
                               </p>
                             </div>
                           </div>
@@ -472,12 +163,11 @@ include 'includes/header.php';
                               <i class="autora-icon-time"></i>
                             </div>
                             <div class="text-wrap">
-                              <h5 class="heading"><a href="#">ON TIME</a></h5>
+                              <h5 class="heading"><a href="#">ON TIME DELIVERY</a></h5>
                               <div class="sep clearfix"></div>
                               <p class="sub-heading">
-                                At our company, we respect the customer’s time
-                                and schedule and always complete the projects
-                                on timely fashion way.
+                                At our company, we value our customers' time and schedules, 
+                                ensuring every project is completed promptly and delivered on time.
                               </p>
                             </div>
                           </div>
@@ -503,14 +193,12 @@ include 'includes/header.php';
                             </div>
                             <div class="text-wrap">
                               <h5 class="heading">
-                                <a href="#">EXPERIENCED</a>
+                                <a href="#">EXPERTS WITH EXPERIENCE</a>
                               </h5>
                               <div class="sep clearfix"></div>
                               <p class="sub-heading">
-                                As the saying goes practice makes perfect.
-                                With our years of experience you can bet on us
-                                to get the job done exactly to your
-                                specifications.
+                                With more than 25 years of hands-on experience, our team delivers results that meet 
+                                your exact specifications. You can rely on us to get the job done right.
                               </p>
                             </div>
                           </div>
@@ -529,9 +217,9 @@ include 'includes/header.php';
                           data-desktop="41"
                           data-mobile="35"
                           data-smobile="35"></div>
-                        <div class="elm-button text-center">
+                        <!-- <div class="elm-button text-center">
                           <a href="#" class="zenith-button bg-accent">ABOUT US</a>
-                        </div>
+                        </div> -->
                         <div
                           class="zenith-spacer clearfix"
                           data-desktop="73"
@@ -563,14 +251,12 @@ include 'includes/header.php';
                           data-margin="0 25% 0 4.5%"
                           data-mobilemargin="0 0 0 4.5%">
                           <div class="zenith-headings style-1 clearfix">
-                            <h2 class="heading">WELCOME TO AUTORA</h2>
+                            <h2 class="heading">WELCOME TO ZENITH CONSTRUCTION LIMITED</h2>
                             <div
                               class="sep has-width w80 accent-bg margin-top-11 clearfix"></div>
                             <p class="sub-heading margin-top-30">
-                              We have successfully completed projects in
-                              numerous states across the continental United
-                              States. Autora Construction Services has a
-                              proven track record of:
+                                With a legacy of excellence, Zenith Construction Limited has delivered 
+                                outstanding projects throughout Nigeria. Our reputation is built on:
                             </p>
                           </div>
                           <div
@@ -584,8 +270,16 @@ include 'includes/header.php';
                               <div class="inner">
                                 <span class="item">
                                   <span class="icon"><i class="fa fa-check-square"></i></span>
-                                  <span class="text">Completing projects on time & Following
-                                    budget guidelines</span>
+                                  <span class="text">Delivering projects promptly and staying within your budget</span>
+                              </div>
+                            </div>
+                            <!-- /.themeslat-list -->
+                            <div
+                              class="zenith-list has-icon style-1 icon-left clearfix">
+                              <div class="inner">
+                                <span class="item">
+                                  <span class="icon"><i class="fa fa-check-square"></i></span>
+                                  <span class="text">Exceptional craftsmanship that stands out</span>
                                 </span>
                               </div>
                             </div>
@@ -595,8 +289,8 @@ include 'includes/header.php';
                               <div class="inner">
                                 <span class="item">
                                   <span class="icon"><i class="fa fa-check-square"></i></span>
-                                  <span class="text">Elevated quality of workmanship</span>
-                                </span>
+                                  <span class="text">Collaborating with trusted suppliers to bring you creative and cutting-edge results</span>
+                                  </span>
                               </div>
                             </div>
                             <!-- /.themeslat-list -->
@@ -605,20 +299,8 @@ include 'includes/header.php';
                               <div class="inner">
                                 <span class="item">
                                   <span class="icon"><i class="fa fa-check-square"></i></span>
-                                  <span class="text">Meeting diverse supplier
-                                    requirements</span>
-                                </span>
-                              </div>
-                            </div>
-                            <!-- /.themeslat-list -->
-                            <div
-                              class="zenith-list has-icon style-1 icon-left clearfix">
-                              <div class="inner">
-                                <span class="item">
-                                  <span class="icon"><i class="fa fa-check-square"></i></span>
-                                  <span class="text">Implementing appropriate safety
-                                    precautions and procedures</span>
-                                </span>
+                                  <span class="text">Prioritizing safety with proactive measures and best practices every step of the way</span>
+                                  </span>
                               </div>
                             </div>
                             <!-- /.themeslat-list -->
@@ -630,7 +312,7 @@ include 'includes/header.php';
                             data-mobile="35"
                             data-smobile="35"></div>
                           <div class="elm-button">
-                            <a href="#" class="zenith-button bg-white">GET IN TOUCH</a>
+                            <a href="about" class="zenith-button bg-white">About us</a>
                           </div>
                         </div>
                         <!-- /.zenith-content-box -->
@@ -660,7 +342,7 @@ include 'includes/header.php';
                           data-smobile="60"></div>
                         <div
                           class="zenith-headings style-1 text-center clearfix">
-                          <h2 class="heading">BEST SERVICES</h2>
+                          <h2 class="heading">Exceptional Services That Set Us Apart</h2>
                           <div class="sep has-icon width-125 clearfix">
                             <div class="sep-icon">
                               <span
@@ -671,9 +353,8 @@ include 'includes/header.php';
                             </div>
                           </div>
                           <p class="sub-heading">
-                            Construction Services offers a full range of
-                            construction services from initial design to
-                            project completion.
+                            From concept to completion, Zenith Construction Limited delivers 
+                            comprehensive construction solutions tailored to your needs.
                           </p>
                         </div>
                         <div
