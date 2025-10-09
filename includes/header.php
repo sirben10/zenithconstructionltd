@@ -1,6 +1,8 @@
 <?php 
 require_once 'includes/functions.php';
 $rows = fetchAllSiteSettings($dbh);
+$services = fetchAllServices($dbh);
+$slides = fetchAllSlides($dbh);
 
 if (!empty($_GET['p'])) {
   $page = $_GET['p'];

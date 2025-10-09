@@ -515,7 +515,7 @@
 
 /* Style */
 .half-background.style-1 {
-  background-image: url("../img/gallery/gallery-1-960x560.jpg");
+  background-image: url("/base-course.jpg");
 }
 .half-background.style-2 {
   background-image: url("../img/bg-services-1-420x330.jpg");

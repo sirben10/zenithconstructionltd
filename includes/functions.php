@@ -12,4 +12,30 @@ function fetchAllSiteSettings($dbh) {
     return [];
   }
 }
+
+// FUNCTION TO FETCH ALL SERVICES
+function fetchAllServices($dbh) {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblservices");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+}
+
+// FUNCTION TO FETCH SLIDES
+function fetchAllSlides($dbh) {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblslider");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+}
 ?>

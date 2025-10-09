@@ -94,7 +94,7 @@ include 'includes/header.php';
                           data-smobile="60"></div>
                         <div
                           class="zenith-headings style-1 text-center clearfix">
-                          <!-- <h2 class="heading">YOUR BEST CHOOSE</h2> -->
+                          <h2 class="heading">WHY CHOOSE US?</h2>
                           <div class="sep has-icon width-125 clearfix">
                             <div class="sep-icon">
                               <span
@@ -105,7 +105,7 @@ include 'includes/header.php';
                             </div>
                           </div>
                           <p class="sub-heading">
-                            Zenith Construction Limited has completed more than 500 projects. 
+                            Zenith Construction Limited has completed more than 500 projects.
                             Our experience of more than 25 years gives us the expertise to serve you better.
                           </p>
                         </div>
@@ -166,7 +166,7 @@ include 'includes/header.php';
                               <h5 class="heading"><a href="#">ON TIME DELIVERY</a></h5>
                               <div class="sep clearfix"></div>
                               <p class="sub-heading">
-                                At our company, we value our customers' time and schedules, 
+                                At our company, we value our customers' time and schedules,
                                 ensuring every project is completed promptly and delivered on time.
                               </p>
                             </div>
@@ -197,7 +197,7 @@ include 'includes/header.php';
                               </h5>
                               <div class="sep clearfix"></div>
                               <p class="sub-heading">
-                                With more than 25 years of hands-on experience, our team delivers results that meet 
+                                With more than 25 years of hands-on experience, our team delivers results that meet
                                 your exact specifications. You can rely on us to get the job done right.
                               </p>
                             </div>
@@ -255,8 +255,8 @@ include 'includes/header.php';
                             <div
                               class="sep has-width w80 accent-bg margin-top-11 clearfix"></div>
                             <p class="sub-heading margin-top-30">
-                                With a legacy of excellence, Zenith Construction Limited has delivered 
-                                outstanding projects throughout Nigeria. Our reputation is built on:
+                              With a legacy of excellence, Zenith Construction Limited has delivered
+                              outstanding projects throughout Nigeria. Our reputation is built on:
                             </p>
                           </div>
                           <div
@@ -290,7 +290,7 @@ include 'includes/header.php';
                                 <span class="item">
                                   <span class="icon"><i class="fa fa-check-square"></i></span>
                                   <span class="text">Collaborating with trusted suppliers to bring you creative and cutting-edge results</span>
-                                  </span>
+                                </span>
                               </div>
                             </div>
                             <!-- /.themeslat-list -->
@@ -300,7 +300,7 @@ include 'includes/header.php';
                                 <span class="item">
                                   <span class="icon"><i class="fa fa-check-square"></i></span>
                                   <span class="text">Prioritizing safety with proactive measures and best practices every step of the way</span>
-                                  </span>
+                                </span>
                               </div>
                             </div>
                             <!-- /.themeslat-list -->
@@ -353,7 +353,7 @@ include 'includes/header.php';
                             </div>
                           </div>
                           <p class="sub-heading">
-                            From concept to completion, Zenith Construction Limited delivers 
+                            From concept to completion, Zenith Construction Limited delivers
                             comprehensive construction solutions tailored to your needs.
                           </p>
                         </div>
@@ -362,173 +362,36 @@ include 'includes/header.php';
                           data-desktop="39"
                           data-mobile="35"
                           data-smobile="35"></div>
-                        <div
-                          class="zenith-carousel-box data-effect clearfix"
-                          data-gap="30"
-                          data-column="3"
-                          data-column2="2"
-                          data-column3="1"
-                          data-auto="false">
-                          <div class="owl-carousel owl-theme">
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-1-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">DESIGN & BUILD</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.zenith-image-box -->
 
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-2-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">BUILDING ENVELOPES</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
+                        <div class="zenith-project style-2 isotope-project has-margin mg15 data-effect clearfix">
+                          <?php 
+                          if(isset($services) && is_array($services)) {
+                            foreach($services as $service) {
+                          ?>
+                          <div class="project-item green villa">
+                            <div class="inner">
+                              <div class="thumb data-effect-item has-effect-icon w40 offset-v-19 offset-h-49" style="height: 250px;">
+                                <img class="img-responsive" width="100%" height="auto" src="servicePhotos/<?php echo $service['servicePhoto']; ?>" alt="<?php echo $service['serviceName']; ?>">
+                               
+                                <div class="overlay-effect bg-color-3"></div>
+                              </div>
+                              <div class="text-wrap">
+                                <h5 class="heading text-uppercase"><a href="#"><?php echo $service['serviceName']; ?></a></h5>
                               </div>
                             </div>
-                            <!-- /.zenith-image-box -->
-
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-3-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">CONSTRUCTION</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.zenith-image-box -->
-
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-1-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">DESIGN & BUILD</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.zenith-image-box -->
-
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-2-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">BUILDING ENVELOPES</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.zenith-image-box -->
-
-                            <div
-                              class="zenith-image-box style-1 has-icon icon-right w65 clearfix">
-                              <div class="image-box-item">
-                                <div class="inner">
-                                  <div class="thumb data-effect-item">
-                                    <img
-                                      src="assets/img/imagebox/image-box-3-370x250.jpg"
-                                      alt="Image" />
-                                    <div
-                                      class="overlay-effect bg-color-accent"></div>
-                                  </div>
-                                  <div class="text-wrap">
-                                    <h5 class="heading">
-                                      <a href="#">CONSTRUCTION MANAGEMENT</a>
-                                    </h5>
-                                    <span class="icon-wrap">
-                                      <i class="fa fa-angle-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.zenith-image-box -->
-                          </div>
+                          </div><!-- /.product-item -->
+                         <?php 
+                            }
+                          }
+                         ?>
                         </div>
-                        <!-- /.zenith-carousel-box -->
+                        <!-- /.zenith-Services-box -->
                         <div
                           class="zenith-spacer clearfix"
                           data-desktop="50"
                           data-mobile="35"
                           data-smobile="35"></div>
-                        <div class="elm-button text-center">
-                          <a href="#" class="zenith-button bg-accent">ALL SERVICES</a>
-                        </div>
-                        <div
-                          class="zenith-spacer clearfix"
-                          data-desktop="73"
-                          data-mobile="60"
-                          data-smobile="60"></div>
+                       
                       </div>
                       <!-- /.col-md-12 -->
                     </div>
@@ -1517,7 +1380,7 @@ include 'includes/header.php';
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                             <!-- /zenith-partner -->
                           </div>
                         </div>

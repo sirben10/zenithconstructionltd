@@ -1,6 +1,8 @@
 <?php
 session_start();
-include('includes/config.php');
+require_once 'includes/functions.php';
+include_once('includes/config.php');
+$rows = fetchAllSiteSettings($dbh);
 if(isset($_POST['login']))
 {
 $email=$_POST['username'];
@@ -34,7 +36,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Car Rental Portal | Admin Login</title>
+	<title>Admin Login | <?php echo $rows['sitetitle'] ?></title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
@@ -47,30 +49,33 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 
 <body>
 	
-	<div class="login-page bk-img" style="background-image: url(img/login-bg.jpg);">
-		<div class="form-content">
+	<div class="login-page bk-img" style="background-image: url(img/login-bg.jpg); position: relative;">
+		<!-- Green background overlay -->
+		<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,128,0,0.5); z-index: 1;"></div>
+		<div class="form-content" style="position: relative; z-index: 2;">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<h1 class="text-center text-bold mt-4x" style="color:#fff">Admin | Sign in</h1>
+					<div class="col-md-6 col-md-offset-3 mt-2x">
+						<div class="text-center" style="margin:auto">
+							<img src="/sitelogo/<?php echo $rows['sitelogo'] ?>" alt="Zenith Logo" style="max-width: 120px;">
+						</div>
+						<h3 class="text-center text-bold" style="color:#fff">Admin | Sign in</h3>
 						<div class="well row pt-2x pb-3x bk-light">
 							<div class="col-md-8 col-md-offset-2">
 								<form method="post">
 
-									<label for="" class="text-uppercase text-sm">Your Username </label>
+									<label for="" class="text-uppercase text-sm">Username </label>
 									<input type="text" placeholder="Username" name="username" class="form-control mb">
 
 									<label for="" class="text-uppercase text-sm">Password</label>
 									<input type="password" placeholder="Password" name="password" class="form-control mb">
 		
-
 									<button class="btn btn-primary btn-block" name="login" type="submit">LOGIN</button>
 
 								</form>
 
-			<p style="margin-top: 4%" align="center"><a href="../index.php">Back to Home</a>	</p>
+								<p style="margin-top: 4%" align="center"><a href="../index.php">Back to Home</a></p>
 							</div>
-
 						</div>
 							
 					</div>
