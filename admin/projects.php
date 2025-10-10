@@ -28,7 +28,7 @@ $msg="Page data updated  successfully";
 	// echo $results['sitetitle']; exit;
 	include 'includes/topassets.php';
 	include('includes/header.php'); ?>
-	<title><?php echo $results['sitetitle'] ?> | Manage Sliders</title>
+	<title><?php echo $results['sitetitle'] ?> | Manage Projects</title>
 
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
@@ -38,11 +38,11 @@ $msg="Page data updated  successfully";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 style="margin-top: 30px !important;" class="page-title">Manage Sliders</h2>
+						<h2 style="margin-top: 30px !important;" class="page-title">Manage Projects</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Sliders  <a href="add-slide"><i style="margin-left: 30px;" class="fa fa-plus"></i></a></div>
+							<div class="panel-heading">Projects  <a href="add-project"><i style="margin-left: 30px;" class="fa fa-plus"></i></a></div>
 							<div class="panel-body">
 
 							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
