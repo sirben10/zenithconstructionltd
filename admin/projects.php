@@ -10,7 +10,45 @@ else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "delete from tblslider  WHERE id=:id";
+// Select alredy existining image and delete
+$sql = "SELECT * FROM tblprojects WHERE projectID=:id";
+$query = $dbh->prepare($sql);
+$query->bindParam(':id', $id, PDO::PARAM_STR);
+$query->execute();
+$result = $query->fetch(PDO::FETCH_OBJ);
+if ($result) {
+    $previewPhoto = $result->previewPhoto;
+    $projectReport = $result->projectReport;
+
+    // Delete project files
+    if ($previewPhoto) {
+        $previewPhotoPath = "../projectphotos/" . $previewPhoto;
+        if (file_exists($previewPhotoPath)) {
+            unlink($previewPhotoPath);
+        }
+    }
+    if ($projectReport) {
+        $projectReportPath = "../projectreports/" . $projectReport;
+        if (file_exists($projectReportPath)) {
+            unlink($projectReportPath);
+        }
+    }
+}
+// Delete Project Gallery images
+$sql = "SELECT * FROM tblprojectgallery WHERE projectID=:id";
+$query = $dbh->prepare($sql);
+$query->bindParam(':id', $id, PDO::PARAM_STR);
+$query->execute();
+$galleryImages = $query->fetchAll(PDO::FETCH_OBJ);
+foreach ($galleryImages as $image) {
+    $imagePath = "../projectphotos/" . $image->photo;
+    if (file_exists($imagePath)) {
+        unlink($imagePath);
+    }
+}
+
+// Delete record from database
+$sql = "delete from tblprojects  WHERE projectID=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
@@ -51,9 +89,13 @@ $msg="Page data updated  successfully";
 									<thead>
 										<tr>
 										<th>#</th>
-												<th>Slide Title</th>
-											<th>Slide Caption</th>
-											<th>Slide Image</th>
+												<th>Project Title</th>
+												<th>Preview Photo </th>
+											<th>Project Location</th>
+											<th>Date Awarded</th>
+											<th>Client</th>
+											<th>Project Manager</th>
+											<th>Project Status</th>
 										
 											<th>Action</th>
 										</tr>
@@ -61,9 +103,13 @@ $msg="Page data updated  successfully";
 									<tfoot>
 										<tr>
 										<th>#</th>
-												<th>Slide Title</th>
-											<th>Slide Caption</th>
-											<th>Slide Image</th>
+												<th>Project Title</th>
+											<th>Preview Photo </th>
+											<th>Project Location</th>
+											<th>Date Awarded</th>
+											<th>Client</th>
+											<th>Project Manager</th>
+											<th>Project Status</th>
 										
 											<th>Action</th>
 										</tr>
@@ -71,7 +117,7 @@ $msg="Page data updated  successfully";
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT * from  tblslider";
+									<?php $sql = "SELECT * from  tblprojects p join tblpartners c on p.client=c.partnerID";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -82,11 +128,14 @@ foreach($results as $result)
 {				?>	
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->slideTitle);?></td>
-											<td><?php echo htmlentities($result->slideBigCaption);?></td>
-											<td><?php echo htmlentities($result->slideImage);?></td>
-<td><a href="add-slide?id=<?php echo $result->slideID;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-<a href="sliders?del=<?php echo $result->slideID;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
+											<td><?php echo htmlentities($result->projectTitle);?></td>
+											<td><img src="/projectphotos/<?php echo htmlentities($result->previewPhoto);?>" width="60" height="60" style="border:solid 1px #000"></td>
+											<td><?php echo htmlentities($result->projectLocation);?></td>
+											<td><?php echo htmlentities($result->dateAwarded);?></td>
+											<td><?php echo htmlentities($result->companyName);?></td>
+											<td><?php echo htmlentities($result->ProjectManager);?></td>
+											<td><?php echo htmlentities($result->projectStatus);?></td>
+											<td><a href="projects?del=<?php echo $result->projectID;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 										

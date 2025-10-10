@@ -13,9 +13,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 	}
 	// $serviceID = strip_tags($_POST['serviceID']);
 	$projectTitle = strtolower(strip_tags($_POST['projectTitle']));
-	$protjectTitle = preg_replace('/\s+/', ' ', $projectTitle);
+	$projectTitle = preg_replace('/\s+/', ' ', $projectTitle);
 	$titleForImage = preg_replace('/\s+/', '_', $projectTitle);
-	$projectDescription = strtolower(strip_tags($_POST['projectDescription']));
 	$previewPhoto = $_FILES['previewPhoto']["name"];
 	$previewPhotosize = $_FILES['previewPhoto']["size"];
 	$projectLocation = strtolower(strip_tags($_POST['projectLocation']));
@@ -24,7 +23,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 	$partnerID = strip_tags($_POST['partnerID']);
 	// echo $titleForImage; exit;
 	$ProjectManager = strip_tags($_POST['ProjectManager']);
-	$principalConsultant = strip_tags($_POST['principalConsultant']);
 	$projectStatus = $_POST['projectStatus'];
 
 
@@ -77,9 +75,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     // Insert into projects table
 									// echo $titleForImage; exit;
                                     $sql = "INSERT INTO tblprojects 
-                                        (projectTitle, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, principalConsultant, projectStatus, projectReport, dateUpdated) 
+                                        (projectTitle, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
                                         VALUES 
-                                        (:projectTitle, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :principalConsultant, :projectStatus, :projectReport, NOW())";
+                                        (:projectTitle, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
                                     $query = $dbh->prepare($sql);
                                     $query->bindParam(':projectTitle', $projectTitle, PDO::PARAM_STR);
                                     $query->bindParam(':previewPhoto', $newfilename, PDO::PARAM_STR);
@@ -88,7 +86,6 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     $query->bindParam(':dateCompleted', $dateCompleted, PDO::PARAM_STR);
                                     $query->bindParam(':partnerID', $partnerID, PDO::PARAM_INT);
                                     $query->bindParam(':ProjectManager', $ProjectManager, PDO::PARAM_STR);
-                                    $query->bindParam(':principalConsultant', $principalConsultant, PDO::PARAM_STR);
                                     $query->bindParam(':projectStatus', $projectStatus, PDO::PARAM_STR);
                                     $query->bindParam(':projectReport', $newreportfilename, PDO::PARAM_STR);
 
@@ -168,61 +165,24 @@ if (strlen($_SESSION['alogin']) == 0) {
 											enctype="multipart/form-data">
 
 											<?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
-											<?php
-											if (isset($projectID) && !empty($projectID)) {
-												// Get current project info
-												$sql = "SELECT * from  tblprojects WHERE projectID =:projectID ";
-												$query = $dbh->prepare($sql);
-												$query->bindParam(':projectID ', $projectID, PDO::PARAM_STR);
-												$query->execute();
-												$results = $query->fetch(PDO::FETCH_OBJ);
-
-												// Get project gallery images
-												$sql = "SELECT * from  tblprojectgallery WHERE projectID =:projectID ";
-												$query = $dbh->prepare($sql);
-												$query->bindParam(':projectID ', $projectID, PDO::PARAM_STR);
-												$query->execute();
-												$galleryResults = $query->fetchAll(PDO::FETCH_OBJ);
-											}
-											?>
-											<!-- <div class="form-group">
-												<label class="col-sm-4 control-label">Select Service <em style="color:red"> *</em></label>
-												<div class="col-sm-8">
-													<select class="form-control" name="serviceID" id="serviceID" required>
-														<option value="">Select Service</option>
-														<?php
-														$services = fetchAllServices($dbh);
-														// var_dump($services); exit;
-														foreach ($services as $service) {
-															$selected = (!empty($results) && $results->serviceID == $service['serviceID']) ? 'selected' : '';
-															echo "<option value='" . htmlentities($service['serviceID']) . "' $selected>" . htmlentities($service['serviceName']) . "</option>";
-														}
-														?>
-													</select>
-												</div>
-											</div> -->
-
+									
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Title <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
-													<input class="form-control" value="<?php if (!empty($results)) {
-																							echo htmlentities($results->projectTitle);
-																						} ?>" name="projectTitle" id="projectTitle" required>
+													<input class="form-control"  name="projectTitle" id="projectTitle" required>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Location <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
-													<input class="form-control" value="<?php if (!empty($results)) {
-																							echo htmlentities($results->projectLocation);
-																						} ?>" name="projectLocation" id="projectLocation" required>
+													<input class="form-control"  name="projectLocation" id="projectLocation" required>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-sm-4 control-label">Select Partner <em style="color:red"> *</em></label>
+												<label class="col-sm-4 control-label">Client <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
 													<select class="form-control" name="partnerID" id="partnerID" required>
 														<option value="">Select Partner</option>
@@ -230,8 +190,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 														$partners = fetchAllPartners($dbh);
 														// var_dump($partners); exit;
 														foreach ($partners as $partner) {
-															$selected = (!empty($results) && $results->partnerID == $partner['partnerID']) ? 'selected' : '';
-															echo "<option value='" . htmlentities($partner['partnerID']) . "' $selected>" . htmlentities($partner['companyName']) . "</option>";
+
+															echo "<option value='" . htmlentities($partner['partnerID']) . "'>" . htmlentities($partner['companyName']) . "</option>";
 														}
 														?>
 													</select>
@@ -241,9 +201,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Manager </label>
 												<div class="col-sm-8">
-													<input class="form-control" value="<?php if (!empty($results)) {
-																							echo htmlentities($results->ProjectManager);
-																						} ?>" name="ProjectManager" id="ProjectManager" required>
+													<input class="form-control"  name="ProjectManager" id="ProjectManager" required>
 												</div>
 											</div>
 
@@ -253,38 +211,18 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Date Awarded <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
-													<input type="date" class="form-control" value="<?php if (!empty($results)) {
-																										echo htmlentities($results->dateAwarded);
-																									} ?>" name="dateAwarded" id="dateAwarded" required>
+													<input type="date" class="form-control"  name="dateAwarded" id="dateAwarded" required>
 												</div>
 											</div>
-
-
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Principal Consultant </label>
-												<div class="col-sm-8">
-													<input type="text" class="form-control" value="<?php if (!empty($results)) {
-																										echo htmlentities($results->principalConsultant);
-																									} ?>" name="principalConsultant" id="principalConsultant" required>
-												</div>
-											</div>
-
-
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Status</label>
 												<div class="col-sm-8">
 													<select class="form-control" name="projectStatus" id="projectStatus" onClick="onShowProjectStatus(this.value)" required>
 														<option value="">Select Status</option>
-														<option value="Ongoing" <?php if (!empty($results) && $results->projectStatus == "Ongoing") {
-																					echo "selected";
-																				} ?>>Ongoing</option>
-														<option value="Completed" <?php if (!empty($results) && $results->projectStatus == "Completed") {
-																						echo "selected";
-																					} ?>>Completed</option>
-														<option value="Pending" <?php if (!empty($results) && $results->projectStatus == "Pending") {
-																					echo "selected";
-																				} ?>>Pending</option>
+														<option value="Ongoing">Ongoing</option>
+														<option value="Completed">Completed</option>
+														<option value="Pending">Pending</option>
 													</select>
 												</div>
 											</div>
@@ -292,28 +230,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group" style="display: none;" id="dateCompletedGroup">
 												<label class="col-sm-4 control-label">Date Completed</label>
 												<div class="col-sm-8">
-													<input type="date" class="form-control" value="<?php if (!empty($results)) {
-																										echo htmlentities($results->endDate);
-																									} ?>" name="dateCompleted" id="dateCompleted">
+													<input type="date" class="form-control"  name="dateCompleted" id="dateCompleted">
 												</div>
 											</div>
-											<!-- 
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Project Description</label>
-												<div class="col-sm-8">
-													<textarea class="form-control" name="projectDescription" id="projectDescription" rows="4" ><?php if (!empty($results)) {
-																																					echo htmlentities($results->projectDescription);
-																																				} ?></textarea>
-												</div>
-											</div> -->
-
+										
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Report Document</label>
 												<div class="col-sm-8">
 													<input type="file" class="form-control" name="projectReport" id="projectReport" accept="application/pdf">
-													<img src="../projectphotos/<?php if (!empty($results)) {
-																					echo htmlentities($results->projectReport);
-																				} ?>" width="200">
+													
 												</div>
 											</div>
 
@@ -321,9 +246,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<label class="col-sm-4 control-label">Preview Image</label>
 												<div class="col-sm-8">
 													<input type="file" class="form-control" name="previewPhoto" id="previewPhoto" accept="image/*">
-													<img src="../projectphotos/<?php if (!empty($results)) {
-																					echo htmlentities($results->previewPhoto);
-																				} ?>" width="200">
+													
 												</div>
 											</div>
 
@@ -331,11 +254,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<label class="col-sm-4 control-label">Project Gallery</label>
 												<div class="col-sm-8">
 													<input type="file" class="form-control" name="projectGallery[]" id="projectGallery" accept="image/*" multiple>
-													<?php if (!empty($galleryResults)) {
-														foreach ($galleryResults as $photo) {
-															echo '<img src="../projectphotos/' . htmlentities($photo->photo) . '" width="200">';
-														}
-													} ?>
+												
 												</div>
 											</div>
 									</div>
@@ -344,11 +263,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 								<div class="form-group">
 									<div class="col-sm-8 col-sm-offset-4">
-										<button class="btn btn-primary" <?php if (isset($projectID) && !empty($results)) {
-																			echo 'name="update"';
-																		} else {
-																			echo 'name="submit"';
-																		} ?> type="submit">Submit</button>
+										<button class="btn btn-primary" name="submit" type="submit">Submit</button>
 									</div>
 								</div>
 
