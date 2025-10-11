@@ -221,7 +221,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 			</div>
-		<?php include('includes/copyright.html'); ?>
 		</div>
 	</div>
 	<?php include('includes/foot-scripts.html'); ?>
