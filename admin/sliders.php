@@ -10,7 +10,18 @@ else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "delete from tblslider  WHERE id=:id";
+// Delete already existing image
+$sql = "SELECT * FROM tblslider WHERE slideID=:id";
+$query = $dbh->prepare($sql);
+$query->bindParam(':id', $id, PDO::PARAM_STR);
+$query->execute();
+$slider = $query->fetch(PDO::FETCH_OBJ);
+if ($slider) {
+	unlink("../sliderphotos/" . $slider->slideImage);
+}
+
+// Delete from database	
+$sql = "delete from tblslider  WHERE slideID=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
@@ -98,7 +109,11 @@ foreach($results as $result)
 							</div>
 						</div>
 
-					
+						<div>
+						<?php require 'includes/copyright.php'; ?>
+						<?php require 'includes/footscripts.php'; ?>
+				
+					</div>
 
 					</div>
 				</div>
@@ -107,16 +122,7 @@ foreach($results as $result)
 		</div>
 	</div>
 
-	<!-- Loading Scripts -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap-select.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap.min.js"></script>
-	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
-	<script src="js/main.js"></script>
+	
 </body>
 </html>
 <?php } ?>

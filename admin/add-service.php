@@ -182,17 +182,21 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 						</div>
 
-
+						<div>
+						<?php require 'includes/copyright.php'; ?>
+						<?php require 'includes/footscripts.php'; ?>
+				
+					</div>
 
 					</div>
 				</div>
 
 
 			</div>
-			<?php include('includes/copyright.html'); ?>
+		
 		</div>
 	</div>
-	<?php include('includes/foot-scripts.html'); ?>
+	
 
 	</body>
 

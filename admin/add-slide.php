@@ -7,11 +7,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
 	if (isset($_GET['id']) && !empty($_GET['id'])) {
 		$slideID = intval($_GET['id']);
-		} 
-		$slideBigCaption = $_POST['slideBigCaption'];
-		$slideTitle = $_POST['slideTitle'];
-		$slideImage = $_FILES['slideImage']["name"];
-		$slideImagesize = $_FILES['slideImage']["size"];
+	}
+	$slideBigCaption = $_POST['slideBigCaption'];
+	$slideTitle = $_POST['slideTitle'];
+	$slideImage = $_FILES['slideImage']["name"];
+	$slideImagesize = $_FILES['slideImage']["size"];
 	// Code for Insert Slide	
 	if (isset($_POST['submit'])) {
 		if ($sitelogosize > 1000000 && $slideImagesize > 1000000) {
@@ -165,7 +165,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 											<?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
-											<?php 
+											<?php
 											$sql = "SELECT * from  tblslider WHERE slideID=:slideID";
 											$query = $dbh->prepare($sql);
 											$query->bindParam(':slideID', $slideID, PDO::PARAM_STR);
@@ -177,21 +177,27 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<div class="form-group">
 												<label class="col-sm-4 control-label"> Slide Title</label>
 												<div class="col-sm-8">
-													<input class="form-control" value="<?php if(!empty($results)){ echo htmlentities($results->slideTitle); } ?>" name="slideTitle" id="slideTitle" required>
+													<input class="form-control" value="<?php if (!empty($results)) {
+																							echo htmlentities($results->slideTitle);
+																						} ?>" name="slideTitle" id="slideTitle" required>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label"> Caption</label>
 												<div class="col-sm-8">
-													<input class="form-control" value="<?php if(!empty($results)){ echo htmlentities($results->slideBigCaption); }?>" name="slideBigCaption" id="slideBigCaption" required>
+													<input class="form-control" value="<?php if (!empty($results)) {
+																							echo htmlentities($results->slideBigCaption);
+																						} ?>" name="slideBigCaption" id="slideBigCaption" required>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Slide Image </label>
 												<div class="col-sm-8">
 													<input type="file" class="form-control" name="slideImage" id="slideImage">
-													<img src="../slidephotos/<?php if(!empty($results)){ echo htmlentities($results->slideImage); }?>" width="200">
+													<img src="../slidephotos/<?php if (!empty($results)) {
+																					echo htmlentities($results->slideImage);
+																				} ?>" width="200">
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
@@ -213,18 +219,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 							</div>
 
 						</div>
-
-
-
+						<div>
+							<?php require 'includes/copyright.php'; ?>
+							<?php require 'includes/footscripts.php'; ?>
+						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-	<?php include('includes/foot-scripts.html'); ?>
-
 	</body>
 
 	</html>
