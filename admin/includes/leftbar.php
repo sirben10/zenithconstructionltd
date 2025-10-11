@@ -28,7 +28,7 @@
 			<li><a href="#"><i class="fa fa-image"></i> Photos</a>
 				<ul>
 					<li><a href="new-bookings.php">Services Photos</a></li>
-					<li><a href="confirmed-bookings.php">Project Gallery</a></li>
+					<li><a href="project-gallery">Project Gallery</a></li>
 					<!-- <li><a href="canceled-bookings.php">Canceled</a></li> -->
 				</ul>
 			</li>

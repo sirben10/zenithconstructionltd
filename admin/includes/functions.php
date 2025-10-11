@@ -38,3 +38,16 @@ function fetchAllPartners($dbh): mixed {
     return [];
   }
 }
+
+//Select all Project Gallery images
+function fetchAllProjectGallery($dbh): mixed {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblprojectgallery");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+} 

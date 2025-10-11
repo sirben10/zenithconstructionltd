@@ -8,8 +8,9 @@
       text-align: center;
     }
   }
+ 
 </style>
-<div class="text center">
+<div class="text center" style="margin-top: 20px;">
   &copy;
   <script>
     document.write(new Date().getFullYear());
