@@ -38,4 +38,17 @@ function fetchAllSlides($dbh) {
     return [];
   }
 }
+
+// FUNCTION TO FETCH ALL PARTNERS
+function fetchAllPartners($dbh) {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblpartners");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+}
 ?>

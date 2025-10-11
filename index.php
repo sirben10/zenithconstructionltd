@@ -1345,59 +1345,11 @@ include 'includes/header.php';
                 </div>
                 <!-- END TABS -->
 
-                <!-- PARTNER -->
-                <div class="row-partner">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div
-                          class="zenith-spacer clearfix"
-                          data-desktop="83"
-                          data-mobile="60"
-                          data-smobile="60"></div>
-                        <div
-                          class="zenith-carousel-box clearfix"
-                          data-gap="5"
-                          data-column="5"
-                          data-column2="3"
-                          data-column3="2"
-                          data-auto="true">
-                          <div class="owl-carousel owl-theme">
-                            <!-- /zenith-partner -->
-                            <div
-                              class="zenith-partner style-1 align-center clearfix">
-                              <div class="partner-item">
-                                <div class="inner">
-                                  <div class="thumb">
-                                    <img
-                                      src="assets/img/partners/partner-1.png"
-                                      alt="Image"
-                                      class="partner-default" />
-                                    <img
-                                      src="assets/img/partners/partner-1-color.png"
-                                      alt="Image"
-                                      class="partner-color" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /zenith-partner -->
-                          </div>
-                        </div>
-                        <!-- /.zenith-carousel-box -->
-                        <div
-                          class="zenith-spacer clearfix"
-                          data-desktop="66"
-                          data-mobile="60"
-                          data-smobile="60"></div>
-                      </div>
-                      <!-- /.col-md-12 -->
-                    </div>
-                    <!-- /.row -->
-                  </div>
-                  <!-- /.container -->
-                </div>
-                <!-- END PARTNER -->
+                <!-- CLIENTS -->
+               <?php
+                include 'includes/clients.php';
+                ?>
+                <!-- END CLIENTS -->
               </div>
               <!-- /.page-content -->
             </div>
