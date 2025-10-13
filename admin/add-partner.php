@@ -197,6 +197,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 						</div>
 
 
+						<?php require 'includes/copyright.php'; ?>
+						<?php require 'includes/footscripts.php'; ?>
 
 					</div>
 				</div>
@@ -207,8 +209,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 		</div>
 	</div>
 		<div>
-						<?php require 'includes/copyright.php'; ?>
-						<?php require 'includes/footscripts.php'; ?>
 				
 					</div>
 

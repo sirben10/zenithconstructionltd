@@ -7,10 +7,10 @@
 			<li><a href="#"><i class="fa fa-globe"></i> Site</a>
 				<ul>
 					<li><a href="create-brand.php">Our Team</a></li>
-					<li><a href="sliders">Manage Slider</a></li>
+					<li><a href="sliders">Manage Sliders</a></li>
 					<li><a href="partners">Partners</a></li>
 					<!-- <li><a href="manage-brands.php">Manage Slider</a></li> -->
-					<li><a href="manage-brands.php">Manage Testimonials</a></li>
+					<li><a href="testimonials">Manage Testimonials</a></li>
 				</ul>
 			</li>
 
