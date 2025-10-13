@@ -1,21 +1,19 @@
+
 <nav id="main-nav" class="main-nav">
                   <ul id="menu-primary-menu" class="menu">
                     <li
-                      class="menu-item <?php if(empty($page)) {?>current-menu-item<?php } ?>"
+                      class="menu-item <?php if(!$page || $page == '') {?> current-menu-item<?php } ?>"
                     >
                       <a href="/">HOME</a>
                     </li>
-                    <li class="menu-item menu-item-has-children">
-                      <a href="page-about">ABOUT US </a>
+                    <li class="menu-item menu-item-has-children <?php if(!empty($page) && $page == 'aboutus') {?>current-menu-item<?php } ?>">
+                      <a >ABOUT US </a>
                       <ul class="sub-menu">
-                        <li class="menu-item">
-                          <a>ABOUT US</a>
-                        </li>
                         <li class="menu-item">
                           <a href="about?p=aboutus">WHO WE ARE</a>
                         </li>
                         <li class="menu-item">
-                          <a href="page-about-team">QUALITY & SAFETY</a>
+                          <a href="quality-and-safety?p=quality-and-safety">QUALITY & SAFETY</a>
                         </li>
                         <li class="menu-item">
                           <a href="page-about-careers">ABOUT CAREERS</a>

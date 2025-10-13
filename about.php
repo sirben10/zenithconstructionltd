@@ -1,6 +1,4 @@
 <?php
-
-// echo $rows['sitetitle']; exit;
 include 'includes/header.php';
 ?>
 

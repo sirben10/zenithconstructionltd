@@ -4,12 +4,11 @@ $rows = fetchAllSiteSettings($dbh);
 $services = fetchAllServices($dbh);
 $slides = fetchAllSlides($dbh);
 $projects = fetchAllProjects($dbh);
+$testimonials = fetchAllTestimonials($dbh);
 
 if (!empty($_GET['p'])) {
   $page = $_GET['p'];
 }
-
-// echo $rows['siteicon']; exit;
 ?>
 
 <!DOCTYPE html>
@@ -93,3 +92,6 @@ if (!empty($_GET['p'])) {
   
   </style>
   </head>
+
+
+  
