@@ -3,6 +3,7 @@ require_once 'includes/functions.php';
 $rows = fetchAllSiteSettings($dbh);
 $services = fetchAllServices($dbh);
 $slides = fetchAllSlides($dbh);
+$projects = fetchAllProjects($dbh);
 
 if (!empty($_GET['p'])) {
   $page = $_GET['p'];
@@ -56,5 +57,39 @@ if (!empty($_GET['p'])) {
       <script src="javascript/respond.min.js"></script>
     <![endif]-->
 
-   
+   <style>
+   :root{
+    --cursor-size: 30px;
+    --cursor-color: rgba(77, 107, 71, 0.5);
+    --cursor-border: 2px;
+    --cursor-border-color: none;
+    --cursor-scale-hover: 2.8;
+    --cursor-smoothness: 0.28;
+  }
+
+
+  .mouse-indicator {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border-radius: 50%;
+    background: var(--cursor-color);
+    border: var(--cursor-border) solid var(--cursor-border-color);
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s ease, transform 0.15s ease-out;
+  }
+
+  .mouse-indicator.hover {
+    transform: translate(-50%, -50%) scale(var(--cursor-scale-hover));
+  }
+
+  .mouse-indicator.hidden {
+    opacity: 0;
+  }
+  
+  </style>
   </head>

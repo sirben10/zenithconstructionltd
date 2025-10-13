@@ -245,6 +245,17 @@
   line-height: 32px;
   margin-top: 16px;
 }
+/* Style 1-alt */
+.zenith-headings.style-1 .heading-alt {
+  font-size: 20px;
+  line-height: 58px;
+  color: #b0b0b0 !important;
+}
+.zenith-headings.style-1 .sub-heading-alt {
+  font-size: 14px;
+  line-height: 32px;
+  margin-top: 16px;
+}
 
 /* Style 2 */
 .zenith-headings.style-2 .heading {

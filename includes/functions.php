@@ -51,4 +51,17 @@ function fetchAllPartners($dbh) {
     return [];
   }
 }
+
+// FUNCTION TO FETCH ALL PROJECTS
+function fetchAllProjects($dbh) {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblprojects");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+}
 ?>
