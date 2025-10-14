@@ -5,6 +5,7 @@ $services = fetchAllServices($dbh);
 $slides = fetchAllSlides($dbh);
 $projects = fetchAllProjects($dbh);
 $testimonials = fetchAllTestimonials($dbh);
+$mandate = fetchOurMandate($dbh);
 
 if (!empty($_GET['p'])) {
   $page = $_GET['p'];

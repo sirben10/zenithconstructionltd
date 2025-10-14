@@ -312,7 +312,7 @@ include 'includes/header.php';
                             data-mobile="35"
                             data-smobile="35"></div>
                           <div class="elm-button">
-                            <a href="about" class="zenith-button bg-white">About us</a>
+                            <a href="about?p=aboutus" class="zenith-button bg-white">About us</a>
                           </div>
                         </div>
                         <!-- /.zenith-content-box -->
