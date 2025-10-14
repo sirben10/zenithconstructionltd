@@ -95,7 +95,7 @@ foreach($results as $result)
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->slideTitle);?></td>
 											<td><?php echo htmlentities($result->slideBigCaption);?></td>
-											<td><?php echo htmlentities($result->slideImage);?></td>
+											<td><img src="../slidephotos/<?php echo htmlentities($result->slideImage);?>" alt="<?php echo htmlentities($result->slideTitle);?>" width="50"></td>
 <td><a href="add-slide?id=<?php echo $result->slideID;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 <a href="sliders?del=<?php echo $result->slideID;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>

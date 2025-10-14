@@ -17,6 +17,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$safetyPolicy = $_POST['safetyPolicy'];
 		$companyOrgnogram = $_FILES["companyOrgnogram"]["name"];
 		$companyOrgnogramsize = $_FILES["companyOrgnogram"]["size"];
+		// echo $aimsAndObjectives; exit;
 
 		// Delete old image if new image is uploaded
 		if (!empty($companyOrgnogram)) {
@@ -33,7 +34,20 @@ if (strlen($_SESSION['alogin']) == 0) {
 		if ($companyOrgnogramsize > 1000000) {
 			$error = "Image size should be less than 1mb";
 		} else {
-			$sql = "update  tblmandate set backgroundInfo=:backgroundInfo, missionStatement=:missionStatement, aimsAndObjectives=:aimsAndObjectives, safetyPolicy=:safetyPolicy, ourStrategy=:ourStrategy, companyOrgnogram=:companyOrgnogram, dateUpdated=now()";
+			// Select All Records
+			// if empty insert else update
+			$select = "SELECT * FROM tblmandate";
+			// echo $select; exit;
+			$query = $dbh->prepare($select);
+			$query->execute();
+			$result = $query->fetch(PDO::FETCH_OBJ);
+			// var_dump($result); exit;
+			// If no record exists, insert a new one
+			if (!$result || empty($result)) {
+				$sql = "INSERT INTO tblmandate (backgroundInfo, missionStatement, visionStatement, coreValues, ourStrategy, aimsAndObjectives, safetyPolicy, companyOrgnogram, dateUpdated) VALUES (:backgroundInfo, :missionStatement, :visionStatement, :coreValues, :ourStrategy, :aimsAndObjectives, :safetyPolicy, :companyOrgnogram, now())";
+			} else {
+				$sql = "update tblmandate set backgroundInfo=:backgroundInfo, missionStatement=:missionStatement, visionStatement=:visionStatement, coreValues=:coreValues, ourStrategy=:ourStrategy, aimsAndObjectives=:aimsAndObjectives, safetyPolicy=:safetyPolicy, companyOrgnogram=:companyOrgnogram, dateUpdated=now()";
+			}
 			// echo $sql; exit;
 			$query = $dbh->prepare($sql);
 			$query->bindParam(':backgroundInfo', $backgroundInfo, PDO::PARAM_STR);
@@ -57,8 +71,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 	<!doctype html>
 	<html lang="en" class="no-js">
-	 <!-- Summernote css -->
-    <link href="summernote/summernote.css" rel="stylesheet" />
+		<!-- Summernote css -->
+<!-- Summernote CSS -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
 
 	<?php
 
@@ -95,49 +110,49 @@ if (strlen($_SESSION['alogin']) == 0) {
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Background Info</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="backgroundInfo" id="backgroundInfo" ><?php if ($result || !empty($result)) echo htmlentities($result->backgroundInfo); ?></textarea>
+															<textarea class="form-control summernote" name="backgroundInfo" ><?php if ($result || !empty($result)) echo htmlentities($result->backgroundInfo); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Mission Statement</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="missionStatement" id="missionStatement" class="summernote" ><?php if ($result || !empty($result)) echo htmlentities($result->missionStatement); ?></textarea>
+															<textarea class="form-control summernote" name="missionStatement" ><?php if ($result || !empty($result)) echo htmlentities($result->missionStatement); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Vision Statement</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="visionStatement" id="visionStatement" ><?php if ($result || !empty($result)) echo htmlentities($result->visionStatement); ?></textarea>
+															<textarea class="form-control summernote" name="visionStatement" ><?php if ($result || !empty($result)) echo htmlentities($result->visionStatement); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Core Values</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="coreValues" id="coreValues" ><?php if ($result || !empty($result)) echo htmlentities($result->coreValues); ?></textarea>
+															<textarea class="form-control summernote" name="coreValues" ><?php if ($result || !empty($result)) echo htmlentities($result->coreValues); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Our Strategy</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="ourStrategy" id="ourStrategy" ><?php if ($result || !empty($result)) echo htmlentities($result->ourStrategy); ?></textarea>
+															<textarea class="form-control summernote" name="ourStrategy" ><?php if ($result || !empty($result)) echo htmlentities($result->ourStrategy); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Aims and Objectives</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="aimsAndObjectives" id="aimsAndObjectives" ><?php if ($result || !empty($result)) echo htmlentities($result->aimsAndObjectives); ?></textarea>
+															<textarea class="form-control summernote" name="aimsAndObjectives" ><?php if ($result || !empty($result)) echo htmlentities($result->aimsAndObjectives); ?></textarea>
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="col-sm-4 control-label"> Safety Policy</label>
 														<div class="col-sm-8">
-															<textarea class="form-control" name="safetyPolicy" id="safetyPolicy" ><?php if ($result || !empty($result)) echo htmlentities($result->safetyPolicy); ?></textarea>
+															<textarea class="form-control summernote" name="safetyPolicy" ><?php if ($result || !empty($result)) echo htmlentities($result->safetyPolicy); ?></textarea>
 														</div>
 													</div>
 												
@@ -175,13 +190,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 					</div>
 				</div>
 			</div>
-		<?php include('includes/copyright.html'); ?>
+		<?php include('includes/copyright.php'); ?>
 		</div>
 	</div>
-	<?php include('includes/foot-scripts.html'); ?>
-
-	<!--Summernote js-->
-        <script src="summernote/summernote.min.js"></script>
+	<?php include('includes/footscripts.php'); ?>
+	<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+	<!-- Summernote js -->
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+	
+<script>
+  // Initialize all textareas with .summernote class
+  $(document).ready(function() {
+    $('.summernote').summernote({
+      placeholder: 'Type Here...',
+      height: 250,
+      tabsize: 2
+    });
+  });
+</script>
 	</body>
 
 	</html>

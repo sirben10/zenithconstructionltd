@@ -81,7 +81,7 @@ foreach($results as $result)
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->companyName);?></td>
-											<td><?php echo htmlentities($result->partnerLogo);?></td>
+											<td><img src="../partnersphotos/<?php echo htmlentities($result->partnerLogo);?>" alt="<?php echo htmlentities($result->companyName);?>" width="80"></td>
 <td><a href="add-partner?id=<?php echo $result->partnerID;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 <a href="partners?del=<?php echo $result->partnerID;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>
