@@ -46,15 +46,15 @@ $satisfiedClients = $companyStats['satisfiedClients'];
     }
 
     .content-skewed p {
-        font-size: 2.1rem;
+        font-size: 15px;
         line-height: normal;
         opacity: 0.9;
     }
 
     .in-font-size {
-        font-size: 16px;
+        font-size: inherit;
         font-family: inherit;
-        line-height: normal;
+        line-height: inherit;
     }
 
     @media (max-width: 768px) {
@@ -63,11 +63,13 @@ $satisfiedClients = $companyStats['satisfiedClients'];
         }
 
         .content-skewed p {
-            font-size: 1.3rem;
+            font-size: 15px;
+            line-height: inherit;
             text-align: left !important;
         }
 
         .in-font-size {
+            font-size: inherit;
             text-align: left;
         }
 
@@ -126,8 +128,8 @@ $satisfiedClients = $companyStats['satisfiedClients'];
     }
 
     .skewed-content p {
-        font-size: 1.7rem;
-        line-height: normal;
+        font-size: 16px;
+        line-height: inherit;
         opacity: 0.9;
     }
 
@@ -231,7 +233,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
                                 <div class="row-iconbox">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 ">
                                                 <div
                                                     class="zenith-spacer clearfix"
                                                     data-desktop="60"
@@ -469,11 +471,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
                                                     </p>
                                                 </div>
                                                 <!-- /.zenith-content-box -->
-                                                <div
-                                                    class="zenith-spacer clearfix"
-                                                    data-desktop="75"
-                                                    data-mobile="60"
-                                                    data-smobile="60"></div>
+
                                             </div>
                                             <!-- /.col-md-6 -->
                                         </div>
@@ -491,7 +489,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
                                                     <div class="container">
                                                         <div class="row clearfix">
                                                             <div class="col-md-12">
-                                                                <div class="zenith-spacer clearfix" data-desktop="92" data-mobile="60" data-smobile="60"></div>
+                                                                <div class="zenith-spacer clearfix" data-desktop="75" data-mobile="60" data-smobile="60"></div>
                                                             </div><!-- /.col-md-12 -->
                                                         </div><!-- /.row -->
                                                         <div class="zenith-row separator light">
@@ -613,16 +611,32 @@ $satisfiedClients = $companyStats['satisfiedClients'];
                                     </div>
                                 </div>
                                 <div class="scroll">
+   <section class="skewed-section">
+                        <div class="row equalize sm-equalize-auto">
+                            <div class="col-xl-10 m-auto col-sm-12 p-5">
+
+                                <div class="skewed-content">
+                                    <h1 style="color: #fff;">Our Strategy</h1>
+                                    <p><?php echo $mandate['ourStrategy']; ?></p>
+                                </div>
+
+                    </section>
+                                    <div
+                                        class="zenith-spacer clearfix"
+                                        data-desktop="64"
+                                        data-mobile="60"
+                                        data-smobile="60">
+                                    </div>
 
                                     <div class="row equalize sm-equalize-auto">
                                         <div class="col-xl-6 m-auto col-sm-12 p-5">
                                             <h2 class="heading text-center" style="color: #0c4a0c;">Our Vision</h2>
-                                             <div class="in-font-size">
+                                            <div class="in-font-size">
 
-                                                 <p>
-                                                     <?php echo $mandate['visionStatement']; ?>
-                                                 </p>
-                                             </div>
+                                                <p>
+                                                    <?php echo $mandate['visionStatement']; ?>
+                                                </p>
+                                            </div>
                                             <!-- /.zenith-content-box -->
                                             <div
                                                 class="zenith-spacer clearfix"
@@ -640,6 +654,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
 
                                                 <div class="content-skewed">
                                                     <h1 style="color: #fff;">Our Mission</h1>
+
                                                     <p><?php echo $mandate['missionStatement']; ?></p>
                                                 </div>
 

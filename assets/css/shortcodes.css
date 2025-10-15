@@ -385,6 +385,8 @@
 }
 .zenith-icon-box.style-1 .sub-heading {
   color: #666;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 16px;
   line-height: 26px;
   margin-top: 19px;
 }
