@@ -94,12 +94,12 @@ include 'includes/header.php';
                                 <div class="zenith-content-box clearfix" data-margin="0 0px 0 0px" data-mobilemargin="0 0 0 0">
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color border-light padding-inner pd33 style-1 clearfix">
                                         <div class="icon-wrap">
-                                            <i class="autora-icon-quality"></i>
+                                            <i class="zenith-icon-quality"></i>
                                         </div>
                                         <div class="text-wrap">
                                             <h5 class="heading"><a href="#">BEST QUALITY</a></h5>
                                             <div class="sep clearfix"></div>
-                                            <p class="sub-heading">Autora Construction Services are committed to meeting the highest quality standards without compromising our safety culture.</p>
+                                            <p class="sub-heading">zenith Construction Services are committed to meeting the highest quality standards without compromising our safety culture.</p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
                                 </div><!-- /.zenith-content-box -->
@@ -109,7 +109,7 @@ include 'includes/header.php';
                                 <div class="zenith-content-box clearfix" data-margin="0 0px 0 0px" data-mobilemargin="0 0 0 0">
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color border-light padding-inner pd33 style-1 clearfix">
                                         <div class="icon-wrap">
-                                            <i class="autora-icon-time"></i>
+                                            <i class="zenith-icon-time"></i>
                                         </div>
                                         <div class="text-wrap">
                                             <h5 class="heading"><a href="#">ON TIME</a></h5>
@@ -124,7 +124,7 @@ include 'includes/header.php';
                                 <div class="zenith-content-box clearfix" data-margin="0 0px 0 0px" data-mobilemargin="0 0 0 0">
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color border-light padding-inner pd33 style-1 clearfix">
                                         <div class="icon-wrap">
-                                            <i class="autora-icon-author"></i>
+                                            <i class="zenith-icon-author"></i>
                                         </div>
                                         <div class="text-wrap">
                                             <h5 class="heading"><a href="#">EXPERIENCED</a></h5>

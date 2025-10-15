@@ -91,4 +91,17 @@ function fetchOurMandate($dbh) {
   }
 }
 
+// GET COMPANY STATISTICS
+function fetchCompanyStatistics($dbh) {
+  try {
+    $stmt = $dbh->prepare("SELECT * FROM tblstatistic");
+    // var_dump($stmt); exit;
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    
+  } catch (Exception $e) {
+    return [];
+  }
+}
+
 ?>

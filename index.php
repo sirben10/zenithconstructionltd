@@ -99,7 +99,7 @@ include 'includes/header.php';
                             <div class="sep-icon">
                               <span
                                 class="sep-icon-before sep-center sep-solid"></span>
-                              <span class="icon-wrap"><i class="autora-icon-build"></i></span>
+                              <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
                               <span
                                 class="sep-icon-after sep-center sep-solid"></span>
                             </div>
@@ -128,7 +128,7 @@ include 'includes/header.php';
                           <div
                             class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                             <div class="icon-wrap">
-                              <i class="autora-icon-quality"></i>
+                              <i class="zenith-icon-quality"></i>
                             </div>
                             <div class="text-wrap">
                               <h5 class="heading">
@@ -160,7 +160,7 @@ include 'includes/header.php';
                           <div
                             class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                             <div class="icon-wrap">
-                              <i class="autora-icon-time"></i>
+                              <i class="zenith-icon-time"></i>
                             </div>
                             <div class="text-wrap">
                               <h5 class="heading"><a href="#">ON TIME DELIVERY</a></h5>
@@ -189,7 +189,7 @@ include 'includes/header.php';
                           <div
                             class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                             <div class="icon-wrap">
-                              <i class="autora-icon-author"></i>
+                              <i class="zenith-icon-author"></i>
                             </div>
                             <div class="text-wrap">
                               <h5 class="heading">
@@ -347,7 +347,7 @@ include 'includes/header.php';
                             <div class="sep-icon">
                               <span
                                 class="sep-icon-before sep-center sep-solid"></span>
-                              <span class="icon-wrap"><i class="autora-icon-build"></i></span>
+                              <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
                               <span
                                 class="sep-icon-after sep-center sep-solid"></span>
                             </div>
@@ -419,7 +419,7 @@ include 'includes/header.php';
                             <div class="sep-icon">
                               <span
                                 class="sep-icon-before sep-center sep-solid"></span>
-                              <span class="icon-wrap"><i class="autora-icon-build"></i></span>
+                              <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
                               <span
                                 class="sep-icon-after sep-center sep-solid"></span>
                             </div>
@@ -585,7 +585,7 @@ include 'includes/header.php';
                               <div class="button-wrap has-icon icon-left">
                                 <a href="tel:<?php echo $rows['ContactNo']; ?>" class="zenith-button bg-alt small"><span><?php echo $rows['ContactNo']; ?>
                                     <span class="icon"><i
-                                        class="autora-icon-phone-contact"></i></span></span></a>
+                                        class="zenith-icon-phone-contact"></i></span></span></a>
                               </div>
                             </div>
                           </div>

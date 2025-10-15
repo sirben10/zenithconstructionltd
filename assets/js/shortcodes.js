@@ -294,9 +294,9 @@
                         options: {
                             zoom: 10,
                             center: [51.1946026,0.8140602,14.5],
-                            mapTypeId: 'Autora',
+                            mapTypeId: 'zenith',
                             mapTypeControlOptions: {
-                                mapTypeIds: ['Autora', google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
+                                mapTypeIds: ['zenith', google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
                             },
                             scrollwheel: true
                         },
@@ -317,9 +317,9 @@
                         }]
                 },
                 styledmaptype: {
-                    id: "Autora",
+                    id: "zenith",
                     options: {
-                        name: "Autora"
+                        name: "zenith"
                     },
                     styles: [
                         {

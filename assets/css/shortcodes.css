@@ -330,7 +330,7 @@
 
 /* Color */
 .zenith-icon-box.accent-color .icon-wrap {
-  color: #008000;
+  color: #008000 !important;
 }
 
 /* Border */
@@ -395,6 +395,7 @@
   height: 100%;
   border-radius: 50%;
   background-color: #008000;
+  color: #fff;
   position: absolute;
   top: 0;
   left: 0;
@@ -416,7 +417,7 @@
 }
 
 .zenith-icon-box.style-1.accent-color:hover .icon-wrap {
-  color: #fff;
+  color: #fff !important;
 }
 
 /* Style 2 */
@@ -894,16 +895,16 @@
   background-repeat: repeat;
 }
 .parallax-1 {
-  background-image: url("../img/parallax/parallax-1.jpg");
+  background-image: url("../img/zenith_road.jpeg");
 }
 .parallax-2 {
-  background-image: url("../img/parallax/parallax-2.jpg");
+  background-image: url("../img/1024px-Road_construction_in_progress.jpeg");
 }
 .parallax-3 {
-  background-image: url("../img/parallax/parallax-3.jpg");
+  background-image: url("../img/1024px-Road_construction_in_progress.jpeg");
 }
 .parallax-4 {
-  background-image: url("../img/parallax/parallax-4.jpg");
+  background-image: url("../img/zenith_road_.jpeg");
 }
 
 .parallax-overlay {
@@ -1347,9 +1348,10 @@
 .zenith-tabs.style-1 .tab-title .item-title.active > span {
   padding: 13px 36px 10px 39px;
 }
+
 .zenith-tabs.style-1 .tab-title .item-title.active {
-  background-color: #fafafb;
-  color: #2b323a;
+  background-color: #0c4a0c;
+  color: #fff;
 }
 .zenith-tabs.style-1 .tab-content .item-content {
   padding: 19px 0px 19px 21px;
@@ -1379,7 +1381,7 @@
   color: #fff;
   font-size: 16px;
   float: left;
-  margin-right: 11px;
+  /* margin-right: 11px; */
   line-height: 30px;
 }
 .zenith-tabs.style-1 .tab-content ul span.text {
@@ -1427,7 +1429,7 @@
 }
 .zenith-tabs.style-2 .tab-title .item-title.active {
   background-color: #008000;
-  color: #222;
+  color: #fff;
 }
 
 /* Has padding */
@@ -1436,14 +1438,16 @@
   text-align: center;
 }
 .zenith-tabs.w168 .tab-title .item-title > span {
-  padding: 10px 0px;
+  padding: 25px 0px;
 }
 .zenith-tabs.w168 .tab-title .item-title.active > span {
   padding: 13px 0px 10px 0px;
 }
 
 .zenith-tabs.style-1 .tab-title .item-title:hover > span {
-  color: #2b323a;
+  width: 100%;
+  background-color: #0c4a0c;
+  color: #fff;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -1452,7 +1456,7 @@
   }
   .zenith-tabs.style-1 .tab-title .item-title.active > span,
   .zenith-tabs.style-1 .tab-title .item-title > span {
-    padding: 10px;
+    padding: 15px;
   }
 }
 
@@ -1554,7 +1558,7 @@
   .accordion-heading
   > .inner:before {
   content: "\e906";
-  font-family: "autoraicon";
+  font-family: "zenithicon";
   font-size: 20px;
 }
 .zenith-accordions.has-icon.iconstyle-2

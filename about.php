@@ -1,6 +1,154 @@
 <?php
 include 'includes/header.php';
+$projectsCompleted = $companyStats['projectsCompleted'];
+$workers = $companyStats['workers'];
+$experienceYears = $companyStats['experienceYears'];
+$satisfiedClients = $companyStats['satisfiedClients'];
+// echo $projectsCompleted.' '.$workers.' '.$experienceYears.' '.$satisfiedClients; exit;
 ?>
+<style>
+    /* Skewed Section */
+    .section-skewed {
+        position: relative;
+        height: 350px;
+        background: url('assets/img/1024px-Road_construction_in_progress.jpeg') no-repeat center center/cover;
+        transform: skewY(-4deg);
+        overflow: hidden;
+    }
+
+    /* Dark Overlay */
+    .section-skewed::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+    }
+
+    /* Text content (straightened) */
+    .content-skewed {
+        position: relative;
+        z-index: 2;
+        color: white;
+        text-align: center;
+        transform: skewY(4deg);
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content-skewed h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        letter-spacing: 1px;
+    }
+
+    .content-skewed p {
+        font-size: 2.1rem;
+        line-height: normal;
+        opacity: 0.9;
+    }
+
+    .in-font-size {
+        font-size: 16px;
+        font-family: inherit;
+        line-height: normal;
+    }
+
+    @media (max-width: 768px) {
+        .content-skewed h1 {
+            font-size: 1.8rem;
+        }
+
+        .content-skewed p {
+            font-size: 1.3rem;
+            text-align: left !important;
+        }
+
+        .in-font-size {
+            text-align: left;
+        }
+
+    }
+
+    /* scroll */
+    .scroll {
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    * {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    /* Skewed Section */
+    .skewed-section {
+        position: relative;
+        background: url('assets/img/1024px-Road_construction_in_progress.jpeg') no-repeat center center/cover;
+        /* transform: skewY(-1deg); */
+        height: 400px;
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+    /* Overlay */
+    .skewed-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 54, 0, 0.9);
+        /* adjust opacity */
+        z-index: 1;
+    }
+
+    /* Content inside section */
+    .skewed-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+    }
+
+    .skewed-content h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .skewed-content p {
+        font-size: 1.7rem;
+        line-height: normal;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .skewed-section {
+
+            height: 100%;
+        }
+
+        .skewed-content h1 {
+            font-size: 1.8rem;
+        }
+
+        .skewed-content p {
+            font-size: 1.3rem;
+            text-align: left !important;
+        }
+
+
+    }
+</style>
 
 <body
     class="header-fixed page no-sidebar header-style-2 topbar-style-2 menu-has-search">
@@ -57,7 +205,7 @@ include 'includes/header.php';
                         <div id="breadcrumbs">
                             <div class="breadcrumbs-inner">
                                 <div class="breadcrumb-trail">
-                                    <a href="index.html" class="trail-begin">Home</a>
+                                    <a href="/" class="trail-begin">Home</a>
                                     <span class="sep">|</span>
                                     <span class="trail-end">About Us</span>
                                 </div>
@@ -96,7 +244,7 @@ include 'includes/header.php';
                                                         <div class="sep-icon">
                                                             <span
                                                                 class="sep-icon-before sep-center sep-solid"></span>
-                                                            <span class="icon-wrap"><i class="autora-icon-build"></i></span>
+                                                            <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
                                                             <span
                                                                 class="sep-icon-after sep-center sep-solid"></span>
                                                         </div>
@@ -125,7 +273,7 @@ include 'includes/header.php';
                                                     <div
                                                         class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                                                         <div class="icon-wrap">
-                                                            <i class="autora-icon-quality"></i>
+                                                            <i class="zenith-icon-quality"></i>
                                                         </div>
                                                         <div class="text-wrap">
                                                             <h5 class="heading">
@@ -157,7 +305,7 @@ include 'includes/header.php';
                                                     <div
                                                         class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                                                         <div class="icon-wrap">
-                                                            <i class="autora-icon-time"></i>
+                                                            <i class="zenith-icon-time"></i>
                                                         </div>
                                                         <div class="text-wrap">
                                                             <h5 class="heading"><a href="#">ON TIME DELIVERY</a></h5>
@@ -186,7 +334,7 @@ include 'includes/header.php';
                                                     <div
                                                         class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 clearfix">
                                                         <div class="icon-wrap">
-                                                            <i class="autora-icon-author"></i>
+                                                            <i class="zenith-icon-author"></i>
                                                         </div>
                                                         <div class="text-wrap">
                                                             <h5 class="heading">
@@ -312,11 +460,14 @@ include 'includes/header.php';
                                             <!-- /.col-md-6 -->
                                         </div>
                                         <!-- /.row -->
-                                        <div class="row equalize sm-equalize-auto justify-content-center">
-                                            <div class="col-md-12 bg-light-grey" style="padding: 50px 150px 0 150px;">
-                                                <p style="margin: 0 50px 0 50px;">
-                                                    <?php echo $mandate['backgroundInfo']; ?>
-                                                </p>
+                                        <div class="row equalize sm-equalize-auto justify-content-center bg-light-grey">
+                                            <div class="col-lg-10 col-md-12 m-auto p-5">
+                                                <div class="in-font-size">
+
+                                                    <p>
+                                                        <?php echo $mandate['backgroundInfo']; ?>
+                                                    </p>
+                                                </div>
                                                 <!-- /.zenith-content-box -->
                                                 <div
                                                     class="zenith-spacer clearfix"
@@ -331,607 +482,254 @@ include 'includes/header.php';
                                     <!-- /.container-fluid -->
                                 </div>
                                 <!-- END ABOUT -->
-
-                                <!-- COUNTER -->
-                                <div class="row-counter parallax parallax-4 parallax-overlay">
-                                    <div class="container">
-                                        <div class="row clearfix">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="92" data-mobile="60" data-smobile="60"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                        <div class="zenith-row gutter-30 separator light clearfix">
-                                            <div class="col span_1_of_3">
-                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
-                                                    <div class="zenith-counter style-1 align-center clearfix">
-                                                        <div class="counter-item">
-                                                            <div class="inner">
-                                                                <div class="text-wrap">
-                                                                    <div class="number-wrap">
-                                                                        <span class="number" data-speed="2000" data-to="9240" data-inviewport="yes">9240</span><span class="suffix">+</span>
-                                                                    </div>
-                                                                    <h3 class="heading margin-right-18">PROJECT COMPLETED</h3>
+                                <div class="row-about">
+                                    <div class="container-fluid">
+                                        <div class="row equalize sm-equalize-auto">
+                                            <div class="col-md-6">
+                                                <!-- COUNTER -->
+                                                <div class="row-counter parallax parallax-4 parallax-overlay">
+                                                    <div class="container">
+                                                        <div class="row clearfix">
+                                                            <div class="col-md-12">
+                                                                <div class="zenith-spacer clearfix" data-desktop="92" data-mobile="60" data-smobile="60"></div>
+                                                            </div><!-- /.col-md-12 -->
+                                                        </div><!-- /.row -->
+                                                        <div class="zenith-row separator light">
+                                                            <div class="col span_1_of_12">
+                                                                <div class="zenith-content-box" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
+                                                                    <div class="zenith-counter style-1 align-center">
+                                                                        <div class="counter-item">
+                                                                            <div class="inner">
+                                                                                <div class="text-wrap">
+                                                                                    <div class="number-wrap">
+                                                                                        <span class="number" data-speed="2000" data-to="<?php echo htmlentities($projectsCompleted); ?>" data-inviewport="yes"><?php echo htmlentities($projectsCompleted); ?></span><span class="suffix">+</span>
+                                                                                    </div>
+                                                                                    <h3 class="heading margin-right-18">PROJECT COMPLETED</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.zenith-counter -->
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.zenith-counter -->
-                                                </div>
-                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                            </div><!-- /.col-md-3 -->
-                                            <div class="col span_1_of_3">
-                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
-                                                    <div class="zenith-counter style-1 align-center clearfix">
-                                                        <div class="counter-item">
-                                                            <div class="inner">
-                                                                <div class="text-wrap">
-                                                                    <div class="number-wrap">
-                                                                        <span class="number" data-speed="2000" data-to="336" data-inviewport="yes">336</span><span class="suffix">+</span>
-                                                                    </div>
-                                                                    <h3 class="heading margin-right-6">AWARDS WON</h3>
+                                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                                            </div><!-- /.col-md-12 -->
+                                                            <div
+                                                                class="zenith-spacer clearfix"
+                                                                data-desktop="64"
+                                                                data-mobile="60"
+                                                                data-smobile="60"></div>
+                                                            <div class="col span_1_of_12">
+                                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
+                                                                    <div class="zenith-counter style-1 align-center clearfix">
+                                                                        <div class="counter-item">
+                                                                            <div class="inner">
+                                                                                <div class="text-wrap">
+                                                                                    <div class="number-wrap">
+                                                                                        <span class="number" data-speed="2000" data-to="<?php echo htmlentities($workers); ?>" data-inviewport="yes"><?php echo htmlentities($workers); ?></span><span class="suffix">+</span>
+                                                                                    </div>
+                                                                                    <h3 class="heading margin-right-6">EXPERIENCED WORKERS</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.zenith-counter -->
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.zenith-counter -->
-                                                </div>
-                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                            </div><!-- /.col-md-3 -->
-                                            <div class="col span_1_of_3">
-                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
-                                                    <div class="zenith-counter style-1 align-center clearfix">
-                                                        <div class="counter-item">
-                                                            <div class="inner">
-                                                                <div class="text-wrap">
-                                                                    <div class="number-wrap">
-                                                                        <span class="number" data-speed="2000" data-to="725" data-inviewport="yes">725</span><span class="suffix">+</span>
-                                                                    </div>
-                                                                    <h3 class="heading margin-right-8">SATISFIED CLIENTS</h3>
+                                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                                            </div><!-- /.col-md-12 -->
+                                                            <div
+                                                                class="zenith-spacer clearfix"
+                                                                data-desktop="64"
+                                                                data-mobile="60"
+                                                                data-smobile="60"></div>
+                                                            <div class="col span_1_of_12">
+                                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
+                                                                    <div class="zenith-counter style-1 align-center clearfix">
+                                                                        <div class="counter-item">
+                                                                            <div class="inner">
+                                                                                <div class="text-wrap">
+                                                                                    <div class="number-wrap">
+                                                                                        <span class="number" data-speed="2000" data-to="<?php echo htmlentities($experienceYears); ?>" data-inviewport="yes"><?php echo htmlentities($experienceYears); ?></span><span class="suffix">+</span>
+                                                                                    </div>
+                                                                                    <h3 class="heading margin-right-8">YEARS ACTIVE</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.zenith-counter -->
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.zenith-counter -->
-                                                </div>
-                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                            </div><!-- /.col-md-3 -->
-                                            <div class="col span_1_of_3">
-                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
-                                                    <div class="zenith-counter style-1 align-center clearfix">
-                                                        <div class="counter-item">
-                                                            <div class="inner">
-                                                                <div class="text-wrap">
-                                                                    <div class="number-wrap">
-                                                                        <span class="number" data-speed="2000" data-to="2984" data-inviewport="yes">2984</span><span class="suffix">+</span>
-                                                                    </div>
-                                                                    <h3 class="heading margin-right-10">WORKERS EMPLOYED</h3>
+                                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                                            </div><!-- /.col-md-12 -->
+                                                            <div
+                                                                class="zenith-spacer clearfix"
+                                                                data-desktop="64"
+                                                                data-mobile="60"
+                                                                data-smobile="60"></div>
+                                                            <div class="col span_1_of_12">
+                                                                <div class="zenith-content-box clearfix" data-margin="0 0 0 0" data-mobilemargin="0 0 0 0">
+                                                                    <div class="zenith-counter style-1 align-center clearfix">
+                                                                        <div class="counter-item">
+                                                                            <div class="inner">
+                                                                                <div class="text-wrap">
+                                                                                    <div class="number-wrap">
+                                                                                        <span class="number" data-speed="2000" data-to="<?php echo htmlentities($satisfiedClients); ?>" data-inviewport="yes"><?php echo htmlentities($satisfiedClients); ?></span><span class="suffix">+</span>
+                                                                                    </div>
+                                                                                    <h3 class="heading margin-right-10">SATISFIED CLIENTS</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.zenith-counter -->
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.zenith-counter -->
+                                                            </div><!-- /.col-md-12 -->
+                                                            <div
+                                                                class="zenith-spacer clearfix"
+                                                                data-desktop="64"
+                                                                data-mobile="60"
+                                                                data-smobile="60"></div>
+                                                        </div><!-- /.row -->
+                                                        <div class="row clearfix">
+                                                            <div class="col-md-12">
+                                                                <div class="zenith-spacer clearfix" data-desktop="72" data-mobile="60" data-smobile="60"></div>
+                                                            </div><!-- /.col-md-12 -->
+                                                        </div><!-- /.row -->
+                                                    </div><!-- /.container -->
+                                                    <div class="bg-parallax-overlay overlay-black style2"></div>
                                                 </div>
-                                            </div><!-- /.col-md-3 -->
-                                        </div><!-- /.row -->
-                                        <div class="row clearfix">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="72" data-mobile="60" data-smobile="60"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.container -->
-                                    <div class="bg-parallax-overlay overlay-black style2"></div>
-                                </div>
-                                <!-- END COUNTER -->
-
-                                <!-- TABS -->
-                                <div class="row-tabs">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="61" data-mobile="60" data-smobile="60"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                        <div class="row">
+                                                <!-- END COUNTER -->
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="zenith-content-box clearfix" data-margin="0 18px 0 0" data-mobilemargin="0 0 0 0">
+                                                    <div class="zenith-spacer clearfix" data-desktop="28" data-mobile="35" data-smobile="35"></div>
                                                     <div class="zenith-headings style-1 clearfix">
-                                                        <h2 class="heading">OVERVIEW</h2>
+                                                        <h2 class="heading" style="color: #0c4a0c;">OUR CORE VALUES</h2>
                                                         <div class="sep has-width w80 accent-bg margin-top-11 clearfix"></div>
+                                                        <p>
+                                                            <?php echo $mandate['coreValues']; ?>
+                                                        </p>
                                                     </div>
                                                     <div class="zenith-spacer clearfix" data-desktop="38" data-mobile="35" data-smobile="35"></div>
-                                                    <div class="zenith-tabs style-1 clearfix">
-                                                        <ul class="tab-title clearfix">
-                                                            <li class="item-title active">
-                                                                <span class="inner">Our focus</span>
-                                                            </li>
-                                                            <li class="item-title">
-                                                                <span class="inner">Dedicated</span>
-                                                            </li>
-                                                            <li class="item-title">
-                                                                <span class="inner">Committed</span>
-                                                            </li>
-                                                        </ul>
 
-                                                        <div class="tab-content-wrap clearfix">
-                                                            <div class="tab-content">
-                                                                <div class="item-content">
-                                                                    <p>Our focus is to exceed your goals, meet your timelines and successfully manage your budget. We provide our clients with top-notch general contracting, construction management, site surveys and design build services.</p>
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We have successfully completed projects in numerous states.</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We is licensed to perform general contracting work in most states. </span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We will be open to obtaining new licensing if an opportunity arises</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                </div>
-                                                            </div><!-- /.tab-content -->
-                                                            <div class="tab-content">
-                                                                <div class="item-content">
-                                                                    <p>Our focus is to exceed your goals, meet your timelines and successfully manage your budget. We provide our clients with top-notch general contracting, construction management, site surveys and design build services.</p>
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We have successfully completed projects in numerous states.</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We is licensed to perform general contracting work in most states. </span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We will be open to obtaining new licensing if an opportunity arises</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                </div>
-                                                            </div><!-- /.tab-content -->
-                                                            <div class="tab-content">
-                                                                <div class="item-content">
-                                                                    <p>Our focus is to exceed your goals, meet your timelines and successfully manage your budget. We provide our clients with top-notch general contracting, construction management, site surveys and design build services.</p>
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We have successfully completed projects in numerous states.</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We is licensed to perform general contracting work in most states. </span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                    <div class="zenith-list has-icon style-1 icon-left ofset-padding-32 clearfix">
-                                                                        <div class="inner">
-                                                                            <span class="item">
-                                                                                <span class="icon"><i class="fa fa-check-square"></i></span>
-                                                                                <span class="text">We will be open to obtaining new licensing if an opportunity arises</span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div><!-- /.themeslat-list -->
-                                                                </div>
-                                                            </div><!-- /.tab-content -->
-                                                        </div><!-- /.tab-content-wrap -->
-                                                    </div><!-- /.zenith-tabs -->
                                                 </div><!-- /.zenith-content-box -->
-                                            </div><!-- /.col-md-6 -->
+                                            </div>
+                                            <!-- /.col-md-6 -->
 
-                                            <div class="col-md-6">
-                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                                <div class="zenith-content-box" data-margin="0 0 0 18px" data-mobilemargin="0 0 0 0">
-                                                    <div class="zenith-headings style-1 clearfix">
-                                                        <h2 class="heading">FAQs</h2>
-                                                        <div class="sep has-width w80 accent-bg margin-top-11 clearfix"></div>
-                                                    </div>
-                                                    <div class="zenith-spacer clearfix" data-desktop="38" data-mobile="35" data-smobile="35"></div>
-                                                    <div class="zenith-accordions style-1 has-icon icon-left iconstyle-1 clearfix">
-                                                        <div class="accordion-item active">
-                                                            <h3 class="accordion-heading"><span class="inner">Are there any hosting companies you recommend?</span></h3>
-                                                            <div class="accordion-content">
-                                                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
-                                                            </div>
-                                                        </div><!-- /.accordion-item -->
-                                                        <div class="accordion-item">
-                                                            <h3 class="accordion-heading"><span class="inner">We use technology to do the job more quickly</span></h3>
-                                                            <div class="accordion-content">
-                                                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
-                                                            </div>
-                                                        </div><!-- /.accordion-item -->
-                                                        <div class="accordion-item ">
-                                                            <h3 class="accordion-heading"><span class="inner">Employees are continually trained on safety issues</span></h3>
-                                                            <div class="accordion-content">
-                                                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
-                                                            </div>
-                                                        </div><!-- /.accordion-item -->
-                                                    </div><!-- /.zenith-accordion -->
-                                                </div><!-- /.zenith-content-box -->
-                                            </div><!-- /.col-md-6 -->
-                                        </div><!-- /.row -->
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="0"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.container -->
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- END TABS -->
+                                <div class="scroll">
 
-                                <!-- PARTNER -->
-                                <div class="row-partner">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
-                                                <div class="zenith-carousel-box clearfix" data-gap="5" data-column="5" data-column2="3" data-column3="2" data-auto="true">
-                                                    <div class="owl-carousel owl-theme">
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-1.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-1-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-2.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-2-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1  align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-3.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-3-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-4.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-4-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-5.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-5-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-1.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-1-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-2.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-2-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1  align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-3.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-3-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-4.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-4-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                        <div class="zenith-partner style-1 align-center clearfix">
-                                                            <div class="partner-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb">
-                                                                        <img src="assets/img/partners/partner-5.png" alt="Image" class="partner-default">
-                                                                        <img src="assets/img/partners/partner-5-color.png" alt="Image" class="partner-color">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /zenith-partner -->
-                                                    </div>
-                                                </div><!-- /.zenith-carousel-box -->
-                                                <div class="zenith-spacer clearfix" data-desktop="66" data-mobile="60" data-smobile="60"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.container -->
-                                </div>
-                                <!-- END PARTNER -->
+                                    <div class="row equalize sm-equalize-auto">
+                                        <div class="col-xl-6 m-auto col-sm-12 p-5">
+                                            <h2 class="heading text-center" style="color: #0c4a0c;">Our Vision</h2>
+                                             <div class="in-font-size">
 
-                                <!-- QUOTE -->
-                                <div class="row-quote bg-row-1">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="38" data-mobile="35" data-smobile="35"></div>
-                                                <div class="zenith-quote style-1 clearfix">
-                                                    <div class="quote-item">
-                                                        <div class="inner">
-                                                            <div class="heading-wrap">
-                                                                <h3 class="heading">START EXECUTING YOUR PROJECT</h3>
-                                                            </div>
-                                                            <div class="button-wrap has-icon icon-left">
-                                                                <a href="#" class="zenith-button bg-white small"><span>(+613) 8376 6284 <span class="icon"><i class="autora-icon-phone-contact"></i></span></span></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                 <p>
+                                                     <?php echo $mandate['visionStatement']; ?>
+                                                 </p>
+                                             </div>
+                                            <!-- /.zenith-content-box -->
+                                            <div
+                                                class="zenith-spacer clearfix"
+                                                data-desktop="75"
+                                                data-mobile="60"
+                                                data-smobile="60"></div>
+                                        </div>
+                                        <!-- /.col-md-6 -->
+                                    </div>
+
+
+                                    <section class="section-skewed">
+                                        <div class="row equalize sm-equalize-auto">
+                                            <div class="col-xl-10 m-auto col-sm-12 p-5">
+
+                                                <div class="content-skewed">
+                                                    <h1 style="color: #fff;">Our Mission</h1>
+                                                    <p><?php echo $mandate['missionStatement']; ?></p>
                                                 </div>
-                                                <div class="zenith-spacer clearfix" data-desktop="33" data-mobile="35" data-smobile="35"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.container -->
-                                </div>
-                                <!-- END QUOTE -->
 
-                                <!-- TEAM -->
-                                <div class="row-team">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="zenith-spacer clearfix" data-desktop="61" data-mobile="60" data-smobile="60"></div>
-                                                <div class="zenith-headings style-1 text-center clearfix">
-                                                    <h2 class="heading">LEADERSHIP TEAM</h2>
-                                                    <div class="sep has-icon width-125 clearfix">
-                                                        <div class="sep-icon">
-                                                            <span class="sep-icon-before sep-center sep-solid"></span>
-                                                            <span class="icon-wrap"><i class="autora-icon-build"></i></span>
-                                                            <span class="sep-icon-after sep-center sep-solid"></span>
-                                                        </div>
-                                                    </div>
-                                                    <p class="sub-heading font-weight-400 text-808 max-width-680">With us you will have the peace of mind knowing that your dream home project is in the hands of a licensed fully insured building company.</p>
+                                    </section>
+                                    <div
+                                        class="zenith-spacer clearfix"
+                                        data-desktop="64"
+                                        data-mobile="60"
+                                        data-smobile="60">
+                                    </div>
+                                    <div class="row equalize sm-equalize-auto">
+                                        <div class="col-xl-6 m-auto col-sm-12 p-5">
+                                            <h2 class="heading text-center" style="color: #0c4a0c;">Our Objectives</h2>
+                                            <div class="in-font-size">
+
+                                                <p>
+                                                    <?php echo $mandate['aimsAndObjectives']; ?>
+                                                </p>
+                                            </div>
+                                            <!-- /.zenith-content-box -->
+                                            <div
+                                                class="zenith-spacer clearfix"
+                                                data-desktop="75"
+                                                data-mobile="60"
+                                                data-smobile="60"></div>
+                                        </div>
+                                        <!-- /.col-md-6 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <section class="skewed-section">
+                        <div class="row equalize sm-equalize-auto">
+                            <div class="col-xl-10 m-auto col-sm-12 p-5">
+
+                                <div class="skewed-content">
+                                    <h1 style="color: #fff;">OUR SAFETY POLICY</h1>
+                                    <p><?php echo $mandate['safetyPolicy']; ?></p>
+                                </div>
+
+                    </section>
+
+
+                    <!-- QUOTE -->
+                    <div class="row-quote bg-row-1">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="zenith-spacer clearfix" data-desktop="38" data-mobile="35" data-smobile="35"></div>
+                                    <div class="zenith-quote style-1 clearfix">
+                                        <div class="quote-item">
+                                            <div class="inner">
+                                                <div class="heading-wrap">
+                                                    <h3 class="heading">START EXECUTING YOUR PROJECT</h3>
                                                 </div>
-                                                <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="35" data-smobile="35"></div>
-                                                <div class="zenith-carousel-box data-effect has-bullets bullet-circle bullet24 clearfix" data-gap="30" data-column="3" data-column2="2" data-column3="1" data-auto="true">
-                                                    <div class="owl-carousel owl-theme">
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-1-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Aaron Stanley</h6>
-                                                                        <div class="position">Project Manager</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-2-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">David Gunsul</h6>
-                                                                        <div class="position">President</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-3-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Richard Johnson</h6>
-                                                                        <div class="position">Safety Director</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-1-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Aaron Stanley</h6>
-                                                                        <div class="position">Project Manager</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-2-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">David Gunsul</h6>
-                                                                        <div class="position">President</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-3-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Richard Johnson</h6>
-                                                                        <div class="position">Safety Director</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-1-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Aaron Stanley</h6>
-                                                                        <div class="position">Project Manager</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-2-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">David Gunsul</h6>
-                                                                        <div class="position">President</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                        <div class="zenith-team style-1 align-center clearfix">
-                                                            <div class="team-item">
-                                                                <div class="inner">
-                                                                    <div class="thumb data-effect-item">
-                                                                        <img src="assets/img/team/member-3-370x359.jpg" alt="Image">
-                                                                        <ul class="socials clearfix">
-                                                                            <li class="facebook"><a href="#"><i class="autora-icon-facebook"></i></a></li>
-                                                                            <li class="twitter"><a href="#"><i class="autora-icon-twitter"></i></a></li>
-                                                                            <li class="camera"><a href="#"><i class="autora-icon-camera-outline"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="overlay-effect bg-color-4"></div>
-                                                                    </div>
-                                                                    <div class="text-wrap">
-                                                                        <h6 class="name">Richard Johnson</h6>
-                                                                        <div class="position">Safety Director</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.zenith-team -->
-                                                    </div><!-- /.owl-carousel -->
-                                                </div><!-- /.zenith-carousel -->
-                                                <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
-                                            </div><!-- /.col-md-12 -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.container -->
-                                </div>
-                                <!-- END TEAM -->
-                            </div><!-- /.page-content -->
-                        </div><!-- /#inner-content -->
-                    </div><!-- /#site-content -->
-                </div><!-- /#content-wrap -->
-            </div><!-- /#main-content -->
+                                                <div class="button-wrap has-icon icon-left">
+                                                    <a href="tel:<?php echo $rows['ContactNo']; ?>" class="zenith-button bg-alt small"><span><?php echo $rows['ContactNo']; ?>
+                                                            <span class="icon"><i
+                                                                    class="zenith-icon-phone-contact"></i></span></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="zenith-spacer clearfix" data-desktop="33" data-mobile="35" data-smobile="35"></div>
+                                </div><!-- /.col-md-12 -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div>
+                    <!-- END QUOTE -->
 
-            <!-- Footer -->
-            <?php
-            include 'includes/footer.php';
-            include 'includes/footscript.html'; ?>
+                    <!-- CLIENTS -->
+                    <?php
+                    include 'includes/clients.php';
+                    ?>
+                    <!-- END CLIENTS -->
+                </div><!-- /.page-content -->
+            </div><!-- /#inner-content -->
+        </div><!-- /#site-content -->
+    </div><!-- /#content-wrap -->
+    </div><!-- /#main-content -->
+
+    <!-- Footer -->
+    <?php
+    include 'includes/footer.php';
+    include 'includes/footscript.html'; ?>
 </body>
 
 </html>
