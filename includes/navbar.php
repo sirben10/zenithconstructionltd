@@ -13,16 +13,16 @@
                           <a href="about?p=aboutus">WHO WE ARE</a>
                         </li>
                         <li class="menu-item">
-                          <a href="quality-and-safety?p=quality-and-safety">QUALITY & SAFETY</a>
+                          <a href="our-management?p=our-management">CORPORATE MANAGEMENT</a>
                         </li>
-                        <li class="menu-item">
+                        <!-- <li class="menu-item">
                           <a href="page-about-careers">ABOUT CAREERS</a>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
-                    <li class="menu-item menu-item-has-children">
-                      <a href="page-services">SERVICES</a>
-                      <ul class="sub-menu">
+                    <li class="menu-item <?php if(!empty($page) && $page == 'services') {?>current-menu-item<?php } ?>">
+                      <a href="services?p=services">SERVICES</a>
+                      <!-- <ul class="sub-menu">
                         <li class="menu-item">
                           <a href="page-services">SERVICES</a>
                         </li>
@@ -31,7 +31,7 @@
                             >SERVICES DETAIL</a
                           >
                         </li>
-                      </ul>
+                      </ul> -->
                     </li>
                     <li class="menu-item menu-item-has-children">
                       <a href="page-projects">PROJECTS</a>
