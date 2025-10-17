@@ -64,8 +64,8 @@
     min-width: 47px;
 }
 .ht__address__inner:hover .ht__address__icon i {
-    background: #fcc236 none repeat scroll 0 0;
-    border: 1px solid #fcc236;
+    background: #0c4a0c none repeat scroll 0 0;
+    border: 1px solid #0c4a0c;
     color: #fff;
 }
 .htc__contact__wrap {
@@ -93,7 +93,7 @@
     transition: 0.4s;
 }
 .ft__menu li a:hover{
-	color: #fcc236;
+	color: #0c4a0c;
 }
 .footer__link ul.ft__menu + ul.ft__menu {
     margin-left: 30px;

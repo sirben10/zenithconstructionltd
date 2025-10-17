@@ -198,12 +198,12 @@ a {
 a:hover,
 a:focus,
 a:active {
-    color: #fcc236;
+    color: #0c4a0c;
 }
 p a:hover,
 p a:focus,
 p a:active {
-    color: #fcc236;
+    color: #0c4a0c;
 }
 h1 a,
 h2 a,
@@ -254,14 +254,14 @@ body {
   background: #fff;
 }
 .mark, mark {
-    background: #fcc236 none repeat scroll 0 0;
+    background: #0c4a0c none repeat scroll 0 0;
     color: #ffffff;
 }
 /*-------------------------------
   06. Bg-Color
 -------------------------------------*/
 .bg__theme {
-    background: #fcc236;
+    background: #0c4a0c;
 }
 .bg__white {
   background: #fff;
@@ -273,7 +273,7 @@ body {
     background: #151515;
 }
 .bg__cat--1{
-    background-color: #1f2d30;
+    background-color: #0c4a0c;
 }
 
 
@@ -331,10 +331,10 @@ body {
   09. Text Color
 --------------------------------*/
 .text--theme { 
-  color: #fcc236;
+  color: #0c4a0c;
  }
 .text--blue { 
-  color: #fcc236;
+  color: #0c4a0c;
  }
 .text--white { 
   color: #fff ;
@@ -525,7 +525,7 @@ body {
 [data--theme__overlay]:before {
     position: absolute;
     content: '';
-    background: #fcc236;
+    background: #0c4a0c;
     width: 100%;
     height: 100%;
     top: 0;
@@ -553,19 +553,19 @@ select {
 }
 input:focus {
     background: transparent;
-    border: 1px solid #fcc236;
+    border: 1px solid #0c4a0c;
 }
 textarea {
     resize: none;
-    background: #fcc236;
-    border: 1px solid #fcc236;
+    background: #0c4a0c;
+    border: 1px solid #0c4a0c;
     padding: 10px;
     width: 100%;
     font-size: 14px;
 }
 textarea:focus {
     background: transparent;
-    border: 1px solid #fcc236;
+    border: 1px solid #0c4a0c;
     outline: none;
 }
 /*----------------------------
@@ -765,17 +765,17 @@ p.error {
 ------------------------------------------*/
 
 *::-moz-selection {
-    background: #fcc236;
+    background: #0c4a0c;
     color: #fff;
     text-shadow: none;
 }
 ::-moz-selection {
-    background: #fcc236;
+    background: #0c4a0c;
     color: #fff;
     text-shadow: none;
 }
 ::selection {
-    background: #fcc236;
+    background: #0c4a0c;
     color: #fff;
     text-shadow: none;
 }

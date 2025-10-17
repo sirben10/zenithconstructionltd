@@ -72,7 +72,7 @@
     margin-top: 40px;
 }
 .htc__btn {
-    background: #fcc236 none repeat scroll 0 0;
+    background: #0c4a0c none repeat scroll 0 0;
     color: #fff;
     display: inline-block;
     font-family: Raleway;
@@ -82,12 +82,12 @@
     line-height: 45px;
     padding: 0 25px;
     transition: 0.5s;
-    border: 1px solid #fcc236;
+    border: 1px solid #0c4a0c;
 }
 .htc__btn:hover{
-    border: 1px solid #fcc236;
+    border: 1px solid #0c4a0c;
     background: transparent;
-    color:#fcc236;
+    color:#0c4a0c;
 }
 
 
@@ -129,7 +129,7 @@
 }
 
 .slider__activation__wrap.owl-theme .owl-nav [class*="owl-"]:hover {
-    background: rgba(184, 144, 37, 0.6) none repeat scroll 0 0;
+    background: rgba(13, 147, 42, 0.6) none repeat scroll 0 0;
 }
 
 

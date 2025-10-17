@@ -15,7 +15,7 @@ a.meanmenu-reveal {
 
 /* when under viewport size, .mean-container is added to body */
 .mean-container .mean-bar {
-  background: rgba(0, 0, 0, 0) none repeat scroll center bottom;
+  background: rgba(13, 88, 36, 0) none repeat scroll center bottom;
   float: left;
   min-height: 42px;
   padding: 4px 0;
@@ -52,7 +52,7 @@ a.meanmenu-reveal {
 }
 
 .mean-container .mean-nav {
-  background: #0c1923 none repeat scroll 0 0;
+  background: #0c4a0c none repeat scroll 0 0;
   float: left;
   margin-top: 10px;
   width: 100%;
