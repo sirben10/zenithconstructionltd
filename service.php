@@ -1,4 +1,6 @@
 <?php
+$slug = $_GET[md5('service')];
+// echo $slug; exit;
 include 'includes/header.php';
 ?>
 <title><?php echo 'Services | ' . $rows['sitetitle'] ?> </title>

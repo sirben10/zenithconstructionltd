@@ -114,7 +114,7 @@ include 'includes/header.php';
                                 <div class="overlay-effect bg-color-3"></div>
                               </div>
                               <div class="text-wrap">
-                                <h5 class="heading text-uppercase"><a href="#"><?php echo $service['serviceName']; ?></a></h5>
+                                <h5 class="heading text-uppercase"><a href="service?<?php echo $serv.'='.$service['slug']; ?>"><?php echo $service['serviceName']; ?></a></h5>
                               </div>
                             </div>
                           </div><!-- /.product-item -->
