@@ -30,7 +30,7 @@
                          <?php } ?>
                      </div>
                  </div><!-- /.themesflat-carousel-box -->
-                 <div class="themesflat-spacer clearfix" data-desktop="66" data-mobile="60" data-smobile="60"></div>
+                 <div class="zenith-spacer clearfix" data-desktop="86" data-mobile="60" data-smobile="60"></div>
              </div><!-- /.col-md-12 -->
          </div><!-- /.row -->
      </div><!-- /.container -->

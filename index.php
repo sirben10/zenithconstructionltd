@@ -3,6 +3,8 @@
 // echo $rows['sitetitle']; exit;
 include 'includes/header.php';
 ?>
+<title><?php echo 'Home | ' . $rows['sitetitle'] ?> </title>
+
 <style>
   /* testimonial Section */
   .testimonial-section {
@@ -95,33 +97,6 @@ include 'includes/header.php';
               include 'includes/navbar.php';
               ?>
               <!-- /#main-nav -->
-
-              <div id="header-search">
-                <a href="#" class="header-search-icon">
-                  <span class="search-icon fa fa-search"> </span>
-                </a>
-
-                <form
-                  role="search"
-                  method="get"
-                  class="header-search-form"
-                  action="#">
-                  <label class="screen-reader-text">Search for:</label>
-                  <input
-                    type="text"
-                    value=""
-                    name="s"
-                    class="header-search-field"
-                    placeholder="Search..." />
-                  <button
-                    type="submit"
-                    class="header-search-submit"
-                    title="Search">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </form>
-              </div>
-              <!-- /#header-search -->
             </div>
             <!-- /.wrap-inner -->
           </div>
