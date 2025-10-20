@@ -11,6 +11,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 	// Code for change password	
 	$serviceName = $_POST['serviceName'];
 	$serviceImage = $_FILES['serviceImage']['name'];
+	$slug = strtolower(str_replace(' ', '-', $serviceName));
+
 	$sql = "SELECT * from  tblservices WHERE serviceName=:serviceName";
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
@@ -36,9 +38,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 							$upload_path = "../servicephotos/" . $newfilename;
 							if (move_uploaded_file($_FILES["serviceImage"]["tmp_name"], $upload_path)) {
 								// File uploaded successfully
-								$sql = "INSERT INTO tblservices (serviceName, servicePhoto, dateUpdated) VALUES (:serviceName, :servicePhoto, NOW())";
+								$sql = "INSERT INTO tblservices (serviceName, slug, servicePhoto, dateUpdated) VALUES (:serviceName, :slug, :servicePhoto, NOW())";
 								$query = $dbh->prepare($sql);
 								$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
+								$query->bindParam(':slug', $slug, PDO::PARAM_STR);
 								$query->bindParam(':servicePhoto', $newfilename, PDO::PARAM_STR);
 								if ($query->execute()) {
 									$msg = "Service added successfully";
@@ -84,24 +87,35 @@ if (strlen($_SESSION['alogin']) == 0) {
 					}
 				}
 
+
 				$newfilename = uniqid("service_") . '.' . $extension;
 				$upload_path = "../servicephotos/{$newfilename}";
-				if (move_uploaded_file($_FILES["serviceImage"]["tmp_name"], $upload_path)) {
-					$sql = "UPDATE tblservices SET servicePhoto=:servicePhoto WHERE serviceID=:serviceID";
-					$query = $dbh->prepare($sql);
-					$query->bindParam(':servicePhoto', $newfilename, PDO::PARAM_STR);
-					$query->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
-					if ($query->execute()) {
-						$msg = "Service Image Updated successfully";
-					} else {
-						$error = "Failed to update service image. Please try again.";
-					}
-				} else {
-					$error = "Failed to upload image.";
-				}
 			}
+
+			move_uploaded_file($_FILES["serviceImage"]["tmp_name"], $upload_path);
+		}
+
+		$sql = "UPDATE tblservices SET serviceName=:serviceName, slug=:slug ";
+		if (!empty($serviceImage)) {
+			$sql .= ", servicePhoto=:servicePhoto ";
+		}
+		 $sql .= "WHERE serviceID=:serviceID";
+		//  echo $sql; exit;
+		$query = $dbh->prepare($sql);
+		$query->bindParam(':serviceName', $serviceName, PDO::PARAM_STR);
+		$query->bindParam(':slug', $slug, PDO::PARAM_STR);
+		if (!empty($serviceImage)) {
+		$query->bindParam(':servicePhoto', $newfilename, PDO::PARAM_STR);
+		}
+		$query->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+		if ($query->execute()) {
+			$msg = "Service Updated successfully";
+		} else {
+			$error = "Failed to update service. Please try again.";
 		}
 	}
+
+
 
 ?>
 
@@ -183,20 +197,20 @@ if (strlen($_SESSION['alogin']) == 0) {
 						</div>
 
 						<div>
-						<?php require 'includes/copyright.php'; ?>
-						<?php require 'includes/footscripts.php'; ?>
-				
-					</div>
+							<?php require 'includes/copyright.php'; ?>
+							<?php require 'includes/footscripts.php'; ?>
+
+						</div>
 
 					</div>
 				</div>
 
 
 			</div>
-		
+
 		</div>
 	</div>
-	
+
 
 	</body>
 

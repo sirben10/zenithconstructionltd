@@ -62,16 +62,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 										<tr>
 											<th>#</th>
 											<th>Service Title</th>
+											<th>Slug</th>
 											<th>Service Photo</th>
-											<!-- <th>Service Title</th> -->
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 											<th>#</th>
-											<!-- <th>Service Title</th> -->
 											<th>Service Title</th>
+											<th>Slug</th>
 											<th>Service Photo</th>
 											<th>Action</th>
 										</tr>
@@ -90,6 +90,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<tr>
 													<td><?php echo htmlentities($cnt); ?></td>
 													<td><?php echo htmlentities($result->serviceName); ?></td>
+													<td><?php echo htmlentities($result->slug); ?></td>
 													<td><a href="../servicephotos/<?php echo htmlentities($result->servicePhoto); ?>"><img src="../servicephotos/<?php echo htmlentities($result->servicePhoto); ?>" width="100" height="100"></a></td>
 													<td><a href="add-service?id=<?php echo $result->serviceID; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 														<a href="services?del=<?php echo $result->serviceID; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a>
