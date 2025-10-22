@@ -15,7 +15,7 @@ $query->execute();
 $service = $query->fetch(PDO::FETCH_ASSOC);
 $activeService = $service['serviceName'];
 ?>
-<title><?php echo $activeService.' | ' . $rows['sitetitle'] ?> </title>
+<title><?php echo $activeService . ' | ' . $rows['sitetitle'] ?> </title>
 
 
 
@@ -101,179 +101,206 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-spacer clearfix" data-desktop="60" data-mobile="60" data-smobile="60"></div>
                                     <div class="zenith-content-box clearfix" data-margin="0 10px 0 43px" data-mobilemargin="0 15px 0 15px">
                                         <div class="zenith-headings style-2 clearfix">
-                                            <div class="sup-heading">SPECIAL SERVICES</div>
-                                            <h2 class="heading font-size-28 line-height-39">DESIGN & BUILD</h2>
+                                            <div class="sup-heading">Building Roads That Drive Progress</div>
+                                            <h2 class="heading font-size-28 line-height-39"><?php echo htmlentities(strtoupper($service['serviceName'])); ?></h2>
                                             <div class="sep has-width w80 accent-bg margin-top-20 clearfix"></div>
-                                            <p class="sub-heading margin-top-33 line-height-24">We work to develop and understand project expectations and then manage those needs with a customized, qualified design team. Innovation should happen throughout a project</p>
+                                            <p class="sub-heading margin-top-33 line-height-24 text-justify px-lg-1">
+                                                Zenith Road Construction is dedicated to designing, constructing,
+                                                and maintaining durable road networks that enhance connectivity and economic growth.
+                                                We bring precision, expertise, and innovation to every layer of the pavement.
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="zenith-spacer clearfix" data-desktop="56" data-mobile="56" data-smobile="56"></div>
                                 </div>
-                                <div class="span_1_of_6 half-background style-2">
+                                <div class="span_1_of_6 half-background style-2"><img src="../servicephotos/<?php echo htmlentities($service['servicePhoto']) ?>" alt="" width="100%" height="100%">
                                 </div>
                             </div><!-- /.zenith-row -->
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title">SERVICE CONSULTANT</h5>
-                                <p>Through our Design-Build service, we provides a single source of responsibility to the client. We work to develop and understand project expectations and then manage those needs with a customized, qualified design team. Innovation should happen throughout a project. To do that, we focus our efforts on each step of every phase to make the entire process smooth and straightforward. Our proactive, collaborative approach is what uncovers unique ideas and opportunities for improvement before the next phase begins.</p>
+                                <h5 class="title">Our Road Construction Expertise</h5>
+                                <p>We deliver on time, meet international quality standards, and provide value-driven
+                                    solutions for highways, rural roads, and industrial access routes.
+                                </p>
+                                <p>We combine advanced engineering, skilled manpower, and efficient project management to
+                                    execute road projects of all scales, from local access roads to expressways.
+                                    Our commitment is to deliver safe, reliable, and long-lasting infrastructure.
+                                </p>
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-                            <div class="flat-content-wrap style-2 clearfix">
+                            <div class=" m-auto style-2 clearfix">
                                 <div class="item">
-                                    <div class="inner">
-                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                        <h5 class="title">OUR SERVICES INCLUDE:</h5>
-                                        <p>We have successfully completed projects in numerous states across the continental United States. zenith Construction Services has a proven track record of:</p>
-                                        <div class="zenith-spacer clearfix" data-desktop="8" data-mobile="8" data-smobile="8"></div>
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Interior Design Planning</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Colour & Finish Consultations</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Architectural & Custom Lighting</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Glass & Acrylic Specifications</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                    </div>
-                                </div><!-- /.item -->
-                                <div class="item">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-content-box clearfix" data-margin="0 0 0 11px" data-mobilemargin="0 0 0 0">
-                                        <div class="inner pd35 bg-ffc">
-                                            <h5 class="title text-white line-height-24 padding-left-7">THIS AWESOME SERVICE BRINGS FULL INTEREST INFORMATION FOR YOUR PURPOSE</h5>
-                                            <div class="zenith-spacer clearfix" data-desktop="16" data-mobile="16" data-smobile="16"></div>
-                                            <div class="button-wrap has-icon icon-right size-14">
-                                                <a href="#" class="zenith-button bg-white color-333 w100 font-weight-400 no-letter-spacing pd26"><span>Download .PDF <span class="icon"><i class="fa fa-file-pdf-o"></i></span></span></a>
-                                            </div><!-- /.button-wrap -->
-                                            <div class="zenith-spacer clearfix" data-desktop="6" data-mobile="6" data-smobile="6"></div>
-                                            <div class="button-wrap has-icon icon-right size-14">
-                                                <a href="#" class="zenith-button bg-white color-333 w100 font-weight-400 no-letter-spacing pd26 "><span> Download .DOC <span class="icon"><i class="fa fa-file-word-o"></i></span></span></a>
-                                            </div>
+                                    <div class="zenith-accordions clearfix mx-3">
+                                        <div class="accordion-item active">
+                                            <h3 class="accordion-heading"><span class="inner">Our Core Principles</span></h3>
+                                            <div class="accordion-content clearfix">
+                                                <div class="zenith-row clearfix">
+                                                    <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Quality-driven execution</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Environmental sustainability</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Safety-first construction</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Safety-first construction</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                        <div class="zenith-list  style-2 icon-left clearfix">
 
+                                                        </div>
+                                                    </div><!-- /.zenith-content-box -->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div><!-- /.item -->
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-                            <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title no-letter-spacing">CONTACT US FOR DESIGN-BUILD SERVICES TODAY</h5>
-                                <div class="zenith-spacer clearfix" data-desktop="27" data-mobile="27" data-smobile="27"></div>
-                                <div class="zenith-tabs style-2 title-w170 clearfix">
-                                    <ul class="tab-title clearfix ">
-                                        <li class="item-title active">
-                                            <span class="inner">Our focus</span>
-                                        </li>
-                                        <li class="item-title">
-                                            <span class="inner">Dedicated</span>
-                                        </li>
-                                        <li class="item-title">
-                                            <span class="inner">Committed</span>
-                                        </li>
-                                    </ul>
 
-                                    <div class="tab-content-wrap clearfix">
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.tab-content-wrap -->
-                                </div><!-- /.zenith-tabs -->
+                            <div class="zenith-row gutter-30 gutter-mobile clearfix">
+                                <div class="zenith-headings style-2 clearfix">
+                                    <h2 class="heading">OUR ENGINEERING DESIGN SERVICES</h2>
+                                    <div class="sep has-width w80 accent-bg clearfix"></div>
+                                </div>
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Highway and Road Construction</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                End-to-end development of highways, urban, and rural roads,
+                                                using advanced materials and techniques to ensure longevity and smooth performance.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+                                    <div class="divider h35"></div>
+                                </div>
+
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Pavement Design and Surfacing</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Custom pavement solutions for different traffic loads and environmental conditions,
+                                                ensuring optimal ride quality and low maintenance costs.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+
+                                </div>
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Drainage & Roadside Works</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Integrated design and construction of side drains, culverts,
+                                                and curbs to enhance road durability and prevent surface water accumulation.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+                                </div>
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Earthworks & Site Preparation</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Grading, excavation, compaction, and sub-base preparation for road projects of all scales,
+                                                setting a strong foundation for lasting roads.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+                                </div>
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Road Marking & Signage</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Installation of clear, durable road markings and traffic signs that enhance
+                                                road safety and compliance with regulatory standards.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+                                </div>
+                                <div class="col span_1_of_4 mb-xl-1">
+                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+
+                                        <div class="text-wrap">
+                                            <h5 class="heading"><a>Quality Control & Project Supervision</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Comprehensive supervision and material testing throughout project execution
+                                                to ensure every road meets the highest quality standards.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.zenith-icon-box -->
+                                </div>
                             </div>
+
                             <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                         </div><!-- /#inner-content -->
                     </div><!-- /#site-content -->
-                  <div id="sidebar">
-  <div
-    class="zenith-spacer clearfix"
-    data-desktop="80"
-    data-mobile="0"
-    data-smobile="0"
-  ></div>
-  <div id="inner-sidebar" class="inner-content-wrap">
-    <div class="widget widget_list">
-      <div class="inner">
-        <ul class="list-wrap">
-          <?php foreach ($services as $service) {?>
-          <li class="list-item">
-            <a href="<?php echo $serv.'='.$service['slug']; ?>??p=services&<?php echo $serv.'='.$service['slug']; ?>"><span class="text"><?php echo htmlentities($service['serviceName']); ?></span></a>
-          </li>
-        <?php } ?>
-        </ul>
-      </div>
-    </div>
-    <!-- /.widget_list -->
-
-    <div
-      class="widget widget_help align-center has-shadow no-sep has-border border-solid"
-    >
-      <div class="inner">
-        <h2 class="widget-title margin-bottom-14">
-          <span>HOW CAN WE HELP ?</span>
-        </h2>
-        <p class="text line-height-26 margin-bottom-23">
-          Are you interested in finding out how we can make your project. Please
-          email us.
-        </p>
-        <div class="elm-button">
-          <a href="#" class="zenith-button bg-accent pd30">GET IN TOUCH</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="zenith-spacer clearfix"
-    data-desktop="0"
-    data-mobile="60"
-    data-smobile="60"
-  ></div>
-</div>
+                    <div id="sidebar">
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="80"
+                            data-mobile="0"
+                            data-smobile="0"></div>
+                        <?php include 'service-side-bar.php' ?>
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="0"
+                            data-mobile="60"
+                            data-smobile="60"></div>
+                    </div>
                     <!-- /#sidebar -->
                 </div><!-- /#content-wrap -->
             </div><!-- /#main-content -->
 
             <!-- Footer -->
-        <?php include '../includes/footer.php'; 
-        include '../includes/footscript.php';
-        ?>
+            <?php include '../includes/footer.php';
+            include '../includes/footscript.php';
+            ?>
 
-  
+
 </body>
 
 </html>

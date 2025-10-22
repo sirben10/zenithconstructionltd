@@ -134,24 +134,38 @@ $activeService = $service['serviceName'];
                                             <div class="accordion-content clearfix">
                                                 <div class="zenith-row clearfix">
                                                     <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
-                                                        <div class="zenith-list  style-2 icon-left clearfix">
-                                                            <span class="text">Multi-disciplinary coordination</span>
-
-
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Multi-disciplinary coordination</span>
+                                                                </span>
+                                                            </div>
                                                         </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Advanced CAD and BIM modeling</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Compliance with international standards</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
                                                         <div class="zenith-list  style-2 icon-left  clearfix">
-                                                            <div class="inner">
-                                                                <span class="text">Advanced CAD and BIM modeling</span>
 
-                                                            </div>
                                                         </div>
                                                         <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
                                                         <div class="zenith-list  style-2 icon-left clearfix">
-                                                            <div class="inner">
-                                                                <span class="text">Compliance with international standards</span>
 
-                                                            </div>
                                                         </div>
                                                     </div><!-- /.zenith-content-box -->
                                                 </div>
@@ -167,107 +181,113 @@ $activeService = $service['serviceName'];
                                             <div class="accordion-content clearfix">
                                                 <div class="zenith-row clearfix">
                                                     <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
-                                                        <div class="zenith-list  style-2 icon-left clearfix">
-                                                            <span class="text">Innovative yet practical design solutions</span>
-
-
-                                                        </div>
-                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                                        <div class="zenith-list  style-2 icon-left  clearfix">
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
                                                             <div class="inner">
-                                                                <span class="text">Thorough feasibility and safety analysis</span>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                                        <div class="zenith-list  style-2 icon-left clearfix">
-                                                            <div class="inner">
-                                                                <span class="text">Client collaboration and transparent reporting
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Innovative yet practical design solutions</span>
                                                                 </span>
-
                                                             </div>
                                                         </div>
-                                                    </div><!-- /.zenith-content-box -->
-                                                </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Thorough feasibility and safety analysis</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Client collaboration and transparent reporting</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div><!-- /.zenith-content-box -->
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- /.item -->
+                                </div>
+                            </div><!-- /.item -->
+                        </div>
+                        <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
+                        <div class="flat-content-wrap style-2 clearfix">
+                            <div class="zenith-headings style-2 clearfix">
+                                <h2 class="heading">OUR ENGINEERING DESIGN SERVICES</h2>
+                                <div class="sep has-width w80 accent-bg clearfix"></div>
                             </div>
-                            <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-                            <div class="flat-content-wrap style-2 clearfix">
-                                 <div class="zenith-headings style-2 clearfix">
-                                                <h2 class="heading">OUR ENGINEERING DESIGN SERVICES</h2>
-                                                <div class="sep has-width w80 accent-bg clearfix"></div>                                               
-                                            </div>
-                                <!-- <h5 class="title no-letter-spacing">OUR ENGINEERING DESIGN SERVICES</h5> -->
-                                <div class="zenith-spacer clearfix" data-desktop="27" data-mobile="27" data-smobile="27"></div>
+                            <!-- <h5 class="title no-letter-spacing">OUR ENGINEERING DESIGN SERVICES</h5> -->
+                            <div class="zenith-spacer clearfix" data-desktop="27" data-mobile="27" data-smobile="27"></div>
 
-                                <div class="zenith-tabs style-1 w168 clearfix">
-                                    <ul class="tab-title clearfix">
-                                        <li class="item-title active">
-                                            <span class="inner">Civil Engineering Design</span>
-                                        </li>
-                                        <li class="item-title">
-                                            <span class="inner">Structural Design</span>
-                                        </li>
-                                        <li class="item-title">
-                                            <span class="inner">Infrastructure Planning</span>
-                                        </li>
-                                    </ul>
+                            <div class="zenith-tabs style-1 w168 clearfix">
+                                <ul class="tab-title clearfix">
+                                    <li class="item-title active">
+                                        <span class="inner">Civil Engineering Design</span>
+                                    </li>
+                                    <li class="item-title">
+                                        <span class="inner">Structural Design</span>
+                                    </li>
+                                    <li class="item-title">
+                                        <span class="inner">Infrastructure Planning</span>
+                                    </li>
+                                </ul>
 
-                                    <div class="tab-content-wrap clearfix">
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>
-                                                    Roads, Brisges, drainage, water supply, and site infrastructure design,
-                                                    integrating functionality, cost efficiency, and resilience.
-                                                </p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>
-                                                    Design of Roads, bridges, and industrial
-                                                    structures using advanced modeling and analysis tools to ensure safety and economy.
-                                                </p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                        <div class="tab-content">
-                                            <div class="item-content">
-                                                <p>
-                                                    Comprehensive design and master planning for urban and rural
-                                                    infrastructure, tailored to future growth and environmental needs.
-                                                </p>
-                                            </div>
-                                        </div><!-- /.tab-content -->
-                                    </div>
+                                <div class="tab-content-wrap clearfix">
+                                    <div class="tab-content">
+                                        <div class="item-content">
+                                            <p>
+                                                Roads, Brisges, drainage, water supply, and site infrastructure design,
+                                                integrating functionality, cost efficiency, and resilience.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.tab-content -->
+                                    <div class="tab-content">
+                                        <div class="item-content">
+                                            <p>
+                                                Design of Roads, bridges, and industrial
+                                                structures using advanced modeling and analysis tools to ensure safety and economy.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.tab-content -->
+                                    <div class="tab-content">
+                                        <div class="item-content">
+                                            <p>
+                                                Comprehensive design and master planning for urban and rural
+                                                infrastructure, tailored to future growth and environmental needs.
+                                            </p>
+                                        </div>
+                                    </div><!-- /.tab-content -->
                                 </div>
                             </div>
-                            <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
-                        </div><!-- /#inner-content -->
-                    </div><!-- /#site-content -->
-                    <div id="sidebar">
-                        <div
-                            class="zenith-spacer clearfix"
-                            data-desktop="80"
-                            data-mobile="0"
-                            data-smobile="0"></div>
-                        <?php include 'service-side-bar.php' ?>
-                        <div
-                            class="zenith-spacer clearfix"
-                            data-desktop="0"
-                            data-mobile="60"
-                            data-smobile="60"></div>
-                    </div>
-                    <!-- /#sidebar -->
-                </div><!-- /#content-wrap -->
-            </div><!-- /#main-content -->
+                        </div>
+                        <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
+                    </div><!-- /#inner-content -->
+                </div><!-- /#site-content -->
+                <div id="sidebar">
+                    <div
+                        class="zenith-spacer clearfix"
+                        data-desktop="80"
+                        data-mobile="0"
+                        data-smobile="0"></div>
+                    <?php include 'service-side-bar.php' ?>
+                    <div
+                        class="zenith-spacer clearfix"
+                        data-desktop="0"
+                        data-mobile="60"
+                        data-smobile="60"></div>
+                </div>
+                <!-- /#sidebar -->
+            </div><!-- /#content-wrap -->
+        </div><!-- /#main-content -->
 
-            <!-- Footer -->
-            <?php include '../includes/footer.php';
-            include '../includes/footscript.php';
-            ?>
+        <!-- Footer -->
+        <?php include '../includes/footer.php';
+        include '../includes/footscript.php';
+        ?>
 
 
 </body>

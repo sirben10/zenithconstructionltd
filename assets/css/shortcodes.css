@@ -1436,7 +1436,7 @@
 
 /* Has padding */
 .zenith-tabs.w168 .tab-title .item-title {
-  width: 250px;
+  width: 260px;
   text-align: left;
 }
 .zenith-tabs.w168 .tab-title .item-title > span {
@@ -1444,7 +1444,7 @@
   width: 100%;
 }
 .zenith-tabs.w168 .tab-title .item-title.active > span {
-  padding: 13px 0 10px 10px;
+  padding: 13px 0 10px 6px;
   background-color: #008000;
 }
 
