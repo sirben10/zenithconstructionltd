@@ -159,11 +159,11 @@ $activeService = $service['serviceName'];
                                         </div>
                                     </div>
                                 </div><!-- /.item -->
-                               <div class="item">
+                                <div class="item">
                                     <div class="zenith-accordions style-4 clearfix mx-3">
                                         <div class="accordion-item active">
                                             <h3 class="accordion-heading"><span class="inner">Our Approach
-</span></h3>
+                                                </span></h3>
                                             <div class="accordion-content clearfix">
                                                 <div class="zenith-row clearfix">
                                                     <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
@@ -183,7 +183,7 @@ $activeService = $service['serviceName'];
                                                         <div class="zenith-list  style-2 icon-left clearfix">
                                                             <div class="inner">
                                                                 <span class="text">Client collaboration and transparent reporting
-</span>
+                                                                </span>
 
                                                             </div>
                                                         </div>
@@ -196,42 +196,53 @@ $activeService = $service['serviceName'];
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title no-letter-spacing">CONTACT US FOR DESIGN-BUILD SERVICES TODAY</h5>
+                                 <div class="zenith-headings style-2 clearfix">
+                                                <h2 class="heading">OUR ENGINEERING DESIGN SERVICES</h2>
+                                                <div class="sep has-width w80 accent-bg clearfix"></div>                                               
+                                            </div>
+                                <!-- <h5 class="title no-letter-spacing">OUR ENGINEERING DESIGN SERVICES</h5> -->
                                 <div class="zenith-spacer clearfix" data-desktop="27" data-mobile="27" data-smobile="27"></div>
-                                <div class="zenith-tabs style-2 title-w170 clearfix">
-                                    <ul class="tab-title clearfix ">
+
+                                <div class="zenith-tabs style-1 w168 clearfix">
+                                    <ul class="tab-title clearfix">
                                         <li class="item-title active">
-                                            <span class="inner">Our focus</span>
+                                            <span class="inner">Civil Engineering Design</span>
                                         </li>
                                         <li class="item-title">
-                                            <span class="inner">Dedicated</span>
+                                            <span class="inner">Structural Design</span>
                                         </li>
                                         <li class="item-title">
-                                            <span class="inner">Committed</span>
+                                            <span class="inner">Infrastructure Planning</span>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content-wrap clearfix">
                                         <div class="tab-content">
                                             <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                                                <p>
+                                                    Roads, Brisges, drainage, water supply, and site infrastructure design,
+                                                    integrating functionality, cost efficiency, and resilience.
+                                                </p>
                                             </div>
                                         </div><!-- /.tab-content -->
                                         <div class="tab-content">
                                             <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                                                <p>
+                                                    Design of Roads, bridges, and industrial
+                                                    structures using advanced modeling and analysis tools to ensure safety and economy.
+                                                </p>
                                             </div>
                                         </div><!-- /.tab-content -->
                                         <div class="tab-content">
                                             <div class="item-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                                                <p>
+                                                    Comprehensive design and master planning for urban and rural
+                                                    infrastructure, tailored to future growth and environmental needs.
+                                                </p>
                                             </div>
                                         </div><!-- /.tab-content -->
-                                    </div><!-- /.tab-content-wrap -->
-                                </div><!-- /.zenith-tabs -->
+                                    </div>
+                                </div>
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                         </div><!-- /#inner-content -->

@@ -1436,19 +1436,22 @@
 
 /* Has padding */
 .zenith-tabs.w168 .tab-title .item-title {
-  width: 168px;
-  text-align: center;
+  width: 250px;
+  text-align: left;
 }
 .zenith-tabs.w168 .tab-title .item-title > span {
-  padding: 25px 0px;
+  padding: 25px 10px;
+  width: 100%;
 }
 .zenith-tabs.w168 .tab-title .item-title.active > span {
-  padding: 13px 0px 10px 0px;
+  padding: 13px 0 10px 10px;
+  background-color: #008000;
 }
 
 .zenith-tabs.style-1 .tab-title .item-title:hover > span {
   width: 100%;
-  background-color: #0c4a0c;
+  background-color: #008000;
+  padding: 13px 0 10px 10px;
   color: #fff;
 }
 
