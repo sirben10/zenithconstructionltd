@@ -11,7 +11,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 	// Code for change password	
 	$serviceName = $_POST['serviceName'];
 	$serviceImage = $_FILES['serviceImage']['name'];
-	$slug = strtolower(str_replace(' ', '-', $serviceName));
+	$slug = strtolower(str_replace('&', '', $serviceName));
+	$slug = strtolower(str_replace(' ', '-', $slug));
 
 	$sql = "SELECT * from  tblservices WHERE serviceName=:serviceName";
 	$query = $dbh->prepare($sql);

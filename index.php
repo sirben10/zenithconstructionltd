@@ -310,7 +310,7 @@ include 'includes/header.php';
 
                           <div class="zenith-project style-2 isotope-project has-margin mg15 data-effect clearfix">
                             <?php
-                            $serv = md5('service');
+                           
                             // echo  $service; exit;
                             if (isset($services) && is_array($services)) {
                               foreach ($services as $service) {
@@ -323,7 +323,7 @@ include 'includes/header.php';
                                       <div class="overlay-effect bg-color-3"></div>
                                     </div>
                                     <div class="text-wrap">
-                                      <h5 class="heading text-uppercase"><a href="service?<?php echo $serv.'='.$service['slug']; ?>"><?php echo $service['serviceName']; ?></a></h5>
+                                      <h5 class="heading text-uppercase"><a href="services/<?php echo $service['slug'];?>?p=services&<?php echo $serv.'='.$service['slug']; ?>"><?php echo $service['serviceName']; ?></a></h5>
                                     </div>
                                   </div>
                                 </div><!-- /.product-item -->
@@ -571,7 +571,7 @@ include 'includes/header.php';
         <!-- Footer -->
         <?php
         include 'includes/footer.php';
-        include 'includes/footscript.html'; ?>
+        include 'includes/footscript.php'; ?>
 </body>
 
 </html>

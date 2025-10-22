@@ -2,10 +2,11 @@
 $slug = '';
 if (!empty($_GET[md5('service')])) {
     $slug = $_GET[md5('service')];
+    // echo $slug; exit;
 }
 $activeService = '';
 // echo $slug; exit;
-include 'includes/header.php';
+include '../includes/header.php';
 // include_once 'admin/includes/config.php';
 $sql = "SELECT * FROM tblservices WHERE slug = '$slug'";
 // echo $sql; exit;
@@ -14,7 +15,7 @@ $query->execute();
 $service = $query->fetch(PDO::FETCH_ASSOC);
 $activeService = $service['serviceName'];
 ?>
-<title><?php echo $activeService.' | ' . $rows['sitetitle'] ?> </title>
+<title><?php echo $activeService . ' | ' . $rows['sitetitle'] ?> </title>
 
 
 
@@ -26,7 +27,7 @@ $activeService = $service['serviceName'];
             <div id="site-header-wrap">
                 <!-- Top Bar -->
                 <?php
-                include 'includes/top-bar.php';
+                include '../includes/top-bar.php';
                 ?>
                 <!-- /#top-bar -->
 
@@ -36,7 +37,7 @@ $activeService = $service['serviceName'];
                         <div class="wrap-inner clearfix">
 
                             <?php
-                            include 'includes/site-logo.php';
+                            include '../includes/site-logo.php';
                             ?>
                             <!-- /#site-logo -->
 
@@ -45,7 +46,7 @@ $activeService = $service['serviceName'];
                             </div><!-- /.mobile-button -->
 
                             <?php
-                            include 'includes/navbar.php';
+                            include '../includes/navbar.php';
                             ?>
                             <!-- /#main-nav -->
 
@@ -100,81 +101,98 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-spacer clearfix" data-desktop="60" data-mobile="60" data-smobile="60"></div>
                                     <div class="zenith-content-box clearfix" data-margin="0 10px 0 43px" data-mobilemargin="0 15px 0 15px">
                                         <div class="zenith-headings style-2 clearfix">
-                                            <div class="sup-heading">SPECIAL SERVICES</div>
-                                            <h2 class="heading font-size-28 line-height-39">DESIGN & BUILD</h2>
+                                            <div class="sup-heading">Trusted by Industry Leaders</div>
+                                            <h2 class="heading font-size-28 line-height-39"><?php echo htmlentities(strtoupper($service['serviceName'])); ?></h2>
                                             <div class="sep has-width w80 accent-bg margin-top-20 clearfix"></div>
-                                            <p class="sub-heading margin-top-33 line-height-24">We work to develop and understand project expectations and then manage those needs with a customized, qualified design team. Innovation should happen throughout a project</p>
+                                            <p class="sub-heading margin-top-33 line-height-24 text-justify px-lg-1">
+                                                Zenith Construction Ltd delivers innovative, cost-effective, and sustainable engineering design solutions across civil, structural, and infrastructure projects.
+                                                We combine technical precision with creativity to transform ideas into reliable designs.
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="zenith-spacer clearfix" data-desktop="56" data-mobile="56" data-smobile="56"></div>
                                 </div>
-                                <div class="span_1_of_6 half-background style-2">
+                                <div class="span_1_of_6 half-background style-2"><img src="../servicephotos/<?php echo htmlentities($service['servicePhoto']) ?>" alt="" srcset="">
                                 </div>
                             </div><!-- /.zenith-row -->
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title">SERVICE CONSULTANT</h5>
-                                <p>Through our Design-Build service, we provides a single source of responsibility to the client. We work to develop and understand project expectations and then manage those needs with a customized, qualified design team. Innovation should happen throughout a project. To do that, we focus our efforts on each step of every phase to make the entire process smooth and straightforward. Our proactive, collaborative approach is what uncovers unique ideas and opportunities for improvement before the next phase begins.</p>
+                                <h5 class="title">Our Design Philosophy</h5>
+                                <p>Through our Design-Build service, we provides a single source of responsibility to the client.
+                                    We work to develop and understand project expectations and then manage those needs with a customized, qualified design team.
+                                    Innovation should happen throughout a project. To do that, we focus our efforts on each step of every phase to make the entire process smooth and straightforward.
+                                    Our proactive, collaborative approach is what uncovers unique ideas and opportunities for improvement before the next phase begins.
+                                    We emphasize design integrity, sustainability, and constructability in every project.
+                                </p>
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
                             <div class="flat-content-wrap style-2 clearfix">
                                 <div class="item">
-                                    <div class="inner">
-                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                        <h5 class="title">OUR SERVICES INCLUDE:</h5>
-                                        <p>We have successfully completed projects in numerous states across the continental United States. zenith Construction Services has a proven track record of:</p>
-                                        <div class="zenith-spacer clearfix" data-desktop="8" data-mobile="8" data-smobile="8"></div>
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Interior Design Planning</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Colour & Finish Consultations</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Architectural & Custom Lighting</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                            <div class="inner">
-                                                <span class="item">
-                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                    <span class="text">Glass & Acrylic Specifications</span>
-                                                </span>
-                                            </div>
-                                        </div><!-- /.themeslat-list -->
-                                    </div>
-                                </div><!-- /.item -->
-                                <div class="item">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-content-box clearfix" data-margin="0 0 0 11px" data-mobilemargin="0 0 0 0">
-                                        <div class="inner pd35 bg-ffc">
-                                            <h5 class="title text-white line-height-24 padding-left-7">THIS AWESOME SERVICE BRINGS FULL INTEREST INFORMATION FOR YOUR PURPOSE</h5>
-                                            <div class="zenith-spacer clearfix" data-desktop="16" data-mobile="16" data-smobile="16"></div>
-                                            <div class="button-wrap has-icon icon-right size-14">
-                                                <a href="#" class="zenith-button bg-white color-333 w100 font-weight-400 no-letter-spacing pd26"><span>Download .PDF <span class="icon"><i class="fa fa-file-pdf-o"></i></span></span></a>
-                                            </div><!-- /.button-wrap -->
-                                            <div class="zenith-spacer clearfix" data-desktop="6" data-mobile="6" data-smobile="6"></div>
-                                            <div class="button-wrap has-icon icon-right size-14">
-                                                <a href="#" class="zenith-button bg-white color-333 w100 font-weight-400 no-letter-spacing pd26 "><span> Download .DOC <span class="icon"><i class="fa fa-file-word-o"></i></span></span></a>
-                                            </div>
+                                    <div class="zenith-accordions style-4 clearfix mx-3">
+                                        <div class="accordion-item active">
+                                            <h3 class="accordion-heading"><span class="inner">Our Core Strengths</span></h3>
+                                            <div class="accordion-content clearfix">
+                                                <div class="zenith-row clearfix">
+                                                    <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
+                                                        <div class="zenith-list  style-2 icon-left clearfix">
+                                                            <span class="text">Multi-disciplinary coordination</span>
 
+
+                                                        </div>
+                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                        <div class="zenith-list  style-2 icon-left  clearfix">
+                                                            <div class="inner">
+                                                                <span class="text">Advanced CAD and BIM modeling</span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                        <div class="zenith-list  style-2 icon-left clearfix">
+                                                            <div class="inner">
+                                                                <span class="text">Compliance with international standards</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.zenith-content-box -->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div><!-- /.item -->
+                               <div class="item">
+                                    <div class="zenith-accordions style-4 clearfix mx-3">
+                                        <div class="accordion-item active">
+                                            <h3 class="accordion-heading"><span class="inner">Our Approach
+</span></h3>
+                                            <div class="accordion-content clearfix">
+                                                <div class="zenith-row clearfix">
+                                                    <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
+                                                        <div class="zenith-list  style-2 icon-left clearfix">
+                                                            <span class="text">Innovative yet practical design solutions</span>
+
+
+                                                        </div>
+                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                        <div class="zenith-list  style-2 icon-left  clearfix">
+                                                            <div class="inner">
+                                                                <span class="text">Thorough feasibility and safety analysis</span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                        <div class="zenith-list  style-2 icon-left clearfix">
+                                                            <div class="inner">
+                                                                <span class="text">Client collaboration and transparent reporting
+</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.zenith-content-box -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.item -->
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
                             <div class="flat-content-wrap style-2 clearfix">
@@ -218,61 +236,29 @@ $activeService = $service['serviceName'];
                             <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                         </div><!-- /#inner-content -->
                     </div><!-- /#site-content -->
-                  <div id="sidebar">
-  <div
-    class="zenith-spacer clearfix"
-    data-desktop="80"
-    data-mobile="0"
-    data-smobile="0"
-  ></div>
-  <div id="inner-sidebar" class="inner-content-wrap">
-    <div class="widget widget_list">
-      <div class="inner">
-        <ul class="list-wrap">
-          <?php foreach ($services as $service) {?>
-          <li class="list-item">
-            <a href="service?<?php echo $serv.'='.$service['slug']; ?>"><span class="text"><?php echo htmlentities($service['serviceName']); ?></span></a>
-          </li>
-        <?php } ?>
-        </ul>
-      </div>
-    </div>
-    <!-- /.widget_list -->
-
-    <div
-      class="widget widget_help align-center has-shadow no-sep has-border border-solid"
-    >
-      <div class="inner">
-        <h2 class="widget-title margin-bottom-14">
-          <span>HOW CAN WE HELP ?</span>
-        </h2>
-        <p class="text line-height-26 margin-bottom-23">
-          Are you interested in finding out how we can make your project. Please
-          email us.
-        </p>
-        <div class="elm-button">
-          <a href="#" class="zenith-button bg-accent pd30">GET IN TOUCH</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="zenith-spacer clearfix"
-    data-desktop="0"
-    data-mobile="60"
-    data-smobile="60"
-  ></div>
-</div>
+                    <div id="sidebar">
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="80"
+                            data-mobile="0"
+                            data-smobile="0"></div>
+                        <?php include 'service-side-bar.php' ?>
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="0"
+                            data-mobile="60"
+                            data-smobile="60"></div>
+                    </div>
                     <!-- /#sidebar -->
                 </div><!-- /#content-wrap -->
             </div><!-- /#main-content -->
 
             <!-- Footer -->
-        <?php include 'includes/footer.php'; 
-        include 'includes/footscript.html';
-        ?>
+            <?php include '../includes/footer.php';
+            include '../includes/footscript.php';
+            ?>
 
-  
+
 </body>
 
 </html>

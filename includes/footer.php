@@ -6,9 +6,10 @@
                   <div class="textwidget">
                     <p>
                       <img
-                        src="assets/img/zenith_construction_ltd_logo_foot.png"
-                        alt="Image"
-                        width="170"
+                        src="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../sitelogo/<?php echo $rows['sitelogo'] ?>
+                        <?php } else{?>sitelogo/<?php echo $rows['sitelogo'] ?><?php }?>"
+                        alt="<?php echo $rows['sitetitle'] ?>"
+                        width="70"
                         height="34"
                       />
                     </p>

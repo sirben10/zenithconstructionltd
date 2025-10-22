@@ -5,8 +5,9 @@ $workers = $companyStats['workers'];
 $experienceYears = $companyStats['experienceYears'];
 $satisfiedClients = $companyStats['satisfiedClients'];
 // echo $projectsCompleted.' '.$workers.' '.$experienceYears.' '.$satisfiedClients; exit;
+
 ?>
-<title><?php echo 'About | ' . $rows['sitetitle'] ?> </title>
+<title><?php echo 'About | ' . $rows['sitetitle'];?> </title>
 <style>
     /* Skewed Section */
     .section-skewed {
@@ -161,6 +162,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
             <div id="site-header-wrap">
                 <!-- Top Bar -->
                 <?php
+                
                 include 'includes/top-bar.php';
                 ?>
                 <!-- /#top-bar -->
@@ -661,7 +663,7 @@ $satisfiedClients = $companyStats['satisfiedClients'];
     <!-- Footer -->
     <?php
     include 'includes/footer.php';
-    include 'includes/footscript.html'; ?>
+    include 'includes/footscript.php'; ?>
 </body>
 
 </html>

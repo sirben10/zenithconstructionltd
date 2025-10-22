@@ -1,7 +1,8 @@
 <?php 
-require_once 'includes/functions.php';
+
+require_once 'functions.php';
 $rows = fetchAllSiteSettings($dbh);
-$services = fetchAllServices($dbh);
+$services = fetchAllServicesUsers($dbh);
 $slides = fetchAllSlides($dbh);
 $projects = fetchAllProjects($dbh);
 $testimonials = fetchAllTestimonials($dbh);
@@ -11,6 +12,7 @@ $companyStats = fetchCompanyStatistics($dbh);
 if (!empty($_GET['p'])) {
   $page = $_GET['p'];
 }
+ $serv = md5('service');
 ?>
 
 <!DOCTYPE html>
@@ -36,21 +38,26 @@ if (!empty($_GET['p'])) {
     />
 
     <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../style.css
+      <?php }else {?>style.css<?php } ?>" />
 
     <!-- Colors -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="../assets/css/colors/color1.css"
+      href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../assets/css/colors/color1.css
+        <?php }else {?>../assets/css/colors/color1.css<?php } ?>"
       id="colors"
     />
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="sitelogo/<?php echo $rows['siteicon'] ?>" />
+    <link rel="shortcut icon" href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../sitelogo/<?php echo $rows['siteicon'] ?>
+      <?php } else{?>sitelogo/<?php echo $rows['siteicon'] ?><?php } ?>" />
     <link
       rel="apple-touch-icon-precomposed"
-      href="../assets/icon/zenith_favicon.jpg"
+      href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../assets/icon/zenith_favicon.jpg
+        <?php }else {?>../assets/icon/zenith_favicon.jpg<?php } ?>"
+
     />
 
     <!--[if lt IE 9]>

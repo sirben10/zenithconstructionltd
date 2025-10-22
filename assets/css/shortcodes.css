@@ -1546,7 +1546,7 @@
   .accordion-item
   .accordion-heading
   > .inner {
-  padding: 0px 0px 0px 34px;
+  /* padding: 0px 0px 0px 34px; */
 }
 .zenith-accordions.has-icon.icon-left.iconstyle-2
   .accordion-item
@@ -1703,7 +1703,7 @@
 }
 .zenith-accordions.style-4 .accordion-content {
   border: 1px solid #f2f2f2;
-  padding: 22px 5px 22px 24px;
+  padding: 22px 0 22px 24px;
 }
 .zenith-accordions.style-4.has-icon.icon-right
   .accordion-item

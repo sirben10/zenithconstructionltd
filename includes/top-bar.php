@@ -1,4 +1,4 @@
-  <div id="top-bar">
+    <div id="top-bar">
             <div id="top-bar-inner" class="container">
               <div class="top-bar-inner-wrap">
                 <div class="top-bar-content">

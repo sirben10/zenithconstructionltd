@@ -1,5 +1,6 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
+//  $serv = md5('service');
 ?>
 <title><?php echo 'Services | ' . $rows['sitetitle'] ?> </title>
 
@@ -12,7 +13,7 @@ include 'includes/header.php';
             <div id="site-header-wrap">
                 <!-- Top Bar -->
                 <?php
-                include 'includes/top-bar.php';
+                include '../includes/top-bar.php';
                 ?>
                 <!-- /#top-bar -->
 
@@ -21,7 +22,7 @@ include 'includes/header.php';
                     <div id="site-header-inner" class="container">
                         <div class="wrap-inner clearfix">
                             <?php
-                            include 'includes/site-logo.php';
+                            include '../includes/site-logo.php';
                             ?>
                             <!-- /#site-logo -->
 
@@ -30,7 +31,7 @@ include 'includes/header.php';
                             </div><!-- /.mobile-button -->
 
                             <?php
-                            include 'includes/navbar.php';
+                            include '../includes/navbar.php';
                             ?>
                             <!-- /#main-nav -->
 
@@ -109,12 +110,12 @@ include 'includes/header.php';
                           <div class="project-item green villa">
                             <div class="inner">
                               <div class="thumb data-effect-item has-effect-icon w40 offset-v-19 offset-h-49" style="height: 250px;">
-                                <img class="img-responsive" width="100%" height="auto" src="servicePhotos/<?php echo $service['servicePhoto']; ?>" alt="<?php echo $service['serviceName']; ?>">
+                                <img class="img-responsive" width="100%" height="auto" src="../servicePhotos/<?php echo $service['servicePhoto']; ?>" alt="<?php echo $service['serviceName']; ?>">
                                
                                 <div class="overlay-effect bg-color-3"></div>
                               </div>
                               <div class="text-wrap">
-                                <h5 class="heading text-uppercase"><a href="service?<?php echo $serv.'='.$service['slug']; ?>"><?php echo $service['serviceName']; ?></a></h5>
+                                <h5 class="heading text-uppercase"><a href="<?php echo $service['slug']; ?>?p=services&<?php echo $serv.'='.$service['slug']; ?>"><?php echo $service['serviceName']; ?></a></h5>
                               </div>
                             </div>
                           </div><!-- /.product-item -->
@@ -146,8 +147,8 @@ include 'includes/header.php';
 
             <!-- Footer -->
              <?php
-    include 'includes/footer.php';
-    include 'includes/footscript.html'; ?>
+    include '../includes/footer.php';
+    include '../includes/footscript.php'; ?>
         </div><!-- /#page -->
     </div><!-- /#wrapper -->
 

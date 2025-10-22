@@ -8,7 +8,8 @@
       <a>ABOUT US </a>
       <ul class="sub-menu">
         <li class="menu-item">
-          <a href="about?p=aboutus">WHO WE ARE</a>
+          <a href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>/about?p=aboutus
+            <?php } else{?>about?p=aboutus<?php } ?>">WHO WE ARE</a>
         </li>
         <li class="menu-item">
           <a href="our-management?p=our-management">CORPORATE MANAGEMENT</a>
@@ -19,7 +20,7 @@
       </ul>
     </li>
     <li class="menu-item <?php if (!empty($page) && $page == 'services') { ?>current-menu-item<?php } ?>">
-      <a href="services?p=services">SERVICES</a>
+      <a href="services/?p=services">SERVICES</a>
       <!-- <ul class="sub-menu">
                         <li class="menu-item">
                           <a href="page-services">SERVICES</a>
@@ -67,16 +68,9 @@
         </li>
       </ul>
     </li>
-    <li class="menu-item menu-item-has-children">
-      <a href="page-contact">CONTACT</a>
-      <ul class="sub-menu right-sub-menu">
-        <li class="menu-item">
-          <a href="page-contact">CONTACT 1</a>
-        </li>
-        <li class="menu-item">
-          <a href="page-contact-2">CONTACT 2</a>
-        </li>
-      </ul>
+    <li class="menu-item <?php if (!empty($page) && $page == 'contactus') { ?>current-menu-item<?php } ?>">
+      <a href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>/contact-us?p=contactus
+            <?php } else{?>contact-us?p=contactus<?php } ?>">CONTACT</a>
     </li>
   </ul>
 </nav>

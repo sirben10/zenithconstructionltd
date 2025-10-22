@@ -168,6 +168,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 											<div class="form-group">
+												<label class="col-sm-4 control-label">Service <em style="color:red"> *</em></label>
+												<div class="col-sm-8">
+													<div class="form-group">
+														<?php
+														$services = fetchAllServices($dbh);
+														// var_dump($services); exit;
+														foreach ($services as $service) { ?>
+														<div class="col-sm-4">
+															<div class="checkbox checkbox-inline">
+																<input type="checkbox" id="<?php echo $service['serviceID'] ?>" name="serviceID" value="<?php echo $service['serviceID'] ?>">
+																<label for="<?php echo $service['serviceID'] ?>"> <?php echo $service['serviceName'] ?> </label>
+															</div>
+														</div>
+														<?php } ?>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Title <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
 													<input class="form-control" name="projectTitle" id="projectTitle" required>
@@ -285,14 +304,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 		</div>
 
 	</div>
-	
-</div>
-</div>
 
-<script>
-	function onShowProjectStatus() {
-		var status = document.getElementById('projectStatus').value;
-		// console.log(status);
+	</div>
+	</div>
+
+	<script>
+		function onShowProjectStatus() {
+			var status = document.getElementById('projectStatus').value;
+			// console.log(status);
 			var dateCompletedGroup = document.getElementById('dateCompletedGroup');
 			if (status === 'Completed') {
 				dateCompletedGroup.style.display = 'block';

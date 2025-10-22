@@ -1,5 +1,9 @@
 <?php
-include 'admin/includes/config.php';
+if (!empty($_GET['p']) && $_GET['p'] == 'services') {
+  include '../includes/config.php';
+}else{
+include 'config.php';
+}
 global $dbh;
 function fetchAllSiteSettings($dbh) {
   try {
@@ -14,7 +18,7 @@ function fetchAllSiteSettings($dbh) {
 }
 
 // FUNCTION TO FETCH ALL SERVICES
-function fetchAllServices($dbh) {
+function fetchAllServicesUsers($dbh) {
   try {
     $stmt = $dbh->prepare("SELECT * FROM tblservices");
     // var_dump($stmt); exit;

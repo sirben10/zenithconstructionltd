@@ -2,10 +2,11 @@
 $slug = '';
 if (!empty($_GET[md5('service')])) {
     $slug = $_GET[md5('service')];
+    // echo $slug; exit;
 }
 $activeService = '';
 // echo $slug; exit;
-include 'includes/header.php';
+include '../includes/header.php';
 // include_once 'admin/includes/config.php';
 $sql = "SELECT * FROM tblservices WHERE slug = '$slug'";
 // echo $sql; exit;
@@ -26,7 +27,7 @@ $activeService = $service['serviceName'];
             <div id="site-header-wrap">
                 <!-- Top Bar -->
                 <?php
-                include 'includes/top-bar.php';
+                include '../includes/top-bar.php';
                 ?>
                 <!-- /#top-bar -->
 
@@ -36,7 +37,7 @@ $activeService = $service['serviceName'];
                         <div class="wrap-inner clearfix">
 
                             <?php
-                            include 'includes/site-logo.php';
+                            include '../includes/site-logo.php';
                             ?>
                             <!-- /#site-logo -->
 
@@ -45,7 +46,7 @@ $activeService = $service['serviceName'];
                             </div><!-- /.mobile-button -->
 
                             <?php
-                            include 'includes/navbar.php';
+                            include '../includes/navbar.php';
                             ?>
                             <!-- /#main-nav -->
 
@@ -231,7 +232,7 @@ $activeService = $service['serviceName'];
         <ul class="list-wrap">
           <?php foreach ($services as $service) {?>
           <li class="list-item">
-            <a href="service?<?php echo $serv.'='.$service['slug']; ?>"><span class="text"><?php echo htmlentities($service['serviceName']); ?></span></a>
+            <a href="<?php echo $serv.'='.$service['slug']; ?>??p=services&<?php echo $serv.'='.$service['slug']; ?>"><span class="text"><?php echo htmlentities($service['serviceName']); ?></span></a>
           </li>
         <?php } ?>
         </ul>
@@ -268,8 +269,8 @@ $activeService = $service['serviceName'];
             </div><!-- /#main-content -->
 
             <!-- Footer -->
-        <?php include 'includes/footer.php'; 
-        include 'includes/footscript.html';
+        <?php include '../includes/footer.php'; 
+        include '../includes/footscript.php';
         ?>
 
   
