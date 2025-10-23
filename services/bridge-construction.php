@@ -101,30 +101,33 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-spacer clearfix" data-desktop="60" data-mobile="60" data-smobile="60"></div>
                                     <div class="zenith-content-box clearfix" data-margin="0 10px 0 43px" data-mobilemargin="0 15px 0 15px">
                                         <div class="zenith-headings style-2 clearfix">
-                                            <div class="sup-heading">Building Roads That Drive Progress</div>
+                                            <div class="sup-heading">Engineering Strength, Connecting Horizons</div>
                                             <h2 class="heading font-size-28 line-height-39"><?php echo htmlentities(strtoupper($service['serviceName'])); ?></h2>
                                             <div class="sep has-width w80 accent-bg margin-top-20 clearfix"></div>
                                             <p class="sub-heading margin-top-33 line-height-24 text-justify px-lg-1">
-                                                Zenith Road Construction is dedicated to designing, constructing,
-                                                and maintaining durable road networks that enhance connectivity and economic growth.
-                                                We bring precision, expertise, and innovation to every layer of the pavement.
+                                               At Zenith Construction Ltd, we don’t just build bridges, we create pathways that unite communities, boost economies, 
+                                               and redefine landscapes. Our bridges combine innovation, artistry, and engineering 
+                                               excellence to stand tall for generations.
                                             </p>
                                         </div>
                                     </div>
                                     <div class="zenith-spacer clearfix" data-desktop="56" data-mobile="56" data-smobile="56"></div>
                                 </div>
-                                <div class="span_1_of_6 half-background style-2"><img src="../servicephotos/<?php echo htmlentities($service['servicePhoto']) ?>" alt="" width="100%" height="100%">
+                                <div class="span_1_of_6 style-2"><img src="../servicephotos/<?php echo htmlentities($service['servicePhoto']) ?>" alt="" width="100%" height="100%">
                                 </div>
                             </div><!-- /.zenith-row -->
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title">Our Road Construction Expertise</h5>
-                                <p>We deliver on time, meet international quality standards, and provide value-driven
-                                    solutions for highways, rural roads, and industrial access routes.
+                                <h5 class="title">Our Bridge Construction Expertise</h5>
+                                <p>We deliver safe and sustainable bridge projects that enhance connectivity and 
+                                    support infrastructure growth in urban and rural regions alike.
                                 </p>
-                                <p>We combine advanced engineering, skilled manpower, and efficient project management to
-                                    execute road projects of all scales, from local access roads to expressways.
-                                    Our commitment is to deliver safe, reliable, and long-lasting infrastructure.
+                                <p>Our bridge construction division is backed by decades of combined experience in civil,
+                                     structural, and geotechnical engineering. We employ modern design tools and methods to
+                                      ensure every structure meets safety, functionality, and aesthetic standards.
+                                </p>
+                                <p>Because our bridges embody the perfect balance of form, function, and strength. 
+                                    Every project we execute tells a story of precision, partnership, and purpose.
                                 </p>
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
@@ -140,7 +143,7 @@ $activeService = $service['serviceName'];
                                                             <div class="inner">
                                                                 <span class="item">
                                                                     <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Quality-driven execution</span>
+                                                                    <span class="text">Zero-compromise on structural integrity</span>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -148,7 +151,15 @@ $activeService = $service['serviceName'];
                                                             <div class="inner">
                                                                 <span class="item">
                                                                     <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Environmental sustainability</span>
+                                                                    <span class="text">Timely delivery and budget adherence</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Environmentally conscious construction</span>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -164,7 +175,15 @@ $activeService = $service['serviceName'];
                                                             <div class="inner">
                                                                 <span class="item">
                                                                     <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Safety-first construction</span>
+                                                                    <span class="text">Cutting-edge design and simulation tools</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                            <div class="inner">
+                                                                <span class="item">
+                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                    <span class="text">Innovative materials for durability and aesthetics</span>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -181,25 +200,26 @@ $activeService = $service['serviceName'];
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
 
-                            <div class="zenith-row gutter-30 gutter-mobile clearfix p-sm-4">
-                                <div class="zenith-headings style-2 clearfix">
-                                    <h2 class="heading" style="margin: 0 10px 0 20px !important">OUR ENGINEERING DESIGN SERVICES</h2>
-                                    <!-- <div class="sep has-width w80 accent-bg clearfix"></div> -->
+                            <div class="zenith-row gutter-30 gutter-mobile clearfix">
+                                <div class="zenith-headings style-2 clearfix" >
+                                    <h2 class="heading" style="margin: 0 10px 0 20px !important">OUR BRIDGE CONSTRUCTION SERVICES</h2>
+                                    <!-- <div class="sep has-width w80 accent-bg clearfix ms-5"></div> -->
                                 </div>
                                 <div class="col span_1_of_4 mb-xl-1">
                                     <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Highway and Road Construction</a></h5>
+                                            <h5 class="heading"><a>Bridge Design & Engineering</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                End-to-end development of highways, urban, and rural roads,
-                                                using advanced materials and techniques to ensure longevity and smooth performance.
+                                                From concept sketches to final structural analysis, 
+                                                we design bridges that are not just strong, but smart, blending engineering science 
+                                                with visual grace.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
-                                    <div class="divider h35"></div>
+                                    <!-- <div class="divider h35"></div> -->
                                 </div>
 
                                 <div class="col span_1_of_4 mb-xl-1">
@@ -207,11 +227,11 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Pavement Design and Surfacing</a></h5>
+                                            <h5 class="heading"><a>Steel & Concrete Bridge Construction</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                Custom pavement solutions for different traffic loads and environmental conditions,
-                                                ensuring optimal ride quality and low maintenance costs.
+                                                We specialize in modern steel and reinforced concrete bridges that guarantee safety, 
+                                                durability, and cost efficiency, even in the toughest terrains.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
@@ -222,11 +242,10 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Drainage & Roadside Works</a></h5>
+                                            <h5 class="heading"><a>Bridge Rehabilitation & Strengthening</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                Integrated design and construction of side drains, culverts,
-                                                and curbs to enhance road durability and prevent surface water accumulation.
+                                              We use extensive structural improvements, comprehensive retrofitting solutions, and modern strengthening methods to extend the life of bridges and assure their stability and safety.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
@@ -236,11 +255,11 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Earthworks & Site Preparation</a></h5>
+                                            <h5 class="heading"><a>Flyovers & Interchanges</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                Grading, excavation, compaction, and sub-base preparation for road projects of all scales,
-                                                setting a strong foundation for lasting roads.
+                                                We craft efficient flyover and interchange systems that ease traffic 
+                                                congestion and improve urban mobility with aesthetic and technical precision.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
@@ -250,11 +269,11 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Road Marking & Signage</a></h5>
+                                            <h5 class="heading"><a>Pedestrian & Footbridges</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                Installation of clear, durable road markings and traffic signs that enhance
-                                                road safety and compliance with regulatory standards.
+                                                Functional, elegant, and community-centered designs.
+                                                  Our pedestrian bridges are built for safety, accessibility, and architectural appeal.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
@@ -264,11 +283,11 @@ $activeService = $service['serviceName'];
                                     <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
 
                                         <div class="text-wrap">
-                                            <h5 class="heading"><a>Quality Control & Project Supervision</a></h5>
+                                            <h5 class="heading"><a>Project Management & Quality Control</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
-                                                Comprehensive supervision and material testing throughout project execution
-                                                to ensure every road meets the highest quality standards.
+                                                Our dedicated supervision ensures compliance with global standards, 
+                                                from design validation to material testing and on-site execution.
                                             </p>
                                         </div>
                                     </div><!-- /.zenith-icon-box -->
