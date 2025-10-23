@@ -22,7 +22,12 @@ $slug = $_GET[md5('service')];
     >
       <div class="inner">
         <h2 class="widget-title margin-bottom-14">
+          <?php if ($slug == 'flood--erosion-control'){?>
+            <span>Ready to strengthen your flood defenses or stabilize your environment? Let’s design a lasting solution together.?</span>
+
+          <?php } else{?>
           <span>HOW CAN WE HELP ?</span>
+          <?php } ?>
         </h2>
         <p class="text line-height-26 margin-bottom-23">
           Are you interested in finding out how we can make your project. Please
