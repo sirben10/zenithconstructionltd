@@ -17,7 +17,43 @@ $activeService = $service['serviceName'];
 ?>
 <title><?php echo $activeService . ' | ' . $rows['sitetitle'] ?> </title>
 
+<style>
+    .scroll {
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    * {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    @media only screen and (min-width: 991px) {    
+        .zcl-m-c{
+            width:  100% !important;
+            justify-content: center;
+            position: relative;
+            margin: 0 33.3% auto !important;
+        }
+        .qs-img{
+        height: auto !important;
+        width: auto
+    }
+    }
+    @media only screen and (max-width: 990.5px) {    
+      
+        .qs-img{
+        height: auto !important;
+        width: auto
+    }
+    }
+</style>
 
 <body class="header-fixed page sidebar-left header-style-2 topbar-style-1 menu-has-search">
 
@@ -93,6 +129,7 @@ $activeService = $service['serviceName'];
             <!-- Main Content -->
             <div id="main-content" class="site-main clearfix">
                 <div id="content-wrap" class="container">
+                
                     <div id="site-content" class="site-content clearfix">
                         <div id="inner-content" class="inner-content-wrap">
                             <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
@@ -105,8 +142,7 @@ $activeService = $service['serviceName'];
                                             <h2 class="heading font-size-28 line-height-39"><?php echo htmlentities(strtoupper($service['serviceName'])); ?></h2>
                                             <div class="sep has-width w80 accent-bg margin-top-20 clearfix"></div>
                                             <p class="sub-heading margin-top-33 line-height-24 text-justify px-lg-1">
-                                                Building resilience, restoring balance, and protecting
-                                                communities through smart environmental engineering.
+                                                Delivering quality aggregates and raw materials that power sustainable infrastructure development.
                                             </p>
                                         </div>
                                     </div>
@@ -117,183 +153,21 @@ $activeService = $service['serviceName'];
                             </div><!-- /.zenith-row -->
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title">Our Expertise</h5>
-                                <p>At Zenith Engineering Solutions, we design and implement innovative flood and erosion control
-                                    systems that protect both lives and livelihoods. From sustainable drainage to shoreline
-                                    reinforcement, we combine technology, precision, and deep environmental understanding to
-                                    deliver lasting impact. <br/>Our goal is simple; <em>to safeguard infrastructure while working in harmony with nature.</em>
+                                <h2 class="heading font-size-28 line-height-39">We are Committed to Best Practices and Environmental Standards</h2>
+                                <p>At Zenith Construction Ltd, our quarry operations form the foundation of reliable construction
+                                    materials across diverse sectors. We focus on quality extraction, environmental
+                                    responsibility, and operational efficiency, ensuring that every ton we produce meets
+                                    the highest standards of strength and durability..
+                                    <br />Our goal is simple; <em>to safeguard infrastructure while working in harmony with nature.</em>
                                 </p>
-                                <p>Every project we deliver reflects our belief in sustainable engineering,
-                                     protecting the environment while creating resilient infrastructure. 
-                                     Through innovation and collaboration, we transform vulnerable 
-                                     landscapes into thriving, protected ecosystems.
+                                <p>Our Company complies with international and Nigerian standards and has a complete license to engage
+                                    in mining and related activities. We guarantee the best blasting techniques and operational
+                                    excellence under the competent direction of our seasoned quarry manager.
+
                                 </p>
                             </div>
                             <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-                            <div class=" m-auto style-2 clearfix">
-                                <div class="item">
-                                    <div class="zenith-accordions clearfix mx-3">
-                                        <div class="accordion-item active">
-                                            <h3 class="accordion-heading"><span class="inner">Why Choose Us</span></h3>
-                                            <div class="accordion-content clearfix">
-                                                <div class="zenith-row clearfix">
-                                                    <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Proven track record in flood control and terrain stabilization.</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Use of eco-friendly, high-performance materials.</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Expert team of civil and environmental engineers.</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Safety-first construction</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Custom designs for every terrain and community need.</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
-                                                            <div class="inner">
-                                                                <span class="item">
-                                                                    <span class="icon"><i class="fa fa-check-circle"></i></span>
-                                                                    <span class="text">Long-term maintenance and monitoring solutions.</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                                        <div class="zenith-list  style-2 icon-left clearfix">
 
-                                                        </div>
-                                                    </div><!-- /.zenith-content-box -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /.item -->
-                            </div>
-                            <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-
-                            <div class="zenith-row gutter-30 gutter-mobile clearfix">
-                                <div class="zenith-headings style-2 clearfix">
-                                    <h2 class="heading" style="margin: 0 10px 0 20px !important">OUR FLOOD & EROSION CONTROL SERVICES</h2>
-                                    <!-- <div class="sep has-width w80 accent-bg clearfix ms-5"></div> -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Flood Risk Assessment</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                We conduct detailed hydrological and hydraulic analyses to identify potential flood risks
-                                                 and develop proactive mitigation strategies for communities and infrastructure.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                    <!-- <div class="divider h35"></div> -->
-                                </div>
-
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Flood Defense Infrastructure</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                From levees and dikes to culverts and floodgates, we design and build flood defense 
-                                                systems tailored to local topography and community needs.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Catchment Area Management</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                We apply integrated watershed management techniques to minimize erosion, 
-                                                enhance water retention, and preserve biodiversity within vulnerable ecosystems.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Drainage & Stormwater Management</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                Our team designs modern drainage networks and stormwater control systems that reduce surface runoff,
-                                                 prevent waterlogging, and improve ground absorption efficiency.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Riverbank & Shoreline Protection</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                               Using environmentally friendly materials and methods, we stabilize embankments and
-                                                shorelines to prevent soil loss and maintain natural river flow patterns.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Retaining Structures & Reinforcement</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                               We construct strong retaining walls, gabion baskets, and geotextile reinforcements 
-                                               that provide both structural stability and aesthetic integration with the environment.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                            </div>
-
-                            <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                         </div><!-- /#inner-content -->
                     </div><!-- /#site-content -->
                     <div id="sidebar">
@@ -310,6 +184,155 @@ $activeService = $service['serviceName'];
                             data-smobile="60"></div>
                     </div>
                     <!-- /#sidebar -->
+                    <div class="scroll">
+                        <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
+
+                        <div class="style-2 clearfix zcl-m-c">
+                            <div class="item align-center">
+                                <div class="zenith-accordions clearfix">
+                                    <div class="accordion-item active align-center">
+                                        <h3 class="accordion-heading"><span class="inner">Why Choose Us</span></h3>
+                                        <div class="accordion-content clearfix" >
+                                            <div class="zenith-row clearfix">
+                                                <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Proven track record in flood control and terrain stabilization.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Use of eco-friendly, high-performance materials.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Expert team of civil and environmental engineers.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Safety-first construction</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Custom designs for every terrain and community need.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                                                        <div class="inner">
+                                                            <span class="item">
+                                                                <span class="icon"><i class="fa fa-check-circle"></i></span>
+                                                                <span class="text">Long-term maintenance and monitoring solutions.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                    <div class="zenith-list  style-2 icon-left clearfix">
+
+                                                    </div>
+                                                </div><!-- /.zenith-content-box -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.item -->
+                        </div>
+                        <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
+
+                        <div class="zenith-row gutter-30 gutter-mobile clearfix">
+                            <div class="zenith-headings style-2 clearfix">
+                                <h2 class="heading text-center">OUR QUARRY SERVICES</h2>
+                                <!-- <div class="sep has-width w80 accent-bg clearfix ms-5"></div> -->
+                            </div>
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                   <div class="m-auto qs-img">
+                                       <img src="../servicephotos/DSC00391.JPG" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                        <h5 class="heading"><a>Aggregate Production</a></h5>
+                                        <div class="sep clearfix"></div>
+                                        <p class="sub-heading">
+                                           We produce high-grade aggregates including crushed stone, gravel, 
+                                           and sand, used for road bases, concrete, and asphalt applications.
+                                    </div>
+                                </div><!-- /.zenith-icon-box -->
+                                <!-- <div class="divider h35"></div> -->
+                            </div>
+
+                             <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                    <div class="m-auto qs-img">
+                                       <img src="../servicephotos/quary-dev.jpg" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                        <h5 class="heading"><a>Quarry Site Development</a></h5>
+                                        <div class="sep clearfix"></div>
+                                        <p class="sub-heading">
+                                           From initial geological surveys to access road construction, 
+                                           we develop and maintain efficient, safe, and environmentally compliant quarry sites.
+                                        </p>
+                                    </div>
+                                </div><!-- /.zenith-icon-box -->
+                            </div>
+
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                      <div class="m-auto qs-img">
+                                       <img src="../servicephotos/DSC00373.JPG" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                        <h5 class="heading"><a>Rock Blasting & Crushing</a></h5>
+                                        <div class="sep clearfix"></div>
+                                        <p class="sub-heading">
+                                           Our experienced team utilizes controlled blasting and 
+                                           precision crushing techniques to optimize yield and particle consistency.
+                                        </p>
+                                    </div>
+                                </div><!-- /.zenith-icon-box -->
+
+                            </div>
+                           
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                      <div class="m-auto qs-img">
+                                       <img src="../servicephotos/haulage.jpeg" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                        <h5 class="heading"><a>Haulage & Delivery</a></h5>
+                                        <div class="sep clearfix"></div>
+                                        <p class="sub-heading">
+                                            We provide reliable, on-time delivery of materials using a modern
+                                             fleet of tippers and haulage trucks, ensuring minimal downtime on your projects.
+                                        </p>
+                                    </div>
+                                </div><!-- /.zenith-icon-box -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                 </div><!-- /#content-wrap -->
             </div><!-- /#main-content -->
 

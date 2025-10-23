@@ -118,7 +118,7 @@ $activeService = $service['serviceName'];
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
                                 <h5 class="title">Our Expertise</h5>
-                                <p>At Zenith Engineering Solutions, we design and implement innovative flood and erosion control
+                                <p>At Zenith Construction Ltd, we design and implement innovative flood and erosion control
                                     systems that protect both lives and livelihoods. From sustainable drainage to shoreline
                                     reinforcement, we combine technology, precision, and deep environmental understanding to
                                     deliver lasting impact. <br/>Our goal is simple; <em>to safeguard infrastructure while working in harmony with nature.</em>
