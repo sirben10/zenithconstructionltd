@@ -287,7 +287,7 @@
     var googleMap = function () {
         // gmap default
         if ($().gmap3) {
-            var data = JSON.parse('[{"address":"Westwell Leacon, Ashford, Vương Quốc Anh","content":""}]');
+            var data = JSON.parse('[{"address":"70 Target Road, Calabar, Cross River State, Nigeria","content":""}]');
             $(".zenith-map")
                 .gmap3({
                     map: {
@@ -389,7 +389,7 @@
                             ]
                         },
                         {
-                            "featureType": "road.arterial",
+                            "featureType": "road.material",
                             "elementType": "all",
                             "stylers": [
                                 {

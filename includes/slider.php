@@ -100,10 +100,9 @@
                     data-splitin="none"
                     data-splitout="none"
                     data-responsive_offset="on">
-                    <a href="#" class="zenith-button bg-accent big"><span>GET IN TOUCH</span></a>
+                    <a href="contact-us?p=contactus" class="zenith-button bg-accent big"><span>GET IN TOUCH</span></a>
                 </div>
             </li>
-            <!-- /End Slide 1 -->
             <?php endforeach; ?>
 
         </ul>

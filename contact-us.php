@@ -1,550 +1,422 @@
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><!--<![endif]-->
+<?php
 
+// echo $rows['sitetitle']; exit;
+include 'includes/header.php';
+$error = '';
+$message = '';
+// Function to sanitize inputs
+if (isset($_POST['submit'])) {
 
+    function clean_input($data)
+    {
+        return htmlspecialchars(stripslashes(trim($data)));
+    }
 
-<head>
-    <!-- Basic Page Needs -->
-    <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>zenith - Construction Business HTMl Template</title>
+    // Collect and sanitize POST data
+    $name = clean_input($_POST['name'] ?? '');
+    $email = clean_input($_POST['email'] ?? '');
+    $phone = clean_input($_POST['phone'] ?? '');
+    $msgsubject = clean_input($_POST['msgsubject'] ?? '');
+    $message = clean_input($_POST['message'] ?? '');
+    $status = 0;
 
-    <meta name="author" content="zenith.com">
+    // Check required fields
+    if (empty($name) || empty($email) || empty($phone) || empty($msgsubject) || empty($message)) {
+        // echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+        $error = 'All fields are required.';
+    }
 
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // echo json_encode(['status' => 'error', 'message' => 'Invalid email address.']);
+        $error = 'Invalid email address.';
+    }
 
-    <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    // Spam & unwanted word detection
+    $banned_words = ['spam', 'viagra', 'bitcoin', 'lottery', 'win money', 'sex', 'porn', 'credit card', 'loan offer'];
+    foreach ($banned_words as $bad) {
+        if (stripos($message, $bad) !== false || stripos($msgsubject, $bad) !== false) {
+            // echo json_encode(['status' => 'error', 'message' => 'Message contains prohibited content.']);
+            $error = 'Message contains prohibited content.';
+            // exit;
+        }
+    }
 
-    <!-- Colors -->
-    <link rel="stylesheet" type="text/css" href="assets/css/colors/color1.css" id="colors">
+    // Prevent repeated spam (simple rate limit per IP)
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $checkSpam = "SELECT COUNT(*) AS attempts FROM tblcontactusquery WHERE PostingDate > NOW() - INTERVAL 2 MINUTE AND INET_ATON('$ip') = INET_ATON('$ip')";
+    $query = $dbh->prepare($checkSpam);
+    $query->execute();
+    $results = $query->fetch(PDO::FETCH_ASSOC);
+    // $row = $checkSpam->fetch_assoc();
+    if ($results['attempts'] > 3) {
+        // echo json_encode(['status' => 'error', 'message' => 'Too many attempts. Try again later.']);
+        $error = 'Too many attempts. Try again later.';
+    }
 
-    <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="assets/icon/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/icon/apple-touch-icon-158-precomposed.png">
+    // Save message to database
+    $stmt = "INSERT INTO tblcontactusquery 
+(name, EmailId, ContactNumber, msgsubject, Message, status) 
+VALUES (:name, :email, :phone, :msgsubject, :message, :status)";
+    $query = $dbh->prepare($stmt);
+    $query->bindParam(':name', $name, PDO::PARAM_STR);
+    $query->bindParam(':email', $email, PDO::PARAM_STR);
+    $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+    $query->bindParam(':msgsubject', $msgsubject, PDO::PARAM_STR);
+    $query->bindParam(':message', $message, PDO::PARAM_STR);
+    $query->bindParam(':status', $status, PDO::PARAM_STR);
+    // $stmt->bind_param("ssssss", $name, $email, $phone, $msgsubject, $message, $status);
+    $query->execute();
+    if ($query) {
+        // echo json_encode(['status' => 'success', 'message' => 'Your message has been sent successfully!']);
+        $message = 'Your message has been sent successfully!';
+        //    header("Location: ../contact-us?p=contactus");
+    } else {
+        // echo json_encode(['status' => 'error', 'message' => 'Something went wrong, please try again.']);
+        $error = 'Something went wrong, please try again.';
+        //    header("Location: ../contact-us?p=contactus");
+    }
+}
 
-    <!--[if lt IE 9]>
-        <script src="javascript/html5shiv.js"></script>
-        <script src="javascript/respond.min.js"></script>
-    <![endif]-->
+// $stmt->close();
+// $dbh->close();
+?>
+<title><?php echo 'Contact Us | ' . $rows['sitetitle'] ?> </title>
+<script>
+    $(document).ready(function() {
+        $('#contactForm').submit(function(e) {
+            e.preventDefault();
 
-</head>
+            $.ajax({
+                url: 'includes/contact_process.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    $('#formMsg').removeClass('error success').show();
+
+                    if (response.status === 'error') {
+                        $('#formMsg').addClass('error').html('❌ ' + response.message);
+                    } else if (response.status === 'success') {
+                        $('#formMsg').addClass('success').html('✅ ' + response.message);
+                        $('#contactForm')[0].reset();
+                    }
+                },
+                error: function() {
+                    $('#formMsg').addClass('error').html('⚠️ Server error, please try again.');
+                }
+            });
+        });
+    });
+</script>
+<style>
+    /* Popup (modal) styling */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-content.success {
+        border-top: 6px solid #2ecc71;
+    }
+
+    .modal-content.error {
+        border-top: 6px solid #e74c3c;
+    }
+
+    .modal-content h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.5em;
+    }
+
+    .modal-content p {
+        margin: 0;
+    }
+
+    .close-btn {
+        background: #00416a;
+        color: white;
+        padding: 8px 18px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        background: #0072b5;
+    }
+</style>
 
 <body class="header-fixed page no-sidebar header-style-2 topbar-style-1 menu-has-search">
 
-<div id="wrapper" class="animsition">
-    <div id="page" class="clearfix">
-        <!-- Header Wrap -->
-        <div id="site-header-wrap">
-            <!-- Top Bar -->        
-            <div id="top-bar">
-                <div id="top-bar-inner" class="container">
-                    <div class="top-bar-inner-wrap">
-                        <div class="top-bar-content">
-                            <div class="inner">
-                                <span class="address content">4946 Marmora Road, Central New</span>
-                                <span class="phone content">+61 3 8376 6284</span>
-                                <span class="time content">Mon-Sat: 8am - 6pm</span>
-                            </div>                            
-                        </div><!-- /.top-bar-content -->
+    <div id="wrapper" class="animsition">
+        <div id="page" class="clearfix">
+            <!-- Header Wrap -->
+            <div id="site-header-wrap">
+                <!-- Top Bar -->
+                <?php
+                include 'includes/top-bar.php';
+                ?>
+                <!-- /#top-bar -->
 
-                        <div class="top-bar-socials">
-                            <div class="inner">
-                                <span class="text">Follow us:</span>
-                                <span class="icons">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                    <a href="#"><i class="fa fa-rss"></i></a>
-                                </span>
-                            </div>
-                        </div><!-- /.top-bar-socials -->
-                    </div>                    
-                </div>
-            </div><!-- /#top-bar -->
+                <!-- Header -->
+                <header id="site-header">
+                    <div id="site-header-inner" class="container">
+                        <div class="wrap-inner clearfix">
+                            <?php
+                            include 'includes/site-logo.php';
+                            ?>
+                            <!-- /#site-logo -->
 
-            <!-- Header -->
-            <header id="site-header">
-                <div id="site-header-inner" class="container">                    
-                    <div class="wrap-inner clearfix">
-                        <div id="site-logo" class="clearfix">
-                            <div id="site-log-inner">
-                                <a href="index.html" rel="home" class="main-logo">
-                                    <img src="assets/img/logo-small.png" alt="zenith" width="186" height="39" data-retina="assets/img/logo-small@2x.png" data-width="186" data-height="39">
+                            <div class="mobile-button">
+                                <span></span>
+                            </div><!-- /.mobile-button -->
+
+                            <?php
+                            include 'includes/navbar.php';
+                            ?>
+                            <!-- /#main-nav -->
+
+                            <div id="header-search">
+                                <a href="#" class="header-search-icon">
+                                    <span class="search-icon fa fa-search">
+                                    </span>
                                 </a>
-                            </div>
-                        </div><!-- /#site-logo -->
 
-                        <div class="mobile-button">
-                            <span></span>
-                        </div><!-- /.mobile-button -->
+                                <form role="search" method="get" class="header-search-form" action="#">
+                                    <label class="screen-reader-text">Search for:</label>
+                                    <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
+                                    <button type="submit" class="header-search-submit" title="Search"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div><!-- /#header-search -->
+                        </div><!-- /.wrap-inner -->
+                    </div><!-- /#site-header-inner -->
+                </header><!-- /#site-header -->
+            </div><!-- #site-header-wrap -->
 
-                        <nav id="main-nav" class="main-nav">
-                            <ul id="menu-primary-menu" class="menu">
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="index.html">HOME</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="index.html">HOME 1</a></li>
-                                        <li class="menu-item"><a href="home-2.html">HOME 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="page-about.html">ABOUT US </a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="page-about.html">ABOUT US</a></li>
-                                        <li class="menu-item"><a href="page-about-detail.html">ABOUT DETAIL</a></li>
-                                        <li class="menu-item"><a href="page-about-team.html">ABOUT TEAM</a></li>
-                                        <li class="menu-item"><a href="page-about-careers.html">ABOUT CAREERS</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="page-services.html">SERVICES</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="page-services.html">SERVICES</a></li>
-                                        <li class="menu-item"><a href="page-services-detail.html">SERVICES DETAIL</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="page-projects.html">PROJECTS</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="page-projects.html">PROJECTS</a></li>
-                                        <li class="menu-item"><a href="page-projects-full.html">PROJECTS FULL WIDTH</a></li>
-                                        <li class="menu-item"><a href="page-project-detail.html">PROJECTS DETAIL</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children" >
-                                    <a href="page-testimonial.html">PAGE</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="page-testimonial.html">PAGE TESTIMONIAL</a></li>
-                                        <li class="menu-item"><a href="page-pricing.html">PAGE PRICING</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="page-blog.html">BLOG</a>
-                                    <ul class="sub-menu right-sub-menu">
-                                        <li class="menu-item"><a href="page-blog.html">BLOG</a></li>
-                                        <li class="menu-item"><a href="page-blog-single.html">BLOG SINGLE</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children current-menu-item">
-                                    <a href="page-contact.html">CONTACT</a>
-                                    <ul class="sub-menu right-sub-menu">
-                                        <li class="menu-item"><a href="page-contact.html">CONTACT 1</a></li>
-                                        <li class="menu-item current-item"><a href="page-contact-2.html">CONTACT 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav><!-- /#main-nav -->
-
-                        <div id="header-search">
-                            <a href="#" class="header-search-icon">
-                                <span class="search-icon fa fa-search">
-                                </span>
-                            </a>
-
-                            <form role="search" method="get" class="header-search-form" action="#">
-                                <label class="screen-reader-text">Search for:</label>
-                                <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
-                                <button type="submit" class="header-search-submit" title="Search"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div><!-- /#header-search -->
-                    </div><!-- /.wrap-inner -->                    
-                </div><!-- /#site-header-inner -->
-            </header><!-- /#site-header -->
-        </div><!-- #site-header-wrap -->
-
-        <!-- Featured Title -->
-        <div id="featured-title" class="featured-title clearfix">
-            <div id="featured-title-inner" class="container clearfix">
-                <div class="featured-title-inner-wrap">                    
-                    <div id="breadcrumbs">
-                        <div class="breadcrumbs-inner">
-                            <div class="breadcrumb-trail">
-                                <a href="index.html" class="trail-begin">Home</a>
-                                <span class="sep">|</span>
-                                <span class="trail-end">Contact</span>
+            <!-- Featured Title -->
+            <div id="featured-title" class="featured-title clearfix">
+                <div id="featured-title-inner" class="container clearfix">
+                    <div class="featured-title-inner-wrap">
+                        <div id="breadcrumbs">
+                            <div class="breadcrumbs-inner">
+                                <div class="breadcrumb-trail">
+                                    <a href="index.html" class="trail-begin">Home</a>
+                                    <span class="sep">|</span>
+                                    <span class="trail-end">Contact</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="featured-title-heading-wrap">
-                        <h1 class="feautured-title-heading">
-                            Contact Us
-                        </h1>
-                    </div>
-                </div><!-- /.featured-title-inner-wrap -->
-            </div><!-- /#featured-title-inner -->            
-        </div>
-        <!-- End Featured Title -->
+                        <div class="featured-title-heading-wrap">
+                            <h1 class="feautured-title-heading">
+                                Contact Us
+                            </h1>
+                        </div>
+                    </div><!-- /.featured-title-inner-wrap -->
+                </div><!-- /#featured-title-inner -->
+            </div>
+            <!-- End Featured Title -->
 
-        <!-- Main Content -->
-        <div id="main-content" class="site-main clearfix">
-            <div id="content-wrap">
-                <div id="site-content" class="site-content clearfix">
-                    <div id="inner-content" class="inner-content-wrap">
-                       <div class="page-content">
-                            <!-- ICONBOX -->
-                            <div class="row-iconbox">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="zenith-spacer clearfix" data-desktop="61" data-mobile="60" data-smobile="60"></div>
-                                            <div class="zenith-headings style-1 text-center clearfix">
-                                                <h2 class="heading">CONTACT US</h2>
-                                                <div class="sep has-icon width-125 clearfix">
-                                                    <div class="sep-icon">
-                                                        <span class="sep-icon-before sep-center sep-solid"></span>
-                                                        <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
-                                                        <span class="sep-icon-after sep-center sep-solid"></span>
+            <!-- Main Content -->
+            <div id="main-content" class="site-main clearfix">
+                <div id="content-wrap">
+                    <div id="site-content" class="site-content clearfix">
+                        <div id="inner-content" class="inner-content-wrap">
+                            <div class="page-content">
+                                <!-- ICONBOX -->
+                                <div class="row-iconbox">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="zenith-spacer clearfix" data-desktop="61" data-mobile="60" data-smobile="60"></div>
+                                                <div class="zenith-headings style-1 text-center clearfix">
+                                                    <h2 class="heading">CONTACT US</h2>
+                                                    <div class="sep has-icon width-125 clearfix">
+                                                        <div class="sep-icon">
+                                                            <span class="sep-icon-before sep-center sep-solid"></span>
+                                                            <span class="icon-wrap"><i class="zenith-icon-build"></i></span>
+                                                            <span class="sep-icon-after sep-center sep-solid"></span>
+                                                        </div>
                                                     </div>
+                                                    <p class="sub-heading font-weight-400 max-width-770 line-height-26 margin-top-14">Are you interested in finding out how zenith Construction Services can make your project a success? For more information on our services please contact us.</p>
                                                 </div>
-                                                <p class="sub-heading font-weight-400 max-width-770 line-height-26 margin-top-14">Are you interested in finding out how zenith Construction Services can make your project a success? For more information on our services please contact us.</p>
-                                            </div>
-                                            <div class="zenith-spacer clearfix" data-desktop="45" data-mobile="35" data-smobile="35"></div>
-                                        </div><!-- /.col-md-12 -->
-                                    </div><!-- /.row -->
+                                                <div class="zenith-spacer clearfix" data-desktop="45" data-mobile="35" data-smobile="35"></div>
+                                            </div><!-- /.col-md-12 -->
+                                        </div><!-- /.row -->
 
-                                    <div class="row gutter-16">
-                                        <div class="col-md-4">
-                                            <div class="zenith-icon-box icon-top align-center  accent-color style-3 bg-light-snow clearfix">
-                                                <div class="icon-wrap">
-                                                    <i class="icon-phone"></i>
-                                                </div>
-                                                <div class="text-wrap">
-                                                    <h5 class="heading"><a href="#">+61 3 8376 6284</a></h5>
-                                                    <p class="sub-heading">Support 24/7 - Online 24 hours</p>
-                                                    <span class="class more-link"><a href="#">Call us now</a></span>
-                                                </div>
-                                            </div><!-- /.zenith-icon-box -->
-                                        </div><!-- /.col --> 
-                                        <div class="col-md-4">
-                                            <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                            <div class="zenith-icon-box icon-top align-center accent-color style-3 bg-light-snow clearfix">
-                                                <div class="icon-wrap">
-                                                    <i class="icon-map"></i>
-                                                </div>
-                                                <div class="text-wrap">
-                                                    <h5 class="heading"><a href="#">4946 MARMORA ROAD</a></h5>
-                                                    <p class="sub-heading">Mon- Sat: 5:00 am to 6:30 pm</p>
-                                                    <span class="class more-link">Sunday: Close</span>
-                                                </div>
-                                            </div><!-- /.zenith-icon-box -->
-                                        </div><!-- /.col -->
-                                        <div class="col-md-4">
-                                            <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                            <div class="zenith-icon-box icon-top align-center accent-color style-3 bg-light-snow clearfix">
-                                                <div class="icon-wrap">
-                                                    <i class="icon-envelope"></i>
-                                                </div>
-                                                <div class="text-wrap">
-                                                    <h5 class="heading"><a href="#">NICHE_THEME@GMAIL.COM</a></h5>
-                                                    <p class="sub-heading">Support 24/7 - Online 24 hours</p>
-                                                    <span class="class more-link"><a href="#">Mail us now</a></span>
-                                                </div>
-                                            </div><!-- /.zenith-icon-box -->
-                                        </div><!-- /.col -->                           
-                                    </div><!-- /.row -->
+                                        <div class="row gutter-16">
+                                            <div class="col-md-4">
+                                                <div class="zenith-icon-box icon-top align-center  accent-color style-3 bg-light-snow clearfix">
+                                                    <div class="icon-wrap">
+                                                        <i class="icon-phone"></i>
+                                                    </div>
+                                                    <div class="text-wrap">
+                                                        <h5 class="heading"><a href="tel:<?php echo $rows['ContactNo'] ?>"><?php echo $rows['ContactNo'] ?></a></h5>
+                                                        <p class="sub-heading">Support 24/7 - Online 24 hours</p>
+                                                        <span class="class more-link"><a href="tel:<?php echo $rows['ContactNo'] ?>">Call us now</a></span>
+                                                    </div>
+                                                </div><!-- /.zenith-icon-box -->
+                                            </div><!-- /.col -->
+                                            <div class="col-md-4">
+                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                                <div class="zenith-icon-box icon-top align-center accent-color style-3 bg-light-snow clearfix">
+                                                    <div class="icon-wrap">
+                                                        <i class="icon-map"></i>
+                                                    </div>
+                                                    <div class="text-wrap">
+                                                        <h5 class="heading"><a><?php echo $rows['Address'] ?></a></h5>
+                                                        <p class="sub-heading">Mon- Sat: 7:00 am to 5:30 pm</p>
+                                                        <span class="class more-link">Sunday: Close</span>
+                                                    </div>
+                                                </div><!-- /.zenith-icon-box -->
+                                            </div><!-- /.col -->
+                                            <div class="col-md-4">
+                                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                                <div class="zenith-icon-box icon-top align-center accent-color style-3 bg-light-snow clearfix">
+                                                    <div class="icon-wrap">
+                                                        <i class="icon-envelope"></i>
+                                                    </div>
+                                                    <div class="text-wrap">
+                                                        <h5 class="heading"><a href="mailto:<?php echo $rows['EmailId'] ?>"><?php echo $rows['EmailId'] ?></a></h5>
+                                                        <p class="sub-heading">Support 24/7 - Online 24 hours</p>
+                                                        <span class="class more-link"><a href="mailto:<?php echo $rows['EmailId'] ?>">Mail us now</a></span>
+                                                    </div>
+                                                </div><!-- /.zenith-icon-box -->
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="zenith-spacer clearfix" data-desktop="58" data-mobile="35" data-smobile="35"></div>
-                                        </div><!-- /.col-md-12 -->
-                                    </div><!-- /.row -->
-                                </div><!-- /.container -->
-                            </div>
-                            <!-- END ICONBOX -->
-
-                           <!-- CONTACT -->
-                            <div class="row-contact">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4">                                            
-                                            <div class="zenith-contact-form style-2 w100 clearfix">
-                                                <form id="contactform" action="http://corpthemes.com/html/zenith/contact/contact-process2.php" method="post" class="contact-form wpcf7-form">
-                                                    <span class="wpcf7-form-control-wrap your-name">
-                                                        <input type="text" tabindex="1" id="name" name="name" value="" class="wpcf7-form-control" placeholder="Name*" required>
-                                                    </span>                                                                                                           
-                                                    <span class="wpcf7-form-control-wrap your-email">
-                                                        <input type="email" tabindex="3" id="email" name="email" value="" class="wpcf7-form-control" placeholder="Your Email*" required>
-                                                    </span>
-                                                    <span class="wpcf7-form-control-wrap your-phone">
-                                                        <input type="text" tabindex="2" id="phone" name="phone" value="" class="wpcf7-form-control" placeholder="Phone">
-                                                    </span>
-                                                    <span class="wpcf7-form-control-wrap your-message">
-                                                       <textarea name="message" tabindex="5" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" placeholder="Message*" required ></textarea>
-                                                    </span>                                                             
-                                                    <span class="wrap-submit">
-                                                        <input type="submit" value="SEND US" class="submit wpcf7-form-control wpcf7-submit" id="submit" name="submit">
-                                                    </span>                                                            
-                                                </form>
-                                            </div><!-- /.zenith-contact-form -->
-                                        </div><!-- /.col-md-6 -->
-                                        <div class="col-md-8">
-                                            <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                            <div class="zenith-map style-2"></div>
-                                        </div><!-- /.col-md-6 -->
-                                    </div><!-- /.row -->
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="zenith-spacer clearfix" data-desktop="81" data-mobile="60" data-smobile="60"></div>
-                                        </div><!-- /.col-md-12 -->
-                                    </div><!-- /.row -->
-                                </div><!-- /.container -->
-                            </div>
-                            <!-- END CONTACT -->
-                       </div><!-- /.page-content -->
-                    </div><!-- /#inner-content -->
-                </div><!-- /#site-content -->
-            </div><!-- /#content-wrap -->
-        </div><!-- /#main-content -->
-
-        <!-- Footer -->
-        <footer id="footer" class="clearfix">
-            <div id="footer-widgets" class="container">
-                <div class="zenith-row gutter-30">
-                    <div class="col span_1_of_3">
-                        <div class="widget widget_text">
-                            <div class="textwidget">
-                                <p>
-                                    <img src="assets/img/logo-white%402x.png" alt="Image" width="170" height="34">
-                                </p>
-
-                                <p class="margin-bottom-15">We have over 15 years of experien able to help you 24 hours a day.</p>
-
-                                <ul>
-                                    <li>
-                                        <div class="inner">
-                                            <span class="fa fa-map-marker"></span>
-                                            <span class="text">PO BOX 16122 COLLINS STREET <span class="sl">West Victoria, NewYork</span></span>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="inner">
-                                            <span class="fa fa-phone"></span>
-                                            <span class="text">CALL US : (+61) 3 8376 6284</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="margin-top-7">
-                                        <div class="inner">
-                                            <span class=" font-size-14 fa fa-envelope"></span>
-                                            <span class="text">SUPPORT@NICHE_THEME</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /.widget_text -->
-                        <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                    </div><!-- /.col -->
-
-                    <div class="col span_1_of_3">
-                        <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="0"></div>
-
-                        <div class="widget widget_lastest">
-                            <h2 class="widget-title"><span>RECENT POSTS</span></h2>
-                            <ul class="lastest-posts data-effect clearfix">
-                                <li class="clearfix">
-                                    <div class="thumb data-effect-item has-effect-icon">
-                                        <img src="assets/img/news/post-1-65x65.jpg" alt="Image">
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <a href="page-blog-single.html" class="icon-2"></a>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <h3><a href="page-blog-single.html">SMART BUILDING WITH CONCRETE SUSTAINABLE</a></h3>
-                                        <span class="post-date"><span class="entry-date">29 June 2018</span></span>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="thumb data-effect-item has-effect-icon">
-                                        <img src="assets/img/news/post-2-65x65.jpg" alt="Image">
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <a href="page-blog-single.html" class="icon-2"></a>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <h3><a href="page-blog-single.html">HI-TECH WOODEN HOUSE BUILT WITHOUT GLUE</a></h3>
-                                        <span class="post-date"><span class="entry-date">31 June 2018</span></span>
-                                    </div>
-                                </li>                                
-                            </ul>
-                        </div><!-- /.widget_lastest -->                       
-                    </div><!-- /.col -->
-
-                    <div class="col span_1_of_3">
-                        <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-
-                        <div class="widget widget_tags">
-                            <h2 class="widget-title margin-bottom-30"><span>TAGS</span></h2>
-                            <div class="tags-list">
-                                <a href="#">Building</a>
-                                <a href="#">Smart House</a>
-                                <a href="#">Costruction</a>
-                                <a href="#">Villa</a>
-                                <a href="#">Residential</a>
-                                <a href="#">Interior</a>
-                                <a href="#">Resort</a>
-                                <a href="#">Commercial</a>
-                            </div>
-                        </div>
-                    </div><!-- /.col -->
-
-                    <div class="col span_1_of_3">
-                        <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-
-                        <div class="widget widget_instagram">
-                            <h2 class="widget-title margin-bottom-30"><span>INSTAGRAM PHOTOS</span></h2>
-                            <div class="instagram-wrap data-effect clearfix col3 g10">
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-1-83x83.jpg" alt="Image" ></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>                                    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="zenith-spacer clearfix" data-desktop="58" data-mobile="35" data-smobile="35"></div>
+                                            </div><!-- /.col-md-12 -->
+                                        </div><!-- /.row -->
+                                    </div><!-- /.container -->
                                 </div>
+                                <!-- END ICONBOX -->
 
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-2-83x83.jpg" alt="Image" ></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>
-                                    
+                                <!-- CONTACT -->
+                                <div class="row-contact">
+                                    <div class="container">
+                                        <div class="row">
+                                            <style>
+                                                .errorWrap {
+                                                    background-color: #e74c3c;
+                                                    color: #fff;
+                                                    padding: 15px 10px;
+                                                    position: relative;
+                                                    display: block;
+                                                }
+
+                                                .succWrap {
+                                                    background-color: #0c4a0c;
+                                                    color: #fff;
+                                                    padding: 15px 10px;
+                                                    position: relative;
+                                                    display: block;
+                                                }
+                                            </style>
+                                            <div class="col-md-8 m-auto">
+                                                <?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($message) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($message); ?> </div><?php } ?>
+                                                <div class="zenith-contact-form style-2 w100 clearfix">
+                                                    <form id="contactForm" action="" method="post" class="contact-form wpcf7-form">
+                                                        <span class="wpcf7-form-control-wrap your-name">
+                                                            <input type="text" tabindex="1" id="name" name="name" value="" class="wpcf7-form-control" placeholder="Name*" required>
+                                                        </span>
+                                                        <span class="wpcf7-form-control-wrap your-email">
+                                                            <input type="email" tabindex="3" id="email" name="email" value="" class="wpcf7-form-control" placeholder="Your Email*" required>
+                                                        </span>
+                                                        <span class="wpcf7-form-control-wrap your-phone">
+                                                            <input type="text" tabindex="2" id="phone" name="phone" value="" class="wpcf7-form-control" placeholder="Phone">
+                                                        </span>
+                                                        <span class="wpcf7-form-control-wrap your-phone">
+                                                            <input type="text" tabindex="5" id="msgsubject" name="msgsubject" value="" class="wpcf7-form-control" placeholder="Subject">
+                                                        </span>
+                                                        <span class="wpcf7-form-control-wrap your-message">
+                                                            <textarea name="message" tabindex="5" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" placeholder="Message*" required></textarea>
+                                                        </span>
+                                                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                                                        <span class="wrap-submit">
+                                                            <input type="submit" value="SUBMIT" class="submit wpcf7-form-control wpcf7-submit" id="submit" name="submit">
+                                                        </span>
+                                                        <div class="message" id="formMsg"></div>
+                                                    </form>
+                                                </div><!-- /.zenith-contact-form -->
+                                            </div><!-- /.col-md-6 -->
+
+                                        </div><!-- /.row -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="zenith-spacer clearfix" data-desktop="81" data-mobile="60" data-smobile="60"></div>
+                                            </div><!-- /.col-md-12 -->
+                                        </div><!-- /.row -->
+                                    </div><!-- /.container -->
                                 </div>
+                                <!-- END CONTACT -->
+                            </div><!-- /.page-content -->
+                        </div><!-- /#inner-content -->
+                    </div><!-- /#site-content -->
+                </div><!-- /#content-wrap -->
+            </div><!-- /#main-content -->
 
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-3-83x83.jpg" alt="Image"></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>                                    
-                                </div>
+            <!-- Footer -->
+            <?php
+            include 'includes/footer.php'; ?>
 
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-4-83x83.jpg" alt="Image"></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>
-                                </div>
+            <a id="scroll-top"></a>
 
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-5-83x83.jpg" alt="Image"></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>                                    
-                                </div>
+            <!-- Javascript -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/plugins.js"></script>
+            <script src="assets/js/tether.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/js/animsition.js"></script>
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <script src="assets/js/countto.js"></script>
+            <script src="assets/js/equalize.min.js"></script>
+            <script src="assets/js/jquery.isotope.min.js"></script>
+            <script src="assets/js/owl.carousel2.thumbs.js"></script>
 
-                                <div class="instagram_badge_image has-effect-icon">
-                                    <a href="#" target="_blank" class="data-effect-item">
-                                        <span class="item"><img src="assets/img/instagram/instagram-6-83x83.jpg" alt="Image"></span>
-                                        <div class="overlay-effect bg-color-2"></div>
-                                        <div class="elm-link">
-                                            <span class="icon-3"></span>
-                                        </div>
-                                    </a>                                    
-                                </div>
-                            </div>
-                        </div><!-- /.widget_instagram -->
-                    </div><!-- /.col -->
-                </div><!-- /.zenith-row -->
-            </div><!-- /#footer-widgets -->
-        </footer><!-- /#footer -->
+            <script src="assets/js/jquery.cookie.js"></script>
+            <script src="assets/js/gmap3.min.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&amp;region=GB"></script>
+            <script src="assets/js/shortcodes.js"></script>
+            <script src="assets/js/jquery-validate.js"></script>
+            <script src="assets/js/main.js"></script>
 
-        <!-- Bottom -->
-        <div id="bottom" class="clearfix has-spacer">
-            <div id="bottom-bar-inner" class="container">
-                <div class="bottom-bar-inner-wrap">
-                    <div class="bottom-bar-content">
-                        <div id="copyright">© <span class="text"><a href="https://www.templateshub.net" class="text-accent">Templates Hub</a></span> 
-                        </div>
-                    </div><!-- /.bottom-bar-content -->
-
-                    <div class="bottom-bar-menu">
-                        <ul class="bottom-nav">
-                            <li class="menu-item">
-                                <a href="index.html">HOME</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="page-about-2.html">ABOUT US</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="page-services.html">SERVICES</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="page-projects.html">PROJECTS</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="page-testimonial.html">PAGE</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="page-blog.html">BLOG</a>
-                            </li>
-                            <li class="menu-item current-menu-item">
-                                <a href="page-contact.html">CONTACT</a>
-                            </li>
-                        </ul>
-                    </div><!-- /.bottom-bar-menu -->
-                </div><!-- /.bottom-bar-inner-wrap -->                
-            </div><!-- /#bottom-bar-inner -->
-        </div><!-- /#bottom -->
-
-    </div><!-- /#page -->
-</div><!-- /#wrapper -->
-
-<a id="scroll-top"></a>
-
-<!-- Javascript -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/tether.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/animsition.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/countto.js"></script>
-<script src="assets/js/equalize.min.js"></script>
-<script src="assets/js/jquery.isotope.min.js"></script>
-<script src="assets/js/owl.carousel2.thumbs.js"></script>
-
-<script src="assets/js/jquery.cookie.js"></script>
-<script src="assets/js/gmap3.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&amp;region=GB"></script>
-<script src="assets/js/shortcodes.js"></script>
-<script src="assets/js/jquery-validate.js"></script>
-<script src="assets/js/main.js"></script>
-
-<!-- Revolution Slider -->
-<script src="includes/rev-slider/js/jquery.themepunch.tools.min.js"></script>
-<script src="includes/rev-slider/js/jquery.themepunch.revolution.min.js"></script>
-<script src="assets/js/rev-slider.js"></script>
-<!-- Load Extensions only on Local File Systems ! The following part can be removed on Server for On Demand Loading -->  
-<script src="includes/rev-slider/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="includes/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
+            <!-- Revolution Slider -->
+            <script src="includes/rev-slider/js/jquery.themepunch.tools.min.js"></script>
+            <script src="includes/rev-slider/js/jquery.themepunch.revolution.min.js"></script>
+            <script src="assets/js/rev-slider.js"></script>
+            <!-- Load Extensions only on Local File Systems ! The following part can be removed on Server for On Demand Loading -->
+            <script src="includes/rev-slider/js/extensions/revolution.extension.actions.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.migration.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+            <script src="includes/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
 
 </body>
 
 
 </html>
-
