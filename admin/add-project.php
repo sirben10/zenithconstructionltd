@@ -63,65 +63,69 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 						if (move_uploaded_file($_FILES["previewPhoto"]["tmp_name"], $upload_path)) {
 							// Validate Project Report (PDF)
-							if ($_FILES['projectReport']['error'] === UPLOAD_ERR_OK) {
+							if (!empty($_FILES['projectReport']) && $_FILES['projectReport']['error'] === UPLOAD_ERR_OK) {
 								$reportExtension = strtolower(pathinfo($_FILES["projectReport"]["name"], PATHINFO_EXTENSION));
 								if ($reportExtension !== "pdf") {
 									$error = "Invalid project report format. Only PDF is allowed.";
 								} else {
 									$newreportfilename = uniqid("report_" . $titleForImage) . '.' . $reportExtension;
 									$report_upload_path = "../projectreports/" . $newreportfilename;
-
-									if (move_uploaded_file($_FILES["projectReport"]["tmp_name"], $report_upload_path)) {
-										// Insert into projects table
-										// echo $titleForImage; exit;
-										$sql = "INSERT INTO tblprojects 
+									move_uploaded_file($_FILES["projectReport"]["tmp_name"], $report_upload_path);
+								}
+							}
+							// Insert into projects table
+							// echo $titleForImage; exit;
+							$sql = "INSERT INTO tblprojects 
                                         (projectTitle, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
                                         VALUES 
                                         (:projectTitle, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
-										$query = $dbh->prepare($sql);
-										$query->bindParam(':projectTitle', $projectTitle, PDO::PARAM_STR);
-										$query->bindParam(':previewPhoto', $newfilename, PDO::PARAM_STR);
-										$query->bindParam(':projectLocation', $projectLocation, PDO::PARAM_STR);
-										$query->bindParam(':dateAwarded', $dateAwarded, PDO::PARAM_STR);
-										$query->bindParam(':dateCompleted', $dateCompleted, PDO::PARAM_STR);
-										$query->bindParam(':partnerID', $partnerID, PDO::PARAM_INT);
-										$query->bindParam(':ProjectManager', $ProjectManager, PDO::PARAM_STR);
-										$query->bindParam(':projectStatus', $projectStatus, PDO::PARAM_STR);
-										$query->bindParam(':projectReport', $newreportfilename, PDO::PARAM_STR);
+							$query = $dbh->prepare($sql);
+							$query->bindParam(':projectTitle', $projectTitle, PDO::PARAM_STR);
+							$query->bindParam(':previewPhoto', $newfilename, PDO::PARAM_STR);
+							$query->bindParam(':projectLocation', $projectLocation, PDO::PARAM_STR);
+							$query->bindParam(':dateAwarded', $dateAwarded, PDO::PARAM_STR);
+							$query->bindParam(':dateCompleted', $dateCompleted, PDO::PARAM_STR);
+							$query->bindParam(':partnerID', $partnerID, PDO::PARAM_INT);
+							$query->bindParam(':ProjectManager', $ProjectManager, PDO::PARAM_STR);
+							$query->bindParam(':projectStatus', $projectStatus, PDO::PARAM_STR);
+							$query->bindParam(':projectReport', $newreportfilename, PDO::PARAM_STR);
 
-										$query->execute();
+							$query->execute();
 
-										$projectID = $dbh->lastInsertId();
+							$projectID = $dbh->lastInsertId();
 
-										// Handle Gallery Uploads
-										if (!empty($_FILES['projectGallery']['name'][0])) {
-											foreach ($_FILES['projectGallery']['name'] as $index => $galleryImage) {
-												if ($_FILES['projectGallery']['error'][$index] === UPLOAD_ERR_OK) {
-													$galleryExtension = strtolower(pathinfo($galleryImage, PATHINFO_EXTENSION));
-													if (in_array($galleryExtension, $allowed_extensions)) {
-														$newgalleryfilename = uniqid("gallery_" . $titleForImage) . '.' . $galleryExtension;
-														$gallery_upload_path = "../projectphotos/" . $newgalleryfilename;
+							// Handle Gallery Uploads
+							if (!empty($_FILES['projectGallery']['name'][0])) {
+								foreach ($_FILES['projectGallery']['name'] as $index => $galleryImage) {
+									if ($_FILES['projectGallery']['error'][$index] === UPLOAD_ERR_OK) {
+										$galleryExtension = strtolower(pathinfo($galleryImage, PATHINFO_EXTENSION));
+										if (in_array($galleryExtension, $allowed_extensions)) {
+											$newgalleryfilename = uniqid("gallery_" . $titleForImage) . '.' . $galleryExtension;
+											$gallery_upload_path = "../projectphotos/" . $newgalleryfilename;
 
-														if (move_uploaded_file($_FILES['projectGallery']['tmp_name'][$index], $gallery_upload_path)) {
-															$sql = "INSERT INTO tblprojectgallery (projectID, photo) VALUES (:projectID, :photo)";
-															$stmt = $dbh->prepare($sql);
-															$stmt->bindParam(':projectID', $projectID, PDO::PARAM_INT);
-															$stmt->bindParam(':photo', $newgalleryfilename, PDO::PARAM_STR);
-															$stmt->execute();
-														}
-													}
-												}
+											if (move_uploaded_file($_FILES['projectGallery']['tmp_name'][$index], $gallery_upload_path)) {
+												$sql = "INSERT INTO tblprojectgallery (projectID, photo) VALUES (:projectID, :photo)";
+												$stmt = $dbh->prepare($sql);
+												$stmt->bindParam(':projectID', $projectID, PDO::PARAM_INT);
+												$stmt->bindParam(':photo', $newgalleryfilename, PDO::PARAM_STR);
+												$stmt->execute();
 											}
 										}
-
-										$msg = "Project added successfully";
-									} else {
-										$error = "Failed to upload project report.";
 									}
 								}
-							} else {
-								$error = "Please upload a project report (PDF).";
 							}
+
+							if (!empty($_POST['serviceID'])) {
+								foreach ($_POST['serviceID'] as $serviceID) {
+									$sql = "INSERT INTO tblprojectservices (projectID, serviceID) VALUES (:projectID, :serviceID)";
+									$insertQuery = $dbh->prepare($sql);
+									$insertQuery->bindParam(':projectID', $projectID, PDO::PARAM_INT);
+									$insertQuery->bindParam(':serviceID', $serviceID, PDO::PARAM_INT);
+									$insertQuery->execute();
+								}
+							}
+
+							$msg = "Project added successfully";
 						} else {
 							$error = "Failed to upload preview image.";
 						}
@@ -175,12 +179,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 														$services = fetchAllServices($dbh);
 														// var_dump($services); exit;
 														foreach ($services as $service) { ?>
-														<div class="col-sm-4">
-															<div class="checkbox checkbox-inline">
-																<input type="checkbox" id="<?php echo $service['serviceID'] ?>" name="serviceID" value="<?php echo $service['serviceID'] ?>">
-																<label for="<?php echo $service['serviceID'] ?>"> <?php echo $service['serviceName'] ?> </label>
+															<div class="col-sm-4">
+																<div class="checkbox checkbox-inline">
+																	<input type="checkbox" id="<?php echo $service['serviceID'] ?>" name="serviceID[]" value="<?php echo $service['serviceID'] ?>">
+																	<label for="<?php echo $service['serviceID'] ?>"> <?php echo $service['serviceName'] ?> </label>
+																</div>
 															</div>
-														</div>
 														<?php } ?>
 													</div>
 												</div>

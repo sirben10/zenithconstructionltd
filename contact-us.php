@@ -20,25 +20,12 @@ if (isset($_POST['submit'])) {
     $message = clean_input($_POST['message'] ?? '');
     $status = 0;
 
-    // Check required fields
-    if (empty($name) || empty($email) || empty($phone) || empty($msgsubject) || empty($message)) {
-        // echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
-        $error = 'All fields are required.';
-    }
-
-    // Validate email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // echo json_encode(['status' => 'error', 'message' => 'Invalid email address.']);
-        $error = 'Invalid email address.';
-    }
-
     // Spam & unwanted word detection
     $banned_words = ['spam', 'viagra', 'bitcoin', 'lottery', 'win money', 'sex', 'porn', 'credit card', 'loan offer'];
     foreach ($banned_words as $bad) {
         if (stripos($message, $bad) !== false || stripos($msgsubject, $bad) !== false) {
             // echo json_encode(['status' => 'error', 'message' => 'Message contains prohibited content.']);
             $error = 'Message contains prohibited content.';
-            // exit;
         }
     }
 
@@ -52,29 +39,49 @@ if (isset($_POST['submit'])) {
     if ($results['attempts'] > 3) {
         // echo json_encode(['status' => 'error', 'message' => 'Too many attempts. Try again later.']);
         $error = 'Too many attempts. Try again later.';
-    }
-
-    // Save message to database
-    $stmt = "INSERT INTO tblcontactusquery 
-(name, EmailId, ContactNumber, msgsubject, Message, status) 
-VALUES (:name, :email, :phone, :msgsubject, :message, :status)";
-    $query = $dbh->prepare($stmt);
-    $query->bindParam(':name', $name, PDO::PARAM_STR);
-    $query->bindParam(':email', $email, PDO::PARAM_STR);
-    $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-    $query->bindParam(':msgsubject', $msgsubject, PDO::PARAM_STR);
-    $query->bindParam(':message', $message, PDO::PARAM_STR);
-    $query->bindParam(':status', $status, PDO::PARAM_STR);
-    // $stmt->bind_param("ssssss", $name, $email, $phone, $msgsubject, $message, $status);
-    $query->execute();
-    if ($query) {
-        // echo json_encode(['status' => 'success', 'message' => 'Your message has been sent successfully!']);
-        $message = 'Your message has been sent successfully!';
-        //    header("Location: ../contact-us?p=contactus");
+    } elseif (empty($name) || empty($email) || empty($phone) || empty($msgsubject) || empty($message)) {
+        // Check required fields
+        // echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+        $error = 'All fields are required.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Validate email
+        // echo json_encode(['status' => 'error', 'message' => 'Invalid email address.']);
+        $error = 'Invalid email address.';
     } else {
-        // echo json_encode(['status' => 'error', 'message' => 'Something went wrong, please try again.']);
-        $error = 'Something went wrong, please try again.';
-        //    header("Location: ../contact-us?p=contactus");
+        $checkrows = "SELECT * FROM tblcontactusquery WHERE name = :name AND EmailId = :email AND msgsubject=:msgsubject AND Message=:message";
+        $query = $dbh->prepare($checkrows);
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':msgsubject', $msgsubject, PDO::PARAM_STR);
+        $query->bindParam(':message', $message, PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $error = 'Mail Already Sent, Expect to hear from us soonest.';
+        } else {
+            // Save message to database
+            $stmt = "INSERT INTO tblcontactusquery 
+                    (name, EmailId, ContactNumber, msgsubject, Message, status) 
+                    VALUES (:name, :email, :phone, :msgsubject, :message, :status)";
+            $query = $dbh->prepare($stmt);
+            $query->bindParam(':name', $name, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $query->bindParam(':msgsubject', $msgsubject, PDO::PARAM_STR);
+            $query->bindParam(':message', $message, PDO::PARAM_STR);
+            $query->bindParam(':status', $status, PDO::PARAM_STR);
+            // $stmt->bind_param("ssssss", $name, $email, $phone, $msgsubject, $message, $status);
+            $query->execute();
+            if ($query) {
+                // echo json_encode(['status' => 'success', 'message' => 'Your message has been sent successfully!']);
+                $message = 'Your message has been sent successfully!';
+                //    header("Location: ../contact-us?p=contactus");
+            } else {
+                // echo json_encode(['status' => 'error', 'message' => 'Something went wrong, please try again.']);
+                $error = 'Something went wrong, please try again.';
+                //    header("Location: ../contact-us?p=contactus");
+            }
+        }
     }
 }
 
@@ -318,11 +325,12 @@ VALUES (:name, :email, :phone, :msgsubject, :message, :status)";
                                         <div class="row">
                                             <style>
                                                 .errorWrap {
-                                                    background-color: #e74c3c;
+                                                    background-color: #801818;
                                                     color: #fff;
                                                     padding: 15px 10px;
                                                     position: relative;
                                                     display: block;
+                                                    margin-bottom: 20px;
                                                 }
 
                                                 .succWrap {
@@ -331,6 +339,7 @@ VALUES (:name, :email, :phone, :msgsubject, :message, :status)";
                                                     padding: 15px 10px;
                                                     position: relative;
                                                     display: block;
+                                                     margin-bottom: 20px;
                                                 }
                                             </style>
                                             <div class="col-md-8 m-auto">
