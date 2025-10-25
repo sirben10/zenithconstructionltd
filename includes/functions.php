@@ -29,6 +29,17 @@ function fetchAllServicesUsers($dbh) {
     return [];
   }
 }
+// FUNCTION TO FETCH ALL SERVICES
+function fetchAllServicesSql($dbh) {
+  try {
+    $stmtsql =  "SELECT * FROM tblservices";
+   
+    return $stmtsql;
+    
+  } catch (Exception $e) {
+    return ;
+  }
+}
 
 // FUNCTION TO FETCH SLIDES
 function fetchAllSlides($dbh) {

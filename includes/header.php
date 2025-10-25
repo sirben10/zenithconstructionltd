@@ -3,6 +3,7 @@
 require_once 'functions.php';
 $rows = fetchAllSiteSettings($dbh);
 $services = fetchAllServicesUsers($dbh);
+$servicesqsl = fetchAllServicesSql($dbh);
 $slides = fetchAllSlides($dbh);
 $projects = fetchAllProjects($dbh);
 $testimonials = fetchAllTestimonials($dbh);

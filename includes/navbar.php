@@ -32,9 +32,10 @@
                         </li>
                       </ul> -->
     </li>
-    <li class="menu-item menu-item-has-children">
-      <a href="page-projects">PROJECTS</a>
-      <ul class="sub-menu">
+    <li class="menu-item menu-item-has-children <?php if (!empty($page) && $page == 'projects') { ?>current-menu-item<?php } ?>">
+      <a href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>/projects?p=projects
+            <?php } else{?>projects?p=projects<?php } ?>">PROJECTS</a>
+      <!-- <ul class="sub-menu">
         <li class="menu-item">
           <a href="page-projects">PROJECTS</a>
         </li>
@@ -44,7 +45,7 @@
         <li class="menu-item">
           <a href="page-project-detail">PROJECTS DETAIL</a>
         </li>
-      </ul>
+      </ul> -->
     </li>
     <li class="menu-item menu-item-has-children">
       <a href="page-testimonial">PAGE</a>
