@@ -147,6 +147,12 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                 </div><!-- /#site-content -->
             </div><!-- /#content-wrap -->
         </div><!-- /#main-content -->
+         <!-- TESTIMONIALS -->
+                            <?php include 'includes/testimonial.php';
+                            //  CLIENTS 
+                  include 'includes/clients.php'; ?>
+                            <!-- <div class="zenith-spacer clearfix" data-desktop="72" data-mobile="60" data-smobile="60"></div> -->
+
 
         <!-- Footer -->
       <?php
