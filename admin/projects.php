@@ -135,7 +135,7 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->companyName);?></td>
 											<td><?php echo htmlentities($result->ProjectManager);?></td>
 											<td><?php echo htmlentities($result->projectStatus);?></td>
-											<td>
+											<td><a href="add-project?id=<?php echo $result->projectID; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 												<a href="projects?del=<?php echo $result->projectID;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>

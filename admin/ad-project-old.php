@@ -12,15 +12,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$projectID  = intval($_GET['id']);
 	}
 	// $serviceID = strip_tags($_POST['serviceID']);
-	
 
 $projectTitle = strtolower(strip_tags($_POST['projectTitle']));
 $projectTitle = preg_replace('/\s+/', ' ', $projectTitle);
 $projectTT = str_replace([',','"', ':',';'], '', $projectTitle);
 $projectSlug = strtolower(str_replace([' ', ','], '-', $projectTT));
 $titleForImage = preg_replace('/\s+/', '_', $projectTitle);
-$previewPhoto = $_FILES['previewPhoto']["name"];
-$previewPhotosize = $_FILES['previewPhoto']["size"];
+$previewPhoto = $_FILES['previewPhoto']["name"] ?? '';
+$previewPhotosize = $_FILES['previewPhoto']["size"] ?? 0;
 $projectLocation = strtolower(strip_tags($_POST['projectLocation']));
 $dateAwarded = strip_tags($_POST['dateAwarded']);
 $dateCompleted = strip_tags($_POST['dateCompleted']);
@@ -28,17 +27,21 @@ $partnerID = strip_tags($_POST['partnerID']);
 $ProjectManager = strip_tags($_POST['ProjectManager']);
 $projectStatus = $_POST['projectStatus'];
 
-$projectReport = $_FILES['projectReport']["name"];
-$projectReportsize = $_FILES['projectReport']["size"];
-$projectGallery = $_FILES['projectGallery']["name"];
-$projectGallerysize = $_FILES['projectGallery']["size"];
-$projectGalleryError = $_FILES['projectGallery']['error'];
+$projectReport = $_FILES['projectReport']["name"] ?? '';
+$projectReportsize = $_FILES['projectReport']["size"] ?? 0;
+$projectGallery = $_FILES['projectGallery']["name"] ?? [];
+$projectGallerysize = $_FILES['projectGallery']["size"] ?? [];
 
-// --- Function to resize image before saving ---
-function resizeImage($sourcePath, $targetPath, $width, $height, $extension) {
+// ✅ Resize image while preserving aspect ratio
+function resizeImage($sourcePath, $targetPath, $maxWidth, $maxHeight, $extension) {
     list($origWidth, $origHeight) = getimagesize($sourcePath);
 
-    $image_p = imagecreatetruecolor($width, $height);
+    // Maintain aspect ratio
+    $ratio = min($maxWidth / $origWidth, $maxHeight / $origHeight);
+    $newWidth = (int)($origWidth * $ratio);
+    $newHeight = (int)($origHeight * $ratio);
+
+    $image_p = imagecreatetruecolor($newWidth, $newHeight);
 
     switch ($extension) {
         case 'jpg':
@@ -57,7 +60,7 @@ function resizeImage($sourcePath, $targetPath, $width, $height, $extension) {
             return false;
     }
 
-    imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $origWidth, $origHeight);
+    imagecopyresampled($image_p, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
 
     switch ($extension) {
         case 'jpg':
@@ -77,7 +80,10 @@ function resizeImage($sourcePath, $targetPath, $width, $height, $extension) {
     return true;
 }
 
-// Code for Insert Project
+// Allowed formats
+$allowed_extensions = ["jpg", "jpeg", "png", "gif"];
+
+// === ADD NEW PROJECT ===
 if (isset($_POST['submit'])) {
     if ($previewPhotosize > 1000000) {
         $error = "Image size should be less than 1MB";
@@ -89,55 +95,51 @@ if (isset($_POST['submit'])) {
         $query->execute();
 
         if ($query->rowCount() > 0) {
-            $error = "Project already added. You can update it.";
+            $error = "Project already exists. Try updating instead.";
         } else {
             if ($_FILES['previewPhoto']['error'] === UPLOAD_ERR_OK) {
                 $extension = strtolower(pathinfo($_FILES["previewPhoto"]["name"], PATHINFO_EXTENSION));
-                $allowed_extensions = ["jpg", "jpeg", "png", "gif"];
 
                 if (!in_array($extension, $allowed_extensions)) {
-                    $error = "Invalid preview image format. Only JPG, JPEG, PNG & GIF are allowed.";
+                    $error = "Invalid image format. Only JPG, JPEG, PNG, GIF allowed.";
                 } else {
                     $newfilename = uniqid("preview_" . $titleForImage) . '.' . $extension;
                     $upload_path = "../projectphotos/" . $newfilename;
 
-                    // Resize before saving
-                    $tmp_path = $_FILES["previewPhoto"]["tmp_name"];
-                    if (resizeImage($tmp_path, $upload_path, 800, 450, $extension)) {
+                    if (resizeImage($_FILES["previewPhoto"]["tmp_name"], $upload_path, 800, 450, $extension)) {
 
-                        // Handle project report upload
-                        if (!empty($_FILES['projectReport']) && $_FILES['projectReport']['error'] === UPLOAD_ERR_OK) {
+                        // Upload project report
+                        $newreportfilename = "";
+                        if (!empty($_FILES['projectReport']['name']) && $_FILES['projectReport']['error'] === UPLOAD_ERR_OK) {
                             $reportExtension = strtolower(pathinfo($_FILES["projectReport"]["name"], PATHINFO_EXTENSION));
-                            if ($reportExtension !== "pdf") {
-                                $error = "Invalid project report format. Only PDF is allowed.";
-                            } else {
+                            if ($reportExtension === "pdf") {
                                 $newreportfilename = uniqid("report_" . $titleForImage) . '.' . $reportExtension;
                                 $report_upload_path = "../projectreports/" . $newreportfilename;
                                 move_uploaded_file($_FILES["projectReport"]["tmp_name"], $report_upload_path);
                             }
                         }
 
-                        // Insert into projects table
+                        // Insert into tblprojects
                         $sql = "INSERT INTO tblprojects 
-                                (projectTitle, projectSlug, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
-                                VALUES 
-                                (:projectTitle, :projectSlug, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
+                            (projectTitle, projectSlug, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
+                            VALUES 
+                            (:projectTitle, :projectSlug, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
                         $query = $dbh->prepare($sql);
-                        $query->bindParam(':projectTitle', $projectTitle, PDO::PARAM_STR);
-                        $query->bindParam(':projectSlug', $projectSlug, PDO::PARAM_STR);
-                        $query->bindParam(':previewPhoto', $newfilename, PDO::PARAM_STR);
-                        $query->bindParam(':projectLocation', $projectLocation, PDO::PARAM_STR);
-                        $query->bindParam(':dateAwarded', $dateAwarded, PDO::PARAM_STR);
-                        $query->bindParam(':dateCompleted', $dateCompleted, PDO::PARAM_STR);
-                        $query->bindParam(':partnerID', $partnerID, PDO::PARAM_INT);
-                        $query->bindParam(':ProjectManager', $ProjectManager, PDO::PARAM_STR);
-                        $query->bindParam(':projectStatus', $projectStatus, PDO::PARAM_STR);
-                        $query->bindParam(':projectReport', $newreportfilename, PDO::PARAM_STR);
+                        $query->bindParam(':projectTitle', $projectTitle);
+                        $query->bindParam(':projectSlug', $projectSlug);
+                        $query->bindParam(':previewPhoto', $newfilename);
+                        $query->bindParam(':projectLocation', $projectLocation);
+                        $query->bindParam(':dateAwarded', $dateAwarded);
+                        $query->bindParam(':dateCompleted', $dateCompleted);
+                        $query->bindParam(':partnerID', $partnerID);
+                        $query->bindParam(':ProjectManager', $ProjectManager);
+                        $query->bindParam(':projectStatus', $projectStatus);
+                        $query->bindParam(':projectReport', $newreportfilename);
                         $query->execute();
 
                         $projectID = $dbh->lastInsertId();
 
-                        // --- Resize and upload gallery images ---
+                        // Upload gallery images
                         if (!empty($_FILES['projectGallery']['name'][0])) {
                             foreach ($_FILES['projectGallery']['name'] as $index => $galleryImage) {
                                 if ($_FILES['projectGallery']['error'][$index] === UPLOAD_ERR_OK) {
@@ -147,12 +149,10 @@ if (isset($_POST['submit'])) {
                                         $gallery_upload_path = "../projectphotos/" . $newgalleryfilename;
                                         $tmp_gallery_path = $_FILES['projectGallery']['tmp_name'][$index];
 
-                                        // Resize before saving
                                         if (resizeImage($tmp_gallery_path, $gallery_upload_path, 800, 450, $galleryExtension)) {
-                                            $sql = "INSERT INTO tblprojectgallery (projectID, photo) VALUES (:projectID, :photo)";
-                                            $stmt = $dbh->prepare($sql);
-                                            $stmt->bindParam(':projectID', $projectID, PDO::PARAM_INT);
-                                            $stmt->bindParam(':photo', $newgalleryfilename, PDO::PARAM_STR);
+                                            $stmt = $dbh->prepare("INSERT INTO tblprojectgallery (projectID, photo) VALUES (:projectID, :photo)");
+                                            $stmt->bindParam(':projectID', $projectID);
+                                            $stmt->bindParam(':photo', $newgalleryfilename);
                                             $stmt->execute();
                                         }
                                     }
@@ -160,20 +160,19 @@ if (isset($_POST['submit'])) {
                             }
                         }
 
-                        // --- Link services ---
+                        // Insert services
                         if (!empty($_POST['serviceID'])) {
                             foreach ($_POST['serviceID'] as $serviceID) {
-                                $sql = "INSERT INTO tblprojectservices (projectID, serviceID) VALUES (:projectID, :serviceID)";
-                                $insertQuery = $dbh->prepare($sql);
-                                $insertQuery->bindParam(':projectID', $projectID, PDO::PARAM_INT);
-                                $insertQuery->bindParam(':serviceID', $serviceID, PDO::PARAM_INT);
+                                $insertQuery = $dbh->prepare("INSERT INTO tblprojectservices (projectID, serviceID) VALUES (:projectID, :serviceID)");
+                                $insertQuery->bindParam(':projectID', $projectID);
+                                $insertQuery->bindParam(':serviceID', $serviceID);
                                 $insertQuery->execute();
                             }
                         }
 
                         $msg = "Project added successfully.";
                     } else {
-                        $error = "Failed to resize and save preview image.";
+                        $error = "Failed to resize preview image.";
                     }
                 }
             } else {
@@ -182,6 +181,94 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
+// === UPDATE EXISTING PROJECT ===
+if (isset($_POST['update'])) {
+    $projectID = intval($_POST['projectID']);
+
+    // Optional: handle new preview image
+    $previewFilename = $_POST['existingPreviewPhoto'] ?? '';
+
+    if (!empty($_FILES['previewPhoto']['name'])) {
+        $extension = strtolower(pathinfo($_FILES["previewPhoto"]["name"], PATHINFO_EXTENSION));
+        if (in_array($extension, $allowed_extensions)) {
+            $newfilename = uniqid("preview_" . $titleForImage) . '.' . $extension;
+            $upload_path = "../projectphotos/" . $newfilename;
+            if (resizeImage($_FILES["previewPhoto"]["tmp_name"], $upload_path, 800, 450, $extension)) {
+                $previewFilename = $newfilename;
+            }
+        }
+    }
+
+    $newreportfilename = $_POST['existingReport'] ?? '';
+    if (!empty($_FILES['projectReport']['name']) && $_FILES['projectReport']['error'] === UPLOAD_ERR_OK) {
+        $reportExtension = strtolower(pathinfo($_FILES["projectReport"]["name"], PATHINFO_EXTENSION));
+        if ($reportExtension === "pdf") {
+            $newreportfilename = uniqid("report_" . $titleForImage) . '.' . $reportExtension;
+            $report_upload_path = "../projectreports/" . $newreportfilename;
+            move_uploaded_file($_FILES["projectReport"]["tmp_name"], $report_upload_path);
+        }
+    }
+
+    $sql = "UPDATE tblprojects 
+            SET projectTitle=:projectTitle, projectSlug=:projectSlug, previewPhoto=:previewPhoto, projectLocation=:projectLocation, 
+                dateAwarded=:dateAwarded, dateCompleted=:dateCompleted, client=:partnerID, ProjectManager=:ProjectManager, 
+                projectStatus=:projectStatus, projectReport=:projectReport, dateUpdated=NOW() 
+            WHERE id=:projectID";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':projectTitle', $projectTitle);
+    $query->bindParam(':projectSlug', $projectSlug);
+    $query->bindParam(':previewPhoto', $previewFilename);
+    $query->bindParam(':projectLocation', $projectLocation);
+    $query->bindParam(':dateAwarded', $dateAwarded);
+    $query->bindParam(':dateCompleted', $dateCompleted);
+    $query->bindParam(':partnerID', $partnerID);
+    $query->bindParam(':ProjectManager', $ProjectManager);
+    $query->bindParam(':projectStatus', $projectStatus);
+    $query->bindParam(':projectReport', $newreportfilename);
+    $query->bindParam(':projectID', $projectID);
+    $query->execute();
+
+    // Add new gallery images (optional)
+    if (!empty($_FILES['projectGallery']['name'][0])) {
+        foreach ($_FILES['projectGallery']['name'] as $index => $galleryImage) {
+            if ($_FILES['projectGallery']['error'][$index] === UPLOAD_ERR_OK) {
+                $galleryExtension = strtolower(pathinfo($galleryImage, PATHINFO_EXTENSION));
+                if (in_array($galleryExtension, $allowed_extensions)) {
+                    $newgalleryfilename = uniqid("gallery_" . $titleForImage) . '.' . $galleryExtension;
+                    $gallery_upload_path = "../projectphotos/" . $newgalleryfilename;
+                    $tmp_gallery_path = $_FILES['projectGallery']['tmp_name'][$index];
+
+                    if (resizeImage($tmp_gallery_path, $gallery_upload_path, 800, 450, $galleryExtension)) {
+                        $stmt = $dbh->prepare("INSERT INTO tblprojectgallery (projectID, photo) VALUES (:projectID, :photo)");
+                        $stmt->bindParam(':projectID', $projectID);
+                        $stmt->bindParam(':photo', $newgalleryfilename);
+                        $stmt->execute();
+                    }
+                }
+            }
+        }
+    }
+
+	 // --- Update Services ---
+    if (!empty($_POST['serviceID'])) {
+        // Remove old ones if updating
+        if ($isUpdate) {
+            $dbh->prepare("DELETE FROM tblprojectservices WHERE projectID = :projectID")
+                ->execute([':projectID' => $projectID]);
+        }
+        foreach ($_POST['serviceID'] as $serviceID) {
+            $insertQuery = $dbh->prepare("INSERT INTO tblprojectservices (projectID, serviceID) VALUES (:projectID, :serviceID)");
+            $insertQuery->bindParam(':projectID', $projectID);
+            $insertQuery->bindParam(':serviceID', $serviceID);
+            $insertQuery->execute();
+        }
+    }
+
+
+    $msg = "Project updated successfully.";
+}
+
 
 
 
