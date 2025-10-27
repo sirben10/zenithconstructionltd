@@ -14,6 +14,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 	// $serviceID = strip_tags($_POST['serviceID']);
 	$projectTitle = strtolower(strip_tags($_POST['projectTitle']));
 	$projectTitle = preg_replace('/\s+/', ' ', $projectTitle);
+	$projectTT = str_replace([',','"', ':',';'], '', $projectTitle);
+	$projectSlug = strtolower(str_replace([' ', ','], '-', $projectTT));
 	$titleForImage = preg_replace('/\s+/', '_', $projectTitle);
 	$previewPhoto = $_FILES['previewPhoto']["name"];
 	$previewPhotosize = $_FILES['previewPhoto']["size"];
@@ -32,6 +34,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 	$projectGallery = $_FILES['projectGallery']["name"];
 	$projectGallerysize = $_FILES['projectGallery']["size"];
 	$projectGalleryError = $_FILES['projectGallery']['error'];
+	
 
 
 	// Code for Insert Project
@@ -76,11 +79,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 							// Insert into projects table
 							// echo $titleForImage; exit;
 							$sql = "INSERT INTO tblprojects 
-                                        (projectTitle, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
+                                        (projectTitle, projectSlug, previewPhoto, projectLocation, dateAwarded, dateCompleted, client, ProjectManager, projectStatus, projectReport, dateUpdated) 
                                         VALUES 
-                                        (:projectTitle, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
+                                        (:projectTitle, :projectSlug, :previewPhoto, :projectLocation, :dateAwarded, :dateCompleted, :partnerID, :ProjectManager, :projectStatus, :projectReport, NOW())";
 							$query = $dbh->prepare($sql);
 							$query->bindParam(':projectTitle', $projectTitle, PDO::PARAM_STR);
+							$query->bindParam(':projectSlug', $projectSlug, PDO::PARAM_STR);
 							$query->bindParam(':previewPhoto', $newfilename, PDO::PARAM_STR);
 							$query->bindParam(':projectLocation', $projectLocation, PDO::PARAM_STR);
 							$query->bindParam(':dateAwarded', $dateAwarded, PDO::PARAM_STR);

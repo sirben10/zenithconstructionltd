@@ -995,9 +995,9 @@
 .zenith-project.style-1 .elm-meta > span:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
+  transform: translateY(0);
   width: 1px;
   height: 10px;
   background-color: #bdbdbd;

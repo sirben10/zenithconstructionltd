@@ -39,24 +39,24 @@ if (!empty($_GET['p'])) {
     />
 
     <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../style.css
+    <link rel="stylesheet" type="text/css" href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../style.css
       <?php }else {?>style.css<?php } ?>" />
 
     <!-- Colors -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../assets/css/colors/color1.css
+      href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../assets/css/colors/color1.css
         <?php }else {?>../assets/css/colors/color1.css<?php } ?>"
       id="colors"
     />
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../sitelogo/<?php echo $rows['siteicon'] ?>
+    <link rel="shortcut icon" href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../sitelogo/<?php echo $rows['siteicon'] ?>
       <?php } else{?>sitelogo/<?php echo $rows['siteicon'] ?><?php } ?>" />
     <link
       rel="apple-touch-icon-precomposed"
-      href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../assets/icon/zenith_favicon.jpg
+      href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../assets/icon/zenith_favicon.jpg
         <?php }else {?>../assets/icon/zenith_favicon.jpg<?php } ?>"
 
     />

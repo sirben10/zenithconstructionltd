@@ -21,8 +21,10 @@
                                  <div class="partner-item">
                                      <div class="inner">
                                          <div class="thumb text-center">
-                                             <img src="partnersphotos/<?php echo $client['partnerLogo']; ?>" alt="<?php echo $client['companyName']; ?>" class="partner-default">
-                                             <img src="partnersphotos/<?php echo $client['partnerLogo']; ?>" alt="<?php echo $client['companyName']; ?>" class="partner-color">
+                                             <img src="<?php if (!empty($_GET['p']) && $_GET['p'] == 'projects') {?>../partnersphotos/<?php echo $client['partnerLogo']; ?>
+                                                <?php } else{ ?>partnersphotos/<?php echo $client['partnerLogo']; ?> <?php }?>" alt="<?php echo $client['companyName']; ?>" class="partner-default">
+                                             <img src="<?php if (!empty($_GET['p']) && $_GET['p'] == 'projects') {?>../partnersphotos/<?php echo $client['partnerLogo']; ?>
+                                                <?php } else{ ?>partnersphotos/<?php echo $client['partnerLogo']; ?> <?php }?>" alt="<?php echo $client['companyName']; ?>" class="partner-color">
                                          </div>
                                      </div>
                                  </div>
