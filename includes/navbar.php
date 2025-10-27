@@ -18,7 +18,8 @@
       </ul>
     </li>
     <li class="menu-item <?php if (!empty($page) && $page == 'services') { ?>current-menu-item<?php } ?>">
-      <a href="services/?p=services">SERVICES</a>
+      <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/services/?p=services
+            <?php } else{?>services/?p=services<?php } ?>">SERVICES</a>
     
     </li>
     <li class="menu-item menu-item-has-children <?php if (!empty($page) && $page == 'projects') { ?>current-menu-item<?php } ?>">
@@ -28,7 +29,7 @@
     </li>
    
     <li class="menu-item <?php if (!empty($page) && $page == 'contactus') { ?>current-menu-item<?php } ?>">
-      <a href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>/contact-us?p=contactus
+      <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/contact-us?p=contactus
             <?php } else{?>contact-us?p=contactus<?php } ?>">CONTACT</a>
     </li>
   </ul>

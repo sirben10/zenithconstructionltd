@@ -14,6 +14,35 @@ if (!empty($_GET['p'])) {
   $page = $_GET['p'];
 }
  $serv = md5('service');
+
+
+$cookieConsent = $_COOKIE['site_consent'] ?? '';
+
+if ($cookieConsent === 'accepted') {
+  echo <<<HTML
+    <!-- Google Analytics or any tracking code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+  HTML;
+}
+
+// Optionally log the consent action for security auditing
+if (isset($_COOKIE['site_consent'])) {
+  $consent = $_COOKIE['site_consent'];
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $userAgent = $_SERVER['HTTP_USER_AGENT'];
+  $timestamp = date('Y-m-d H:i:s');
+
+  // Simple text log (optional)
+  $log = "[$timestamp] IP: $ip | Consent: $consent | UA: $userAgent\n";
+  file_put_contents(__DIR__ . '/cookie_log.txt', $log, FILE_APPEND);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -101,6 +130,7 @@ if (!empty($_GET['p'])) {
   }
   
   </style>
+
   </head>
 
 

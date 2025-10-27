@@ -1,5 +1,5 @@
 <?php
-
+ if (!empty($_GET['p'])) {
 // echo $rows['sitetitle']; exit;
 include '../includes/header.php';
 // $sql = "SELECT p.projectTitle,p.previewPhoto, GROUP_CONCAT(s.serviceName SEPARATOR ', ') AS services
@@ -213,3 +213,7 @@ GROUP BY p.projectID";
 
 
 </html>
+<?php } else {
+    header('location: ?p=projects');
+}
+?>

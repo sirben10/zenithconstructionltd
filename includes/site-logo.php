@@ -1,7 +1,7 @@
 
  <div id="site-logo" class="clearfix">
                   <div id="site-log-inner">
-                    <a href="index" rel="home" class="main-logo">
+                    <a href="/" rel="home" class="main-logo">
                       <img
                         src="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../sitelogo/<?php echo $rows['sitelogo']?>
                         <?php }else{?>sitelogo/<?php echo $rows['sitelogo'] ?> <?php } ?>" class="img-responsive"

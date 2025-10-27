@@ -370,7 +370,7 @@ include 'includes/header.php';
                             data-mobile="35"
                             data-smobile="35"></div>
                           <div class="elm-button text-center">
-                            <a href="projects" class="zenith-button bg-accent">ALL PROJECTS
+                            <a href="projects/?p=projects" class="zenith-button bg-accent">ALL PROJECTS
                             </a>
                           </div>
                           <div

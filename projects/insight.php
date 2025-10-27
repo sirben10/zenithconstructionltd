@@ -1,4 +1,5 @@
       <?php
+       if ((!empty($_GET['p']) && !empty($_GET['s']))) {
         $projectSlug = $_GET['s'];
         //   echo $projectSlug; exit;
         $allprojectssql = "SELECT * from  tblprojects p JOIN tblpartners pt ON pt.partnerID = p.client
@@ -109,7 +110,7 @@ GROUP BY p.projectID";
                                               </div>
                                               <div class="detail-gallery">
                                                   <div class="zenith-spacer clearfix" data-desktop="21" data-mobile="21" data-smobile="21"></div>
-                                                  <div class="zenith-gallery style-2 has-arrows arrow-center arrow-circle offset-v-82 has-thumb w185 clearfix" data-gap="0" data-column="1" data-column2="1" data-column3="1" data-auto="false">
+                                                  <div class="zenith-gallery style-1 has-arrows arrow-center arrow-circle offset-v-82 has-thumb w185 clearfix" data-gap="0" data-column="1" data-column2="1" data-column3="1" data-auto="false" style="height: auto !important;">
                                                       <div class="owl-carousel owl-theme">
                                                         <?php 
                                                         foreach($results as $row){?>
@@ -186,3 +187,8 @@ GROUP BY p.projectID";
               </div><!-- /#site-content -->
           </div><!-- /#content-wrap -->
       </div><!-- /#main-content FOR PROJECT DETAILS -->
+
+      <?php } else {
+    header('location: ?p=projects&s='.$result['projectSlug']);
+}
+?>

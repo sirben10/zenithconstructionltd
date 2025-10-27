@@ -1,4 +1,5 @@
 <?php
+ if (!empty($_GET['p'])) {
 include '../includes/header.php';
 //  $serv = md5('service');
 ?>
@@ -158,3 +159,12 @@ include '../includes/header.php';
 
 
 </html>
+
+<?php } else {
+  if ($_GET['p'] == 'projects') {
+    header('location: ../services?p=services');
+  }else{
+    header('location: ?p=services');
+  }
+}
+?>

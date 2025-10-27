@@ -7,7 +7,7 @@
                   <div class="textwidget">
                     <p>
                       <img
-                        src="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>../sitelogo/<?php echo $rows['sitelogo'] ?>
+                        src="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>../sitelogo/<?php echo $rows['sitelogo'] ?>
                         <?php } else{?>sitelogo/<?php echo $rows['sitelogo'] ?><?php }?>"
                         alt="<?php echo $rows['sitetitle'] ?>"
                         width="70"
@@ -73,9 +73,12 @@
                     <a href="about?p=aboutus">WHO WE ARE</a>
                     <a href="#">QUALITY & SAFETY</a>
                     <a href="#">PLANTS AND EQUIPMENTS</a>
-                    <a href="#">SERVICES</a>
-                    <a href="#">PROJETS</a>
-                    <a href="#">CONTACT</a>
+                    <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/services?p=services
+            <?php } else{?>services?p=services<?php } ?>">SERVICES</a>
+                    <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/projects?p=projects
+            <?php } else{?>projects?p=projects<?php } ?>">PROJECTS</a>
+                    <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/contact-us?p=contactus
+            <?php } else{?>contact-us?p=contactus<?php } ?>">CONTACT</a>
                     <!-- <a href="#">Resort</a>
                     <a href="#">Commercial</a> -->
                   </div>
@@ -138,142 +141,89 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- 🧁 Cookie Consent Banner -->
-<div id="cookieConsent" class="cookie-consent">
-  <div class="cookie-container">
-    <p>
-      🍪 We use cookies to improve your browsing experience, analyze traffic, and personalize content. 
-      By continuing to use our site, you agree to our 
-      <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>.
+
+
+
+
+    
+   <!-- COOKIE CONSENT BANNER -->
+<div id="cookie-consent" class="cookie-banner hidden">
+  <div class="cookie-content">
+    <p>We use cookies to improve your experience, analyze traffic, and enhance site performance. 
+      By continuing, you agree to our <a href="/privacy-policy.php" target="_blank">Privacy Policy</a>.
     </p>
-    <div class="cookie-buttons">
-      <button id="acceptCookies">Accept All</button>
+    <div class="cookie-actions">
+      <button id="acceptCookies">Accept</button>
       <button id="rejectCookies">Reject</button>
     </div>
   </div>
 </div>
 
 <style>
-  .cookie-consent {
+  .cookie-banner {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
-    background: rgba(15, 15, 15, 0.95);
+    background: #222;
     color: #fff;
-    font-family: "Segoe UI", sans-serif;
+    text-align: center;
+    padding: 15px;
     font-size: 15px;
     z-index: 9999;
-    display: none;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
   }
-
-  .cookie-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 16px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .cookie-container p {
-    flex: 1 1 70%;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .cookie-container a {
-    color: #00bfff;
-    text-decoration: underline;
-  }
-
-  .cookie-buttons {
-    display: flex;
-    gap: 10px;
-  }
-
-  .cookie-buttons button {
-    background: #00bfff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 5px;
+  .cookie-banner.hidden { display: none; }
+  .cookie-actions button {
+    background: #007bff;
     color: #fff;
-    font-weight: 600;
+    border: none;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
   }
-
-  .cookie-buttons button:hover {
-    background: #0099cc;
-  }
-
-  .cookie-buttons #rejectCookies {
+  .cookie-actions button:hover { background: #0056b3; }
+  .cookie-actions button#rejectCookies {
     background: #555;
-  }
-
-  .cookie-buttons #rejectCookies:hover {
-    background: #444;
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const banner = document.getElementById("cookieConsent");
-    const acceptBtn = document.getElementById("acceptCookies");
-    const rejectBtn = document.getElementById("rejectCookies");
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('acceptCookies');
+    const rejectBtn = document.getElementById('rejectCookies');
 
-    // Helper to set cookies
-    function setCookie(name, value, days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days*24*60*60*1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax`;
+    // Check if consent already exists
+    if (!getCookie('site_consent')) {
+      banner.classList.remove('hidden');
     }
 
-    // Helper to get cookies
+    acceptBtn.addEventListener('click', function() {
+      setCookie('site_consent', 'accepted', 365);
+      banner.classList.add('hidden');
+      location.reload();
+    });
+
+    rejectBtn.addEventListener('click', function() {
+      setCookie('site_consent', 'rejected', 365);
+      banner.classList.add('hidden');
+    });
+
+    // Helper functions
+    function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days*24*60*60*1000));
+      document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+    }
+
     function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
     }
-
-    const userConsent = getCookie("site_consent");
-
-    if (!userConsent) {
-      banner.style.display = "block";
-    } else {
-      if (userConsent === "accepted") {
-        enableCookies();
-      }
-    }
-
-    acceptBtn.addEventListener("click", function () {
-      setCookie("site_consent", "accepted", 180);
-      banner.style.display = "none";
-      enableCookies();
-    });
-
-    rejectBtn.addEventListener("click", function () {
-      setCookie("site_consent", "rejected", 180);
-      banner.style.display = "none";
-    });
-
-    // Example of enabling optional cookies/scripts after consent
-    function enableCookies() {
-      // Example: load Google Analytics only if consented
-      const script = document.createElement("script");
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX";
-      script.async = true;
-      document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    }
   });
 </script>
+
 
