@@ -16,7 +16,43 @@ $service = $query->fetch(PDO::FETCH_ASSOC);
 $activeService = $service['serviceName'];
 ?>
 <title><?php echo $activeService . ' | ' . $rows['sitetitle'] ?> </title>
+<style>
+    .scroll {
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    * {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    @media only screen and (min-width: 991px) {    
+        .zcl-m-c{
+            width:  100% !important;
+            justify-content: center;
+            position: relative;
+            margin: 0 33.3% auto !important;
+        }
+        .qs-img{
+        height: auto !important;
+        width: auto
+    }
+    }
+    @media only screen and (max-width: 990.5px) {    
+      
+        .qs-img{
+        height: auto !important;
+        width: auto
+    }
+    }
+</style>
 
 
 <body class="header-fixed page sidebar-left header-style-2 topbar-style-1 menu-has-search">
@@ -127,16 +163,35 @@ $activeService = $service['serviceName'];
                                     Our commitment is to deliver safe, reliable, and long-lasting infrastructure.
                                 </p>
                             </div>
-                            <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-                            <div class=" m-auto style-2 clearfix">
-                                <div class="item">
-                                    <div class="zenith-accordions clearfix mx-3">
-                                        <div class="accordion-item active">
-                                            <h3 class="accordion-heading"><span class="inner">Our Core Principles</span></h3>
-                                            <div class="accordion-content clearfix">
-                                                <div class="zenith-row clearfix">
-                                                    <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
-                                                        <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
+                            <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
+                        </div><!-- /#inner-content -->
+                    </div><!-- /#site-content -->
+                    <div id="sidebar">
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="80"
+                            data-mobile="0"
+                            data-smobile="0"></div>
+                        <?php include 'service-side-bar.php' ?>
+                        <div
+                            class="zenith-spacer clearfix"
+                            data-desktop="0"
+                            data-mobile="60"
+                            data-smobile="60"></div>
+                    </div>
+                    <!-- /#sidebar -->
+                      <div class="scroll">
+                        <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
+
+                        <div class="style-2 clearfix zcl-m-c">
+                            <div class="item align-center">
+                                <div class="zenith-accordions clearfix">
+                                    <div class="accordion-item active align-center">
+                                        <h3 class="accordion-heading"><span class="inner">Our Core Principles</span></h3>
+                                        <div class="accordion-content clearfix" >
+                                            <div class="zenith-row clearfix">
+                                                <div class="zenith-content-box clearfix" data-margin="0 22px 0 0px" data-mobilemargin="0 22px 0 0px">
+                                                    <div class="zenith-list has-icon style-1 icon-left size-16 clearfix">
                                                             <div class="inner">
                                                                 <span class="item">
                                                                     <span class="icon"><i class="fa fa-check-circle"></i></span>
@@ -168,102 +223,50 @@ $activeService = $service['serviceName'];
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
-                                                        <div class="zenith-list  style-2 icon-left clearfix">
+                                                    <!-- Zenith Lists -->
+                                                    <div class="zenith-spacer clearfix" data-desktop="10" data-mobile="10" data-smobile="10"></div>
+                                                    <div class="zenith-list  style-2 icon-left clearfix">
 
-                                                        </div>
-                                                    </div><!-- /.zenith-content-box -->
-                                                </div>
+                                                    </div>
+                                                </div><!-- /.zenith-content-box -->
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- /.item -->
-                            </div>
-                            <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
-
-                            <div class="zenith-row gutter-30 gutter-mobile clearfix p-sm-4">
-                                <div class="zenith-headings style-2 clearfix">
-                                    <h2 class="heading" style="margin: 0 10px 0 20px !important">OUR ENGINEERING DESIGN SERVICES</h2>
-                                    <!-- <div class="sep has-width w80 accent-bg clearfix"></div> -->
                                 </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                            </div><!-- /.item -->
+                        </div>
+                        <div class="zenith-spacer clearfix" data-desktop="37" data-mobile="35" data-smobile="35"></div>
 
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Highway and Road Construction</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
+                        <div class="zenith-row gutter-30 gutter-mobile clearfix">
+                            <div class="zenith-headings style-2 clearfix">
+                                <h2 class="heading text-center">OUR ENGINEERING DESIGN SERVICES</h2>
+                                <!-- <div class="sep has-width w80 accent-bg clearfix ms-5"></div> -->
+                            </div>
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                   <div class="m-auto qs-img">
+                                       <img src="../servicephotos/road-service-highway.JPG" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                        <h5 class="heading"><a>Highway and Road Construction</a></h5>
+                                        <div class="sep clearfix"></div>
+                                        <p class="sub-heading">
                                                 End-to-end development of highways, urban, and rural roads,
                                                 using advanced materials and techniques to ensure longevity and smooth performance.
                                             </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                    <div class="divider h35"></div>
-                                </div>
+                                    </div>
+                                </div><!-- /.zenith-icon-box -->
+                                <!-- <div class="divider h35"></div> -->
+                            </div>
 
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Pavement Design and Surfacing</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                Custom pavement solutions for different traffic loads and environmental conditions,
-                                                ensuring optimal ride quality and low maintenance costs.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Drainage & Roadside Works</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                Integrated design and construction of side drains, culverts,
-                                                and curbs to enhance road durability and prevent surface water accumulation.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Earthworks & Site Preparation</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                Grading, excavation, compaction, and sub-base preparation for road projects of all scales,
-                                                setting a strong foundation for lasting roads.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
-                                            <h5 class="heading"><a>Road Marking & Signage</a></h5>
-                                            <div class="sep clearfix"></div>
-                                            <p class="sub-heading">
-                                                Installation of clear, durable road markings and traffic signs that enhance
-                                                road safety and compliance with regulatory standards.
-                                            </p>
-                                        </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
-                                <div class="col span_1_of_4 mb-xl-1">
-                                    <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
-                                    <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
-
-                                        <div class="text-wrap">
+                             <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                      <div class="m-auto qs-img">
+                                       <img src="../servicephotos/quality-control.JPG" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                       <div class="text-wrap">
                                             <h5 class="heading"><a>Quality Control & Project Supervision</a></h5>
                                             <div class="sep clearfix"></div>
                                             <p class="sub-heading">
@@ -271,27 +274,49 @@ $activeService = $service['serviceName'];
                                                 to ensure every road meets the highest quality standards.
                                             </p>
                                         </div>
-                                    </div><!-- /.zenith-icon-box -->
-                                </div>
+                                </div><!-- /.zenith-icon-box -->
                             </div>
 
-                            <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
-                        </div><!-- /#inner-content -->
-                    </div><!-- /#site-content -->
-                    <div id="sidebar">
-                        <div
-                            class="zenith-spacer clearfix"
-                            data-desktop="80"
-                            data-mobile="0"
-                            data-smobile="0"></div>
-                        <?php include 'service-side-bar.php' ?>
-                        <div
-                            class="zenith-spacer clearfix"
-                            data-desktop="0"
-                            data-mobile="60"
-                            data-smobile="60"></div>
+                            
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="0" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                      <div class="m-auto qs-img">
+                                       <img src="../servicephotos/drainage-side-works.JPG" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                    <div class="text-wrap">
+                                            <h5 class="heading"><a>Drainage & Roadside Works</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Integrated design and construction of side drains, culverts,
+                                                and curbs to enhance road durability and prevent surface water accumulation.
+                                            </p>
+                                        </div>
+                                </div><!-- /.zenith-icon-box -->
+
+                            </div>
+                           
+                            <div class="col span_1_of_6 mb-xl-4">
+                                <div class="zenith-spacer clearfix" data-desktop="0" data-mobile="35" data-smobile="35"></div>
+                                <div class="zenith-icon-box icon-top align-center has-width w95 circle light-bg accent-color style-1 bg-white-column padding-inner clearfix">
+                                      <div class="m-auto qs-img">
+                                       <img src="../servicephotos/road-marking.jpg" class="image-responsive" height="auto" width="100%">
+                                   </div>
+                                     <div class="text-wrap">
+                                            <h5 class="heading"><a>Road Marking & Signage</a></h5>
+                                            <div class="sep clearfix"></div>
+                                            <p class="sub-heading">
+                                                Installation of clear, durable road markings and traffic signs that enhance
+                                                road safety and compliance with regulatory standards.
+                                            </p>
+                                        </div>
+                                </div><!-- /.zenith-icon-box -->
+                            </div>
+                           
+                        </div>
                     </div>
-                    <!-- /#sidebar -->
+
+                    <div class="zenith-spacer clearfix" data-desktop="80" data-mobile="60" data-smobile="60"></div>
                 </div><!-- /#content-wrap -->
             </div><!-- /#main-content -->
 

@@ -118,7 +118,7 @@ $activeService = $service['serviceName'];
                             </div><!-- /.zenith-row -->
                             <div class="zenith-spacer clearfix" data-desktop="39" data-mobile="39" data-smobile="39"></div>
                             <div class="flat-content-wrap style-2 clearfix">
-                                <h5 class="title">Our Design Philosophy</h5>
+                                <h5 class="title">Our Philosophy</h5>
                                 <p>Zenith has provided road repair, resurfacing and pavement management services for over 25 Years.
                                     We combine civil engineering best practices with
                                     modern materials and data-led pavement management to deliver long-lasting,

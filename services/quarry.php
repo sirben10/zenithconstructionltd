@@ -273,6 +273,7 @@ $activeService = $service['serviceName'];
                                         <p class="sub-heading">
                                            We produce high-grade aggregates including crushed stone, gravel, 
                                            and sand, used for road bases, concrete, and asphalt applications.
+                                           </p>
                                     </div>
                                 </div><!-- /.zenith-icon-box -->
                                 <!-- <div class="divider h35"></div> -->
