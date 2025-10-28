@@ -33,14 +33,14 @@ if (isset($_POST['submit'])) {
     try {
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
-        $mail->Host       = 'mail.zenithconstructionltd.com';
+        $mail->Host       = '';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'contact@zenithconstructionltd.com';
-        $mail->Password   = 'zcl@_zenithmail';
+        $mail->Username   = '';
+        $mail->Password   = '';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
-        $mail->setFrom('contact@zenithconstructionltd.com', 'Zenith Consrtuction Ltd');
+        $mail->setFrom('', '');
         $mail->addAddress($email);
 
         $mail->isHTML(true);
@@ -83,16 +83,16 @@ if (isset($_POST['submit'])) {
         //Server settings
         $copymail->SMTPDebug = 0;
         $copymail->isSMTP();
-        $copymail->Host       = 'mail.zenithconstructionltd.com';
+        $copymail->Host       = '';
         $copymail->SMTPAuth   = true;
-        $copymail->Username   = 'contact@zenithconstructionltd.com';                     //SMTP username
-        $copymail->Password   = 'zcl@_zenithmail';
+        $copymail->Username   = '';                     //SMTP username
+        $copymail->Password   = '';
         $copymail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $copymail->Port       = 465;
         $copymail->setFrom($email,  $name);
-        $copymail->addAddress('contact@zenithconstructionltd.com');
-        $copymail->addCC('zenithconstruction1@gmail.com', 'Zenith Construction Ltd');
-        $copymail->addBCC('akawuben@gmail.com');
+        $copymail->addAddress('');
+        $copymail->addCC('', '');
+        $copymail->addBCC('');
         $copymail->isHTML(true);                                  //Set ecopymail format to HTML
         $copymail->Subject = $msgsubject;
         $copymail->Body    = '<html>
