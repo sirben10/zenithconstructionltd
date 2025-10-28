@@ -2,10 +2,16 @@
 
 // echo $rows['sitetitle']; exit;
 include 'includes/header.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 $error = '';
 $message = '';
 // Function to sanitize inputs
 if (isset($_POST['submit'])) {
+
 
     function clean_input($data)
     {
@@ -19,6 +25,96 @@ if (isset($_POST['submit'])) {
     $msgsubject = clean_input($_POST['msgsubject'] ?? '');
     $message = clean_input($_POST['message'] ?? '');
     $status = 0;
+
+    // Email Notification
+    require 'vendor/autoload.php';
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->Host       = 'mail.zenithconstructionltd.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'contact@zenithconstructionltd.com';
+        $mail->Password   = 'zcl@_zenithmail';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+
+        $mail->setFrom('contact@zenithconstructionltd.com', 'Zenith Consrtuction Ltd');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Hi ' . $name;
+        $mail->Body    = '<html>
+                        <body>
+                        <table style="border-collapse:collapse;max-width:300px; ">
+                        <tbody>
+                            <tr>
+                                <td><b>Thank You for Contacting Us</b><br>
+                                    <br>
+                                    This is to confirm that Your mail has been received successfully and will be acted upon promptly <br>
+                                     <p style="font-weight: bold;">Please reply below </p>
+                    
+                                     If you have any further questions..
+                    
+                                    <hr style="border:0;border-bottom:1px solid #008000">
+                    
+                                    <p><a href="https://www.zenithconstructionltd.com/projects/?p=projects" style="color: #fff; text-decoration:none; background-color: #008000; padding: 10px; border:5px 0 5px 0;">Explore our Various Services</a></p> <br>
+                                   
+                                    Kind Regards,<br>
+                                    <strong>Zenith Construction Ltd</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        </body>
+                        </html>';
+        // echo 'Message has been sent'; exit;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+
+
+    //Create an instance; passing `true` enables exceptions
+    $copymail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        $copymail->SMTPDebug = 0;
+        $copymail->isSMTP();
+        $copymail->Host       = 'mail.zenithconstructionltd.com';
+        $copymail->SMTPAuth   = true;
+        $copymail->Username   = 'contact@zenithconstructionltd.com';                     //SMTP username
+        $copymail->Password   = 'zcl@_zenithmail';
+        $copymail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $copymail->Port       = 465;
+        $copymail->setFrom($email,  $name);
+        $copymail->addAddress('contact@zenithconstructionltd.com');
+        $copymail->addCC('zenithconstruction1@gmail.com', 'Zenith Construction Ltd');
+        $copymail->addBCC('akawuben@gmail.com');
+        $copymail->isHTML(true);                                  //Set ecopymail format to HTML
+        $copymail->Subject = $msgsubject;
+        $copymail->Body    = '<html>
+                        <body>
+                        <table style="border-collapse:collapse;max-width:300px; ">
+                        <tbody>
+                            <tr>
+                                <h2 style="border-top: 2px thick #008000"> New Message received from ' . $name. '</h2>
+                               
+                               
+                                <p style="padding: 20px; margin:auto; border-bottom: 2px thick #008000"> ' . $message . ' </p>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                        </body>
+                        </html>';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$copymail->ErrorInfo}";
+    }
+
+
 
     // Spam & unwanted word detection
     $banned_words = ['spam', 'viagra', 'bitcoin', 'lottery', 'win money', 'sex', 'porn', 'credit card', 'loan offer'];
@@ -73,6 +169,9 @@ if (isset($_POST['submit'])) {
             // $stmt->bind_param("ssssss", $name, $email, $phone, $msgsubject, $message, $status);
             $query->execute();
             if ($query) {
+
+                $mail->send();
+                $copymail->send();
                 // echo json_encode(['status' => 'success', 'message' => 'Your message has been sent successfully!']);
                 $message = 'Your message has been sent successfully!';
                 //    header("Location: ../contact-us?p=contactus");
@@ -117,6 +216,24 @@ if (isset($_POST['submit'])) {
     });
 </script>
 <style>
+    .errorWrap {
+        background-color: #801818;
+        color: #fff;
+        padding: 15px 10px;
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .succWrap {
+        background-color: #0c4a0c;
+        color: #fff;
+        padding: 15px 10px;
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+    }
+
     /* Popup (modal) styling */
     .modal {
         display: none;
@@ -252,6 +369,11 @@ if (isset($_POST['submit'])) {
                                 <div class="row-iconbox">
                                     <div class="container">
                                         <div class="row">
+                                            <div class="col-md-6 justify-content-center m-auto">
+                                                <div class="zenith-spacer clearfix" data-desktop="81" data-mobile="60" data-smobile="60"></div>
+                                              <?php if ($error) { ?><div class="btn-danger p-4"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($message) { ?><div class="btn-success p-4"><strong>SUCCESS</strong>:<?php echo htmlentities($message); ?> </div><?php } ?>
+
+                                            </div>
                                             <div class="col-md-12">
                                                 <div class="zenith-spacer clearfix" data-desktop="61" data-mobile="60" data-smobile="60"></div>
                                                 <div class="zenith-headings style-1 text-center clearfix">
@@ -323,27 +445,8 @@ if (isset($_POST['submit'])) {
                                 <div class="row-contact">
                                     <div class="container">
                                         <div class="row">
-                                            <style>
-                                                .errorWrap {
-                                                    background-color: #801818;
-                                                    color: #fff;
-                                                    padding: 15px 10px;
-                                                    position: relative;
-                                                    display: block;
-                                                    margin-bottom: 20px;
-                                                }
 
-                                                .succWrap {
-                                                    background-color: #0c4a0c;
-                                                    color: #fff;
-                                                    padding: 15px 10px;
-                                                    position: relative;
-                                                    display: block;
-                                                     margin-bottom: 20px;
-                                                }
-                                            </style>
                                             <div class="col-md-8 m-auto">
-                                                <?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($message) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($message); ?> </div><?php } ?>
                                                 <div class="zenith-contact-form style-2 w100 clearfix">
                                                     <form id="contactForm" action="" method="post" class="contact-form wpcf7-form">
                                                         <span class="wpcf7-form-control-wrap your-name">
