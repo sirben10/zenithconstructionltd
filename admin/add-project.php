@@ -239,7 +239,7 @@ if (isset($_POST['submit'])) {
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Project Title <em style="color:red"> *</em></label>
 												<div class="col-sm-8">
-													<input class="form-control" name="projectTitle" id="projectTitle" required>
+													<input class="form-control" name="projectTitle" id="projectTitle" minlength="20" maxlength="150" required>
 												</div>
 											</div>
 

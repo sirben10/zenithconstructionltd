@@ -70,13 +70,16 @@
                     <span>USEFUL LINKS</span>
                   </h2>
                   <div class="tags-list">
-                    <a href="about?p=aboutus">WHO WE ARE</a>
-                    <a href="#">QUALITY & SAFETY</a>
-                    <a href="#">PLANTS AND EQUIPMENTS</a>
+                    <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/about?p=aboutus
+                      <?php } else{?>about?p=aboutus<?php } ?>">WHO WE ARE</a>
                     <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/services?p=services
-            <?php } else{?>services?p=services<?php } ?>">SERVICES</a>
-                    <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/projects?p=projects
-            <?php } else{?>projects?p=projects<?php } ?>">PROJECTS</a>
+                      <?php } else{?>services?p=services<?php } ?>">SERVICES</a>
+                      <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/projects?p=projects
+                        <?php } else{?>projects?p=projects<?php } ?>">PROJECTS</a>
+                        <!-- <a href="#">QUALITY & SAFETY</a> -->
+                        <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/our-management?p=management
+                <?php } else{?>our-management?p=management<?php } ?>">MANAGEMENT STRUCTURE</a>
+                        <a href="#">PLANTS AND EQUIPMENTS</a>
                     <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects'))  {?>/contact-us?p=contactus
             <?php } else{?>contact-us?p=contactus<?php } ?>">CONTACT</a>
                     <!-- <a href="#">Resort</a>

@@ -131,6 +131,34 @@ if (isset($_COOKIE['site_consent'])) {
   
   </style>
 
+  <!--OG IMAGE HER-->
+ <meta property="og:type" content="website" />
+    <meta property=“og:type” content=“article” />
+    <meta property="og:url" content="https://www.zenithconstructionltd.com/"/>
+    <meta property="og:title" content="<?php echo htmlentities($rows['sitetitle'])?>"/>
+<meta property="og:description" content="A dynamic, goal oriented company with objectives to Design, Construct and manage all 
+                                        kinds of Civil Engineering Works with the application of Heavy Duty Plants and 
+                                        Equipment and the adoption of Engineering and site practices.."/>
+    
+    <meta property="og:image" itemprop="image" content="https://www.zenithconstructionltd.com/sitelogo/<?php echo $rows['sitelogo'] ?>" />
+<meta property="og:image:secure_url" content="https://www.zenithconstructionltd.com/sitelogo/<?php echo $row['sitelogo'] ?>" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:alt" content="Zenith Construction Ltd -- <?php echo htmlentities($rows['sitetitle'])?>" />
+<meta property="og:image:width" content="300">
+<meta property="og:image:height" content="300">
+
+
+
+<!--TWITTER CARD-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@District404A2">
+<meta name="twitter:creator" content="@District404A2">
+<meta name="twitter:image" content="https://www.zenithconstructionltd.com/sitelogo/<?php echo $rows['sitetitle'] ?>">
+<meta name="twitter:title" content="Zenith Construction Ltd -- <?php echo htmlentities($rows['sitetitle'])?>">
+<meta name="twitter:description" content="A dynamic, goal oriented company with objectives to Design, Construct and manage all 
+                                        kinds of Civil Engineering Works with the application of Heavy Duty Plants and 
+                                        Equipment and the adoption of Engineering and site practices.a.">
+
   </head>
 
 

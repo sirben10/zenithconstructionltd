@@ -1,18 +1,24 @@
+
 <nav id="main-nav" class="main-nav">
   <ul id="menu-primary-menu" class="menu">
     <li
       class="menu-item <?php if (!$page || $page == '') { ?> current-menu-item<?php } ?>">
       <a href="/">HOME</a>
     </li>
-    <li class="menu-item menu-item-has-children <?php if (!empty($page) && $page == 'aboutus') { ?>current-menu-item<?php } ?>">
+    <li class="menu-item menu-item-has-children <?php if (!empty($page) && ($page == 'aboutus' || $page == 'management' || $page == 'plants')) { ?>current-menu-item<?php } ?>">
       <a>ABOUT US </a>
       <ul class="sub-menu">
         <li class="menu-item">
-          <a href="<?php if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>/about?p=aboutus
+          <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>/about?p=aboutus
             <?php } else{?>about?p=aboutus<?php } ?>">WHO WE ARE</a>
         </li>
+        <li class="menu-item text-uppercase">
+          <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>/our-management?p=management
+            <?php } else{?>our-management?p=management<?php } ?>">Our Management Structure</a>
+        </li>
         <li class="menu-item">
-          <a href="our-management?p=our-management">CORPORATE MANAGEMENT</a>
+          <a href="<?php if (!empty($_GET['p']) && ($_GET['p'] == 'services' || $_GET['p'] == 'projects')) {?>/our-plants-and-equipment?p=plants
+            <?php } else{?>our-plants-and-equipment?p=plants<?php } ?>">PLANTS & EQUIPMENT</a>
         </li>
        
       </ul>

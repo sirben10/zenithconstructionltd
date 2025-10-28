@@ -1,5 +1,6 @@
 <?php
  if (!empty($_GET['p'])) {
+    // echo  $_GET['p']; exit;
 // echo $rows['sitetitle']; exit;
 include '../includes/header.php';
 // $sql = "SELECT p.projectTitle,p.previewPhoto, GROUP_CONCAT(s.serviceName SEPARATOR ', ') AS services
@@ -188,10 +189,7 @@ GROUP BY p.projectID";
             <script src="../assets/js/jquery.isotope.min.js"></script>
             <script src="../assets/js/owl.carousel2.thumbs.js"></script>
 
-            <script src="../assets/js/jquery.cookie.js"></script>
-            <script src="../assets/js/gmap3.min.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&amp;region=GB"></script>
-            <script src="../assets/js/shortcodes.js"></script>
+            <script src="../assets/js/jquery.cookie.js"></script>  <script src="../assets/js/shortcodes.js"></script>
             <script src="../assets/js/main.js"></script>
 
             <!-- Revolution Slider -->

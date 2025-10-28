@@ -17,8 +17,6 @@ if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>
 <script src="../assets/js/owl.carousel2.thumbs.js"></script>
 
 <script src="../assets/js/jquery.cookie.js"></script>
-<script src="../assets/js/gmap3.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&amp;region=NG"></script>
 <script src="../assets/js/shortcodes.js"></script>
 <script src="../assets/js/main.js"></script>
 
@@ -57,8 +55,6 @@ if (!empty($_GET['p']) && $_GET['p'] == 'services') {?>
 <script src="../assets/js/owl.carousel2.thumbs.js"></script>
 
 <script src="../assets/js/jquery.cookie.js"></script>
-<script src="../assets/js/gmap3.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&amp;region=NG"></script>
 <script src="../assets/js/shortcodes.js"></script>
 <script src="../assets/js/main.js"></script>
 
