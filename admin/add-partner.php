@@ -14,10 +14,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 	$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
 	$query->execute();
 	// Code for Insert	
+	$companyName = $_POST['companyName'];
+	$partnerLogo = $_FILES['partnerLogo']["name"];
+	$partnerLogosize = $_FILES['partnerLogo']["size"];
 	if (isset($_POST['submit'])) {
-		$companyName = $_POST['companyName'];
-		$partnerLogo = $_FILES['partnerLogo']["name"];
-		$partnerLogosize = $_FILES['partnerLogo']["size"];
 		// echo $partnerLogosize; exit;
 		if ($partnerLogosize > 1000000) {
 			$error = "Image size should be less than 100kb";
